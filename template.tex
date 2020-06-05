@@ -16,47 +16,55 @@
 
 \section{Motivation and goals}
 
-A prevalent characteristic of both mathematics and physics is their elaborate structure of interdependent concepts. It is only natural, then, for us students to thrive off of complexity and intricateness both within our courses as well as throughout our daily life. One such endeavour we satisfy our free time with is the game of Tichu. Tichu is a Chinese team card game taught to us by older students of our courses during the, albeit not very wide-ranging, cultural melting-pot between years – that unproductive period when our courses’ study hall slowly turns into the Mensa. 
+A prevalent characteristic of both mathematics and physics is their elaborate structure of interdependent concepts. It is only natural, then, for us students to thrive off of complexity and intricateness both within our courses as well as throughout our daily life. One such endeavour we satisfy our free time with is the game of Tichu. Tichu is a team card game taught to us by older students of our courses during the, albeit not very wide-ranging, cultural melting-pot between years – that unproductive period when our courses’ study hall slowly turns into the Mensa. 
 
     In addition to luck and strategy, this game became popular within our friend-group due to its fairly unique aspect of interaction. Allowing for multiple possible card combinations, special cards and a process of card switching, Tichu derives its complexity not through complicated rules, but rather through diverseness of strategy. Indeed, given one must adapt to one’s opponents’ and teammate’s strategies, one may say its strategies are interactive and reactive in nature. Therefore – although we note that card games are hard to analyse in general – we believe Tichu is indeed approachable through game-theoretic methods. 
 
     Fascinated by this type of game and equipped with tools from our game theory course, we pose the general question: “which strategy should we pursue as players?”. We shall further differentiate this admittedly vague question into: “what strategy should we pursue given”: a) “we know what player-type all other players are” and b) “we do not know anything about other players”. 
 \section{Introduction on Tichu}
 
-Tichu is a card game with four players, where two players form a team. the goal is to reach 1000 points as a team. One round consists of several games where the two teams try to get points.
-At the beginning of a game, every player gets 14 cards. He exchanges one card with every other player. This will be called the "Exchange Stage", which we will discuss later on. After the exchange of the cards, the regular game takes place. There are two major ways ti achieve points: 1st Claiming Cards with a value, 2nd Announcing a Tichu. The Game ends, when one team finished of their cards. Then you count the values of the cards and this value to your score.
+Tichu is played by four players, where two players form a team. Tichu is subdivided into subgames, which are played repeatedly until one team reaches 1000 points and in this way wins the game.
+At the beginning of a game, every player gets 14 cards. He exchanges one card with every other player. This will be called the "Exchange Stage", which we will discuss later on. After the exchange of the cards, the regular game takes place. There are two major ways to achieve points: 1st Claiming Cards with a value, 2nd Announcing a Tichu. The Game ends, when one team finished of their cards. If one team finished of their cards before one of the opposing team finished, then the winner team receives the cards from both opponent players. If the team finished of their cards and someone from the opposing team finished before, only the last player passes away the cards to the winner team. Then you count the values of the cards and this value to your score.
 
 A Tichu-set consists of the cards 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A in four different colors: red, blue, green and black. There are four special cards Dragon, Phoenix, Dogs and Mah Jong. In total we have 56 cards, every player receives 14 cards. However, only a few cards have a value as listed in the table:\\
+\begin{scriptsize}
 \begin{center}
 \begin{tabular}{ c c c }
 \textbf{5} & $\sim$  & \textbf{5 P} \\
 \textbf{10} & $\sim$ & \textbf{10 P} \\
 \textbf{K} & $\sim$  & \textbf{10 P} \\
-\textbf{Dr.} & $\sim$ & \textbf{25 P} \\
-\textbf{Ph.} & $\sim$ & \textbf{-25 P}
+\textbf{Dragon} & $\sim$ & \textbf{25 P} \\
+\textbf{Phoenix} & $\sim$ & \textbf{-25 P}
 \end{tabular}
 \end{center}
-In total, there are 100 Points every round. It is also possible to win a game with 200 or also -25 Points depending on whether you are announcing a Tichu or not.
-
+\end{scriptsize}
+In total, there are 100 Points every round. It is also possible to win a game with 125 or also -25 Points. Announcing a Tichu can earn your team additional points.
 A game starts, when a player plays a valid combination. The other players can now try to play a higher version of the same combination (as many cards as the combination). If no player can or wants to play a higher combination, the player with the highest combination takes the cards and can play a new combination. There are several valid combinations:
 \\
-\begin{tiny}
-\begin{flushleft}
+\\
+\resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{ c c c }
-\textbf{High Card} & $\widehat{=}$  & \textbf{2 $<$ 3 $< ... <$ A} \\
-\textbf{Pair} & $\widehat{=}$ & \textbf{(2,2) $< ... <$ (A,A)} \\
-\textbf{Triple} & $\widehat{=}$  & \textbf{(2,2,2) $< ... <$ (A,A,A)} \\
-\textbf{Following Pairs} & $\widehat{=}$ &  \textbf{(2,2,3,3, ...) $< ... < $ (..., K,K,A,A)}
+\textbf{High Card} & $\sim$  & \textbf{2 $<$ 3 $< ... <$ A} \\
+\textbf{Pair} & $\sim$ & \textbf{(2,2) $< ... <$ (A,A)} \\
+\textbf{Triple} & $\sim$  & \textbf{(2,2,2) $< ... <$ (A,A,A)} \\
+\textbf{Following Pairs} & $\sim$ &  \textbf{(2,2,3,3, ...) $< ... < $ (..., K,K,A,A)}
  \\
-\textbf{Full House} & $\widehat{=}$ &  \textbf{(2,2,2,A,A) $<... <$ (A,A,A,K,K)} \\
-\textbf{Street(more than 5 cards)} & $\widehat{=}$ & \textbf{(2,3,4,5,6, ...) $< ... < $(...,10,J,Q,K,A)}
-\end{tabular}
-\end{flushleft}
-\end{tiny}
+\textbf{Full House} & $\sim$ &  \textbf{(2,2,2,A,A) $<... <$ (A,A,A,K,K)} \\
+\textbf{Street(more than 5 cards)} & $\sim$ & \textbf{(2,3,4,5,6, ...) $< ... < $(...,10,J,Q,K,A)}
+\end{tabular}%
+}
 
 This combinations can only be played on the same combination when it is the players turn. Following Pairs and Streets can be continued up to 14 cards. There are also bombs, which can be played at any time and on every combination (except higher or equal bombs).
-We differ between two kinds of bombs: 1st \df{Bomb}, where (2,2,2,2), $< ... <$ (A,A,A,A), 2nd
-\df{Street Bomb}, where (A,A,A,A) $<$ (2,3,4,5,6) $<$ (2,3,4,5,6, ...) $< ... < $ (...,10,J,Q,K,A) if they are all in the same color. A Street Bomb is always higher than a shorter Street Bomb or a regular Bomb.
+We differ between two kinds of bombs:
+\\
+\\
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}{ c c c }
+\textbf{Bomb} & $\sim$  & \textbf{(2,2,2,2), $< ... <$ (A,A,A,A)} \\
+\textbf{Street Bomb} & $\sim$ & \textbf{(A,A,A,A) $<$ (2,3,4,5,6) $<$ (2,3,4,5,6, ...) $< ... < $ (...,10,J,Q,K,A)} \\ \\
+\end{tabular}%
+}
+In a street Bomb all colors have the same color. A Street Bomb is always higher than a shorter Street Bomb or a regular Bomb.
 
 The four special cards can be played under certain conditions,but special cars can not be player in a Bomb or Streetbomb:
 
@@ -74,14 +82,12 @@ A Player can announce a Tichu as long as he has not played any card yet. If he a
 A stronger version of Tichu is the Great Tichu, which is worth 200 points if won. A Great Tichu has to be announced after the player takes the first eight cards before the regular game starts. It also has an impact on the Exchange Stage. 
 If the two players from one team finish the game first, they get 200 points and the cards will not be counted. This will be called a “Double Victory”.
 
-Note: before talking about ‘good’ or ‘bad cards’ we quickly need to say what those are, e.g allow for multiple different actions/ possibilities (maybe cars that allow one to be agile throughout the development of the cars).
-
 \section{Our Model and approximations}
 \subsection{Basic assumptions}
 Our basic approximation consists of two distinctions regarding player behavior and transparency of information. 
 
-In our consideration we would like to define the following 2 types of players.
-The first player is the "aggressive player" - he is characterized by a high risk taking and by the fact that he looks primarily at his own cards rather than at those of his partner. In case of doubt he will keep the good cards and give his partner something worse than the other way round.
+In our consideration we would like to define the following two types of players.
+The first player is the "aggressive player" - he is characterized by the fact that he takes a higher risk and pays more attention to the value of his cards and less to his playing partner. In case of doubt he will keep the good cards and give his partner something worse than the other way round.
 The willingness to take risks is characterized by the fact that even with below average cards (relative to cards with which the average player would announce a tichu) he already announces the tichu. 
 
 The second player is the "defensive player". This stands in contrast to the "aggressive player type". He is rather risk-averse, which means he needs above average (relative to cards with which the average player would announce a tichu) good cards to announce a tichu.
@@ -123,20 +129,25 @@ Furthermore, all rules are known to the players ("common knowledge") and they ac
 
 \subsection{Introducing the game model}
 
-(Schaubild)\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/graph}
+    \caption{Game model}
+    \label{fig:meine-grafik}
+\end{figure}
 
 The game up to 1000 points is represented as a game tree.
 At the beginning 4 players, divided into 2 teams enter the game (A). We will set $\alpha$ and $\beta$. 
 The next part of the game (B) will be repeated until the score reaches at least 1000 points. We divided it into three subgames (B.0, B.1, B.2).
-First, we will give every player a set of cards (B.0). This set of cards will be represented by a value $X_i$ in [0,1]. The sum of all sets can be higher than 1 in total. The value of the set is not connected to single cards but to a probability to play these cards in combinations. We will discuss this in detail later on. <- yes good that's important
+First, we will give every player a set of cards (B.0). This set of cards will be represented by a value $X_i$ in [0,1]. The sum of all sets can be higher than 1 in total. The value of the set is not connected to single cards but to a probability to play these cards in combinations. We will discuss this in detail later on.
 
-In the basic model, B.0 is only connected to statistics and no game in meanings of game theory. Later on, we will introduce game-theoretical elements to this subgame. 
+In the basic model, B.0 is only connected to statistics and no game in meanings of game theory. Later on, we can introduce game-theoretical elements to this subgame. 
 
-The second part (B.1) represents the “Exchange Stage”. Depending on his Cards and his strategy, every player will give away three $\Delta x$ and will receive three $\Delta x$ which can be positive or negative. The payoff will be represented by a Util.
+The second part (B.1) represents the “Exchange Stage”. Depending on his Cards and his strategy, every player will give away three $\Delta x$ and will receive three $\Delta x$ which can be positive or negative. The payoff will be represented by a Util$\in [0,1]$ with "new" card values.
 
 The third subgame (B.2) takes the card values X from subgame B.1 and the score. They are used to determine the outcome of the actual game, reflecting on the players strategies and possibilities to take a higher risk because of the score. This will result in a Util function which allocates the 100 points (and additional Tichu-points) to the teams. 
 
-To every game B, the parameters $\alpha, \beta, \gamma, \delta$ are considered.  
+To every game B, the parameters $\alpha, \beta, \gamma, \delta$ are considered and can be adjusted.  
 The repetition of subgame B will end when one team reaches at least 1000 points. 
 
 In first approximations we will also consider $\beta$ and $\gamma$ as invariant. 
@@ -147,7 +158,7 @@ To start a round of Tichu, we will assign a player $\alpha_i$ and $\beta_i$. As 
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline 
-Spieler 1 \ Spieler 2 & A & B \\ 
+Player 1 $\backslash$ Player 2 & A & B \\ 
 \hline 
 A & 1 (AA) & 2 (AD = DA) \\ 
 \hline 
@@ -160,7 +171,7 @@ B & 2 (DA = AD) & 3 (DD) \\
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{|c|l|l|l|}
 \hline 
-Spieler 1 \ Spieler 2 & 1 & 2 & 3 \\ 
+Player 1 $\backslash$ Player 2 & 1 & 2 & 3 \\ 
 \hline 
 1 & $\alpha_1$ (AAAA) & $\alpha_2$ (AAAD) & $\alpha_3$ (AADD) \\ 
 \hline 
@@ -178,7 +189,13 @@ Our first assumptions is, that we set $\mu$ to 0.5 and will define $X_i$ higher 
 According to this definition, $X_i$ is always in $[0,1]$. We will set $\sigma$ later according to realistic data and surveys. We will now assume that we will always get an $X = \{X_1, …, X_4\}$ from subgame B.0. This will be the card value used in later games. 
 
 \subsection{Subgame B.1}
-To understand the “Exchange Stage”, we have to give some basic information on Tichu which leads to our approximation of this subgame.  \\
+To understand the “Exchange Stage”, we have to give some basic information on Tichu which leads to our approximation of this subgame. First of all we definie some terms:
+\begin{definition}["good" cards]
+"Good" cards are for example bombs, high cards like ace or long, specific combinations that other players do not have.
+\end{definition}
+\begin{definition}["bad" cards]
+Bad cards can rarely be played, for example deep cards or combinations that are never the highest combinations, so you rarely win a trick
+\end{definition}
 \begin{enumerate}
 \item A player can give “good” cards to his partner if and only if he has “good” cards.
 \item A player can give “bad” cards to his opponents if and only if he has “bad” cards. 
@@ -210,11 +227,11 @@ $\alpha$, $\beta$, X are fixed. Then there is $\Delta X \subset [0,1]^4$ with $X
 $\alpha$, $\beta$ and X are fixed. If we change X in only one value that $X_i$ becomes $wide\hat{X_i}$, it applies to the following rules:
 \begin{axioms}[(C1)]
 \item $\forall \epsilon > 0, \exists \delta > 0$ with $| X_i - \widehat{X_i}| < \delta$ \\$\Rightarrow | \pi^*(X_i) - \pi^*(\widehat{X_i}) | < \epsilon $
-\item $\widehat{X_i} \leq X_i \Rightarrow \pi*(\widehat{X_i}) \leq \pi(X_i)$
+\item $\widehat{X_i} \leq X_i \Rightarrow \pi^*(\widehat{X_i}) \leq \pi(X_i)$
 \end{axioms}
 
 \paragraph{Symmetric outcome}
-If two players $P_i$, $P_j$ have a symmetric game perspective, $\pi*(X_i) = \pi*(X_j)$
+If two players $P_i$, $P_j$ have a symmetric game perspective, $\pi^*(X_i) = \pi^*(X_j)$
 \end{definition}
 
 Based on our approximations of the subgame, we now try to construct an Exchange Function. First of all, we try to create an easier function, which describes how a single Player selects cards he wants to give away. If we only look at this function, we will see some facts:
@@ -226,7 +243,7 @@ Based on our approximations of the subgame, we now try to construct an Exchange 
 \item In fact, he only needs to know his strategy, who he selects cards for and if known, his partner’s strategy. 
 \end{axioms}
 
-We put these facts together in a Diagram (the numbers represent diffrent exchange functions):
+We put these facts together in a Diagram (the numbers represent diffrent exchange functions and $P_P$ - is a Player passing; $P_R$ - is a Player receiving):
 
 \begin{table}[h]
 \caption{Table 1.1} \bigskip
@@ -235,10 +252,10 @@ We put these facts together in a Diagram (the numbers represent diffrent exchang
 \begin{tabular}{l|l|ll|l|ll|}
 \cline{2-7}
                                           & \multicolumn{3}{l|}{$\beta_i = 0$} & \multicolumn{3}{l|}{$\beta_i=1$} \\ \hline
-\multicolumn{1}{|l|}{\multirow{3}{*}{OT}} &            & A         & D         &           & A         & D        \\ \cline{2-7} 
+\multicolumn{1}{|l|}{\multirow{3}{*}{OT}} & $P_R \backslash P_P$           & A         & D         &           & A         & D        \\ \cline{2-7} 
 \multicolumn{1}{|l|}{}                    & A          & 1         & 1         & A         & 2         & 2        \\
 \multicolumn{1}{|l|}{}                    & D          & 1         & 1         & D         & 2         & 2        \\ \hline
-\multicolumn{1}{|l|}{\multirow{3}{*}{PT}} &            & A         & D         &           & A         & D        \\ \cline{2-7} 
+\multicolumn{1}{|l|}{\multirow{3}{*}{PT}} & $P_R \backslash P_P$              & A         & D         &           & A         & D        \\ \cline{2-7} 
 \multicolumn{1}{|l|}{}                    & A          & 3         & 4         & A         & 5         & 6        \\
 \multicolumn{1}{|l|}{}                    & D          & 3         & 4         & D         & 7         & 8        \\ \hline
 \end{tabular}%
@@ -254,7 +271,7 @@ The Player gives cards to his Partner depending on his strategy. He does not kno
 The Player knows his own and his Partners strategy. Therefore his results will be better and the card difference will change. 
 
 \begin{definition}[Pass-Function]
-A function $\xi_{ji} : {0,1}^5 \to [-1,1], (\alpha, \beta_i) \to \hat{\xi}_{ji}$ will be called a pass function, if it describes what $P_i$ gives to $P_j$ according to certain rules:
+A function $\xi_{ji} : \{0,1\}^5 \to [-1,1], (\alpha, \beta_i) \to \hat{\xi}_{ji}$ will be called a pass function, if it describes what $P_i$ gives to $P_j$ according to certain rules:
 \paragraph{Randomness and Average}
 $\alpha$, $\beta_i$ are fixed. Then there is $\Delta  \hat{\xi_{ji}} \subset [-1,1]$ with  $\hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$. We will write $\{xi_{ji}\}^* (\alpha, \beta_i) =  \hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$ for the average of $\xi(\alpha, \beta_i)$. $\xi_{ji}^*$ is a well-defined function, while $\xi$ allows random values around $\xi^*$.
 \paragraph{Symmetric outcome}
@@ -265,7 +282,7 @@ $\sum_{j = 1}^4 \hat{\xi_{ji}} = 1$
 $\hat{\xi_{ii}} >>  \hat{\xi_{ji}}$ with $ i \neq j $
 \end{definition}
 \begin{definition}[Receive-Function]
-A function $\eta_{ji}: {0,1} \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi_{ji}}) \mapsto \hat{\eta_{ji}}$ will be
+A function $\eta_{ji}: \{0,1\} \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi_{ji}}) \mapsto \hat{\eta_{ji}}$ will be
 called a “Receive-Function”, if it describes how $P_j$ receives cards from $P_i$ according to certain rules:
 \paragraph{Randomness and Average}
 $\beta_i$, $\hat{\xi_{ji}}$ are fixed. Then there is $\Delta  \hat{\eta_{ji}} \subset [-1,1]$ with  $\hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$. We will write $\{\eta_{ji}\}^* (\beta_i, \hat{\xi_{ji}}) =  \hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$ for the average of $\eta(\beta_i, \hat{\xi_{ji}})$. $\eta_{ji}^*$ is a well-defined function, while $\eta$ allows random values around $\eta^*$.
@@ -275,7 +292,7 @@ If two players $P_i$, $P_j$ have a symmetric game perspective towards each other
 $\eta_{ii}(\hat{\xi_{ii}}) = \hat{\xi_{ii}} $
 \end{definition}
 \begin{definition}[Exchange-Function]
-A function $\lambda_{ji}: {0,1}^5 \to [-1,1], \lambda_{ji} = \eta_{ji} \circ \xi_{ji}$ with $\eta_{ji}$ a Receive-Function and $\xi_{ji}$ a Pass-Function with existing $\alpha$, $\beta_i$.
+A function $\lambda_{ji}: \{0,1\}^5 \to [-1,1], \lambda_{ji} = \eta_{ji} \circ \xi_{ji}$ with $\eta_{ji}$ a Receive-Function and $\xi_{ji}$ a Pass-Function with existing $\alpha$, $\beta_i$.
 \end{definition}
 \begin{remark}[Construction]
 We will now construct a Total Exchange Function based on an Exchange Function $\lambda_{ji}$. We will define $\Lambda = (\lambda_{ji})$ as a quadratic matrix. 
@@ -381,12 +398,12 @@ We will receive this plot which shows the possibility to get cards with a certai
     \caption{cards distribution cumultative}
     \label{fig:meine-grafik}
 \end{figure}
-We will always use this approximation and will not discuss it furthermore.
+\\ \\We will always use this approximation and will not discuss it furthermore.
 \subsection{Subgame B.1}
-To approximate the game, we will start with the most simple approach possible.A player can only pass one card, he has 14 cards on his hand. Therefore, if he passes all cards away, the average value will be $\frac{X}{14}$. This is not a well-founded approximation, but it will work for the beginning. Later on, we can redefine this value if necessary. 
+To approximate the game, we will start with the most simple approach possible. A player can only pass one card, he has 14 cards on his hand. Therefore, if he passes all cards away, the average value will be $\frac{X}{14}$. This is not a perfect approximation, but it will work for the beginning. Later on, we can redefine this value if necessary. 
 
 Keeping it easy, we will start looking at the exchange with an enemy. We only discovered one difference, whether the Player knows his Opponents strategy or not. But this difference is marginal and we will do not distinguish between these cases in this approach. 
-Therefore, there is only one possible exchange function towards an Opponent. We will call this function $\xi_OT$ and assume it as normal distributed. We will set $\mu = 0$, because normally giving away one card does not change the value of your hand. According to our “stupid approach”, we will set $2\sigma = \frac{1}{14}$, because it is the value of an average card in most of the cases (further explanation in work). \\
+Therefore, there is only one possible function towards an Opponent. We will call this function $\xi_O$ and assume it as normal distributed. We will set $\mu = 0$, because normally giving away one card does not change the value of your hand. According to our “stupid approach”, we will set $2\sigma = \frac{1}{14}$, because it is the value of an average card in most of the cases (further explanation in work). \\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_ot}
@@ -398,9 +415,9 @@ Therefore, there is only one possible exchange function towards an Opponent. We 
     \label{fig:meine-grafik}
 \end{figure}
 \\
-The Pass-function towards an opponent is more difficult to define: To realize it, let us imagine you are a new player to this game. You have no strategy and no knowledge. So every card is equal to you and as described before, the average card value is $\frac{X}{14}$. The cards are probably normal distributed within a wide range. Therefore we define $\xi_P$ as the Pass Function towards a Partner with $\mu_P = \frac{1}{14}$ and $\sigma_P = \frac{1}{14}$. 
+The Pass-function towards your partner is more difficult to define: To realize it, let us imagine you are a new player to this game. You have no strategy and no knowledge. So every card is equal to you and as described before, the average card value is $\frac{X}{14}$. The cards are probably normal distributed within a wide range. Therefore we define $\xi_P$ as the Pass Function towards a Partner with $\mu_P = \frac{1}{14}$ and $\sigma_P = \frac{1}{14}$. 
 
-If a player is aggressive, he will pass cards with less value and if he is defensive, he will pass cards with higher value. If he knows, his partner is defensive, he will pass lower cards and if he knows, that his partner is aggressive, he passes higher cards. This leads us to the following table: 
+If a player is aggressive, he will pass cards with less value and if he is defensive, he will pass cards with higher value. If he knows, his partner is defensive, he will pass lower cards and if he knows, that his partner is aggressive, he passes higher cards. This leads us to the following table:  \\
 \begin{table}[h]
 \caption{Table 2} \bigskip
 \label{tab:my-table}
@@ -408,7 +425,7 @@ If a player is aggressive, he will pass cards with less value and if he is defen
 \begin{tabular}{|l|ll|l|ll|}
 \hline
 \multicolumn{3}{|l|}{$\beta = 0$} & \multicolumn{3}{l|}{$\beta=1$} \\ \hline
-\textit{}      & A       & D      &          & A        & D        \\ \hline
+\textit{$P_R \backslash P_P$}      & A       & D      & $P_R \backslash P_P$         & A        & D        \\ \hline
 A              & -1      & +1     & A        & 0        & +2       \\
 D              & -1      & +1     & D        & -2       & 0        \\ \hline
 \end{tabular}%
@@ -418,7 +435,7 @@ We can construct a formula using this table:
 \begin{equation*}
 z_{ji} = (1 - 2\cdot\alpha_i) + \beta_i \cdot (2\cdot\alpha_j - 1)
 \end{equation*}
-We will set $\mu = \mu_P + 1/28 \cdot z_ji(\alpha, \beta)$. This will give us one function for $\xi_P$:
+We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This will give us one function for $\xi_P$:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p}
@@ -430,9 +447,9 @@ We will set $\mu = \mu_P + 1/28 \cdot z_ji(\alpha, \beta)$. This will give us on
     \label{fig:meine-grafik}
 \end{figure}
 \\
-A card which has a negative value to player $P_i$ can have a positive value to $P_j$ (can complete a bomb). Therefore the value can change during the exchange from $\hat{\xi}$ to $\hat{\eta}$. In this approach, we will set $\eta = id_{\mathbb{R}^4}$, because the effect is very small in a large number of games. 
+A card which has a negative value to player $P_i$ can have a positive value to $P_j$ (can complete a bomb). Therefore the value can change during the exchange from $\hat{\xi}_{ij}$ to $\hat{\eta}_{ij}$. In this approach, we will set $\eta_{ij} = id$, because the effect is very small in a large number of games. 
 
-We now have created Pass-functions $\xi_{ji}$ and A Receive Function $\eta_{ji} = 1$. We can use this functions to analyse the outcome of the Exchange-Stage $\lambda_{ji} = \xi_{ji}$. We can write $\Lambda$ using the average:
+We now have created Pass-functions $\xi_{ji}$ and a Receive-Function $\eta_{ji} = 1$. We can use this functions to analyse the outcome of the Exchange-Stage $\lambda_{ji} = \xi_{ji}$. We can write $\Lambda$ using the average:
 \begin{gather*}
 \Lambda = \begin{pmatrix} 
 1 - \xi_{21} & \xi_{12} & 0 & 0 \\

@@ -1,0 +1,68 @@
+%%% DOCUMENT TYPE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,twocolumn, a4paper]{article}
+
+%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Encoding
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Geometry
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{geometry} % edit margins of paper
+\usepackage{setspace} % edit line spacing
+\usepackage{fancyhdr} % header, footer
+\usepackage{titlesec} % edit format of titles
+
+% Visual
+
+\usepackage[dvipsnames]{xcolor} % colors
+\usepackage{tikz} % graphics
+\usepackage[framemethod=tikz]{mdframed} % frames, better theorems
+
+% Math
+
+\usepackage{amsmath} % math tools
+\usepackage{amssymb} % math symbols
+\usepackage{amsthm} % thereoms
+\usepackage{mathtools} % math tools
+
+% Referencing
+
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{cleveref}
+% Useful
+
+\usepackage[shortlabels]{enumitem} % enumerations
+
+% Other
+
+\usepackage{lastpage} % get number of last page
+
+%%% MARGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm, includehead}
+
+%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{setup/colors.tex}
+
+%%% CAPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{setup/captions.tex}
+
+%%% SHORTCUTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{setup/shortcuts.tex}
+
+%%% FORMATTING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{setup/formatting.tex}
+
+%%% LANGUAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{setup/languages/EN.tex}

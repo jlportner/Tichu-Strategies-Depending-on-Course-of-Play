@@ -1,0 +1,56 @@
+%%% SINGLE SYMBOLS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Logic
+
+% \forall exists
+% \exists exists
+% \lnot exists
+% \lor exists
+% \land exists
+\newcommand*{\limp}{\rightarrow}
+\newcommand*{\limps}{\; \limp \;} % \limp with some space around
+\newcommand*{\leqv}{\leftrightarrow}
+\newcommand*{\leqvs}{\; \leqvs \;} % \leqv with some space around
+
+% Meta Logic
+
+% \implies exists
+% \iff exists
+
+% Colon Stuff
+
+\newcommand*{\cl}{\colon}
+\newcommand*{\cleq}{\coloneqq}
+\newcommand*{\eqcl}{\eqqcolon}
+
+% Sets
+
+\newcommand*{\N}{\mathbb{N}} % natural numbers
+\newcommand*{\Z}{\mathbb{Z}} % integers
+\newcommand*{\Q}{\mathbb{Q}} % rational numbers
+\newcommand*{\R}{\mathbb{R}} % real numbers
+\newcommand*{\C}{\mathbb{C}} % complex numbers
+
+%%% MATH OPERATORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% General
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\sgn}{sgn}
+
+%%% TEMPLATES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% General
+
+% write a set definition like: { #1 | #2 }
+\newcommand*{\setdefinition}[2]{
+  \left\{ #1 \mathrel{}\middle|\mathrel{} #2 \right\}
+}
+
+% write a nice map definition
+\newcommand*{\mapdefinition}[5]{
+  \begin{align*}
+    #1 \cl #2 &\to     #3 \\
+           #4 &\mapsto #5
+  \end{align*}
+}

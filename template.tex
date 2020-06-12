@@ -308,77 +308,84 @@ We have now created a matrix $\Lambda$ which describes the Exchange Stage. To co
 \end{remark}
 
 \subsection{Subgame B.2}
-In this subgame we look at the playing of the active game, i.e. the laying of cards and the trimming of other cards. Again, we assume that these are rational players who do not harm their own team. This means that if one player of a team has announced a tichu, the other player would not announce a counter tichu. Therefore we can make the assumption that we consider each team as one element playing together against the other.
+We shall now explore the active game, i.e. the laying and trumping of cards. We will first define a few new terms and three basic functions, including a double win probability function as well as a tichu announcement and tichu win probability function. We will then simulate the theory of an entire game consisting of multiple rounds and establish the different possible cases that can occur throughout a round.
+
+We further assume players are completely rational and do not harm their own chances. Concretely, we presuppose that no counter-tichu will be called on a teammate’s tichu announcement. At this stage we can therefore treat two teammates as simply one element.
+
 As a reminder, teams are defined by combining the two player triples $P_1$, $P_2$ and $P_3$, $P_4$into one element $T_1 = \{P1,P2\}$ and $T_2 = \{P3,P4\}$.
 
-Let S be the score of the game given by $S = \{S_1, S_2\} \in \mathbb(Z)^2$ where $S_1$ and $S_2$ are the score of each team.
-\begin{definition}[Tichu Announcement Probability]
-Now we define a function $C_i(T_i, S)$ for each team, where $T_i$ is the respective team and S is the current score:
-\begin{align*}
-C_i: \{0,1\}^5 \times [0,1]^2 \times \mathbb{Z}^2 &\to [0,1] \\ (T_i,S) &\mapsto c_i
-\end{align*}
-\end{definition}
- These functions return the Tichu announcement probability of each team in this round. This clearly depends on the playing strategy of the players or the team as well as on the current score and the difference in points. E.g. this probability could increase if the difference in points becomes bigger or if the opponent team is much closer to 1000 than your own.
+We shall start by defining the relevant terms and functions needed for this discussion. Let S define the game score, given by $S = \{S_1, S_2\} \in \mathbb{Z}^2$ where $S_1$ and $S_2$ are the scores of $T_1$ and $T_2$ respectively.
 
-\begin{definition}[double win propability]
-Furthermore, define a function $D_i(T_1, T_2)$ for each team:
+\begin{definition}[Double Win Function]
+For each team we define a double win function $D_i(T_1, T_2)$.
 \begin{align*}
-D_i: \{0,1\}^5 \times [0,1]^4 &\to [0,1] \\ (T_1,T_2) &\mapsto d_i
+D_i: ({0,1}^5 \times [0,1])^4 \to [0,1] (T1,T2) \mapsto d_i
 \end{align*}
 \end{definition}
-These functions return the double win probability of each team in this round. It can be said that this is independent of the current score, and probably only depends on the strategies and card values of the players. Whether or not playing strategies have any influence on this probability has to be determined empirically in the realization.
+This function returns the probability of a double win of each team for a round. As teams are always aiming for this bonus through a double win, we describe this function as independent of the current score and probably more dependent on the team strategies and the value of the cards. Whether or not player strategies have any influence on this probability will be heuristically/ empirically determined in the realisation section of this essay.
 
-\begin{definition}[Tichu win propability]
-In addition, define for each team the function $T_i(X_1, X_2, X_3, X_4)$:
+Next, as scoring a Tichu requires both calling and winning a Tichu, we separate the Tichu scoring opportunity into a Tichu announcement and Tichu winning function. For each team we define a Tichu announcement function $C_i(T_i, S)$, where $T_i$ are the respective teams and S is the current score. 
+
+
+\begin{definition}[Tichu Announcment Function]
+For each team we define a Tichu announcement function $C_i(T_i, S)$, where $T_i$ are the respective teams and S is the current score:
 \begin{align*}
-T_i: [0,1]^4 &\to [0,1] \\(X_1,X_2,X_3,X_4) &\mapsto t_i
+C_i: ({0,1}^5 \times [0,1])^2 \times \Z^2 \to [0,1] (T_i,S) \mapsto c_i
 \end{align*}
 \end{definition}
-This indicates the probability that a team will make a Tichu in this round. It can be assumed that this is independent of the score and the game strategies, because as soon as one team has announced a tichu it will do everything to get it and the other team will try to prohibit it. Therefore this only depends on the map value.
+This function returns the Tichu announcement probability of each team for a round. It depends on a host of different variables including the player and team strategies as well as the current score and score difference. Such a function allows us to, for example, represent a greater probability of calling a Tichu when the opposing team has a large score margin or is very close to 1000 points.
+
+
+\begin{definition}[Tichu Win Function]
+Finally, we define the Tichu winning function $W_i(X_1, X_2,X_3,X_4)$ for each team as follows.
+\begin{align*}
+W_i: [0,1]^4 &\to [0,1] \\(X_1,X_2,X_3,X_4) &\mapsto t_i
+\end{align*}
+\end{definition}
+This function indicates the probability that a team wins their Tichu bet in a given round. This too, is independent of score and game strategies as both teams will always want to win the Tichu bet. Rather, it depends completely on the teams’ card values.
+
+With the above functions we can now simulate the theory of an entire game consisting of multiple rounds and establish the different possible cases that can occur throughout a round. We shall first explain how we simulate the probability of one or multiple Tichu calls and the scoring of a double win. Next, we shall explain how we calculate points for a team and then explore the following possible scenarios case by case.
+
 \begin{definition}[binary random varibale]
 
- $Z(x): [0.1] \to [0.1]$ as a random variable that takes the value 1 with probability x and 0 with probability 1-x.
+We initially want to define a helper function, namely a \textbf{binary random variable} $Z(x): [0,1] \to [0,1]$ as a random variable that takes the value 1 with probability $x$ and $0$ with probability $1-x$.
+
 \end{definition}
 
 \subsubsection{Course of the game}
-At the beginning it is determined by two binary random variables $Z(c_1)$ and $Z(c_2)$ whether team 1 or 2 announces a Tichu $(Z(c_1) = 1$ or $Z(c_2) = 1)$.
+At the beginning we determine, through two binary random variables $Z(c_1)$ and $Z(c_2)$, whether team 1 or 2 announces a Tichu $(Z(c_1) = 1$ or $Z(c_2) = 1)$. Similarly, a binary random variable $Z(d_1)$ determines whether team 1 makes a double victory $(Z(d_1) = 1)$ or not $(Z(d_1) = 0)$. If $Z(d_1) = 0$, another binary random variable $Z(d'_2)$ determines if team 2 makes a double victory $(Z(d'_2) = 1)$ or not $(Z(d'_2) = 0)$. $d'_2$ is given by $d'_2 =d_2\cdot\frac{1}{1-d_1}$ because this case is only determined in $1-d_1\cdot 100$ percent of the cases. If $Z(d_1) = 1$, then $Z(d_2)$ is automatically 0, since a double victory of one team strictly excludes a double victory of the other.
 
-Afterwards it is determined by a binary random variable $Z(d_1)$ whether team 1 makes a double victory $(Z(d_1) = 1)$ or not $(Z(d_1) = 0)$.
-If $Z(d_1) = 0$, another binary random variable $Z(d_2')$ determines if team 2 will have a double victory $(Z(d_2') = 1)$ or not $(Z(d_2') = 0)$.
-Now $d_2'$ is given by $d_2'= \frac{d_2}{1-d_1}$, because this case is only determined in $1-d_1\cdot 100$ percent of the cases.
-If $Z(d_1) = 1$, then $Z(d_2)$ is automatically 0, since a double victory of one team strictly excludes a double victory of the other.
+Here we make the first differentiation between cases depending on whether a double win is scored or not. This is because a double win immediately awards +200 points to the scoring team regardless of the points distribution during the round. If a double win is not achieved by either team the points distribution must be calculated.
 
-If the game is split into two cases, whether or not a double win was achieved, i.e. $Z(d_1) = 1 \lor Z(d_2) = 1$ and $Z(d_1) = 0 \land Z(d_2) = 0$
+In the case $Z(d_1) = 1 \lor Z(d_2) = 1$, i.e. a double victory has been achieved, the score of team $T_i$ for which $Z(d_i) = 1$ applies will be increased by 200 points $(S_i += 200)$. Furthermore, if $Z(c_i) = 1$, Team $T_i$ has won its announced Tichu and therefore gets another 100 points $(S_i += 100)$. However, if the opposing team $T_j (i != j)$ has announced Tichu $(Z(c_j) = 1)$, this team loses 100 points $(S_j -= 100)$ as the calling player was unable to exit the round first.
 
-In the case $ Z(d_1) = 1 \lor Z(d_2) = 1 $, i.e. that a double victory has been achieved, the score of team $T_i$ for which $Z(d_i) = 1$ applies will be increased by 200 points $(S_i += 200)$. Furthermore, if $Z(c_i) = 1$, Team $T_i$ has won the announced Tichu and therefore gets another 100 points ($S_i += 100$). However, if the opposing team $T_j (i \neq j)$ has announced Tichu $(Z(c_j) = 1)$, this team loses 100 points $(S_j -= 100)$.
+The alternative case, $Z(d_1) = 0 \land Z(d_2) = 0$, requires more theory as we must determine how many points each team scores during a round. We assume that the announcement of Tichus has no effect on the distribution of points, although the opposing team may, for example, prioritise exiting the round first over scoring maximum points through won card values. We argue any such shift by a Tichu announcement in any specific round would generally be balanced out over all rounds of the game. Thus, we must only determine the points scored through the distribution of won cards.
 
-In the other case $Z(d_1) = 0 \land Z(d2) = 0$ it must be determined for each team how many points they get in the round. Here we assume as simplification that the announcement of a Tichus has no effect on the points. We can make this assumption, because we can assume that the shift by a Tichu announcement would be balanced over the rounds and is generally very small anyway. Thus the points fetched depend only on the map values.
-
-For this purpose we use two normally distributed random variables $n_1$, $n_2$, whose mean value and standard deviation still have to be determined in the realization. The purpose of these random variables is to simulate the fluctuations in the scores obtained.
-
-Now the fetched points are calculated as follows: Let $X_{tot} = \sum_{i=1}^{4} X_i$ be the total card value in this round, this implies:
+For this calculation, we introduce two normally distributed random variables $n_1$ and $n_2$ whose mean value and standard deviation are to be determined in the realisation section of this essay. The purpose of these random variables is to simulate the fluctuations in scores obtained every round by both teams throughout the game. This will be explained further in the next section. The scored points for a round are to be calculated as follows: Let $X_{tot} = \sum_{i=1}^{4} X_i$ be the total sum of card values in this round, then
 \begin{align*}
     &\Delta S_1 = (X_1\cdot n_1 + X_2\cdot n_2)/ X_{tot} \cdot 125 - 25\\
     &\Delta S_2 = (X_3\cdot n_1 + X_4\cdot n_2)/ X_{tot} * 125 - 25\\
 \end{align*}
-for the change in the score of each team, where $\Delta S_1$ and $\Delta S_2$ are rounded to the nearest multiple of 5 Thus the change in score is calculated as a percentage of the card value. The correction factors 125 and -25 as well as the rounding serve to adjust the point value to the frame of a Tichu round.
+represent the change in score for each team for a round, where $\Delta S_1$ and $\Delta S_2$ are rounded to the nearest multiple of 5. Thus the change in score is calculated as a percentage of the card values for a specific round. The correctional factors 125 and -25 as well as the rounding serve to adjust the point value to the frame of a Tichu round.
 
-Finally, the achieved Tichus must be determined. Here three cases differ:
+Compounded onto the above theory are the following three cases as they relate to possible Tichu scenarios, namely: none, one or both teams announcing a Tichu:
+
 \begin{axioms}[(C1)]
-\item  If no team has announced a Tichu $(Z(c_1) = 0 \land Z(c_2) = 0)$ then the point changes are simply added to the score
+\item   If no team announces a Tichu $(Z(c_1) = 0 \land Z(c_2) = 0)$, then the point changes are simply added to the score.
 \begin{gather*}
 S_1 += \Delta S_1 \qquad S_2 += \Delta S_2
 \end{gather*}
-\item If one of the teams announces a tichu $(Z(c_1) = 1$ XOR $Z(c_2) = 1)$ then a binary random variable $Z(t_i)$ determines whether this team will get the tichu. Here $t_i$ is as defined above the tichu-take probability of this team. If $Z(t_i) = 1$ then the change of points is
+\item If one of the teams announces a Tichu $(Z(c_1) = 1$ XOR $Z(c_2) = 1)$ then a binary random variable $Z(w_i)$ determines whether this team makes the announced tichu. Here $w_i$ is, as defined earlier, the team's win probability. If $Z(w_i) = 1$ then the change of points is
 \begin{gather*}
 S_i += \Delta S_i + 100 \qquad S_j += \Delta S_j
 \end{gather*}
-Where $S_j$ represents the score of the opposing team. Otherwise, the scores are added up as in case 1.
-\item Both teams have announced a tichu $(Z(c_1) = 1 \land Z(c_2) = 1)$. Since, as assumed above, each player plays rationally, we assume that one of the two Tichus is definitely called. Now the probability results, that team 1 will do the Tichu as $t_1' = \frac{t_1}{t_1+t_2}$ and for team 2 as $t_2' = \frac{t_2}{t_1+t_2} = 1- t_1'$. Thus one determines with the help of the binary random variable $Z(t_1')$ whether team 1 $(Z(t_1') = 1)$ or team 2 $(Z(t_1') = 0)$ has fetched the tichu. If $T_i$ gets the Tichu and $T_j$ is the opponent team, the score is
+Where $S_j$ represents the score of the opposing team. If $Z(w_i) = 0$ for the announced Tichu, then 100 points are subtracted from $S_i$. Other than that, the scores are added up as in case 1.
+\item Both teams have announced a Tichu $(Z(c_1) = 1 \land Z(c_2) = 1)$. Since we assume every player to be rational, we assume that one of the two Tichus is definitely made. Now the probability that team 1 will make the Tichu is $w'_1 = \frac{w_1}{w_1+w_2}$, while $w'_2 =\frac{w_2}{w_1+w_2} = 1- w'_1$ represents the probability for team 2. Again, with the help of a binary random variable $Z(w'_1)$, we determine whether team 1 $(Z(w'_1) = 1)$ or team 2 $(Z(w'_1) = 0)$ has made the Tichu. If $T_i$ makes the Tichu and $T_j$ is the opponent team, the score is:
+
 \begin{gather*}
 S_i += \Delta S_i + 100 \qquad S_j += \Delta S_j - 100
 \end{gather*}
-This completes a round of the game. Now the subgames B.0,B.1,B.2 are repeated until $S_1 > 1000$ or $_S2 > 1000$ applies. In the following flowchart the process of B.2 is visualized once again:
+This completes a round of the game. Now the subgames $B.0,B.1,B.2$ are repeated until $S_1 > 1000$ or $S_2 > 1000$ applies. In the following flowchart the process of $B.2$ is visualized once again:
 \end{axioms}
 (Schaubild)
 \section{Realisation}
@@ -553,9 +560,112 @@ So a graph of the tichu rate in relation to tichu announcements / rounds plots.
 \end{figure}
 The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
 \section{Simulation}
+\subsection{B.1}
+First of all, we will have a look on the outcome of the Exchange Stage under different circumstances. But which outcome is the best for a team? We try to get a maximal value in three different ways:
+
+\paragraph{Maximum}  We are only looking at the card value of the higher cards, because this can lead to a win of Tichu
+\paragraph{Square Addition}  We sum the squares of both card values, because it doesn’t look only at the higher card value and consider both card values of the team.
+\paragraph{Square Diffrence} We take the difference of the squares of both card values and try to minimize it, because it can be good to have balanced players. 
+\\
+\\
+We try to find the nash equilibrium in all three cases and set $\beta = 0$. The players will not know which strategies the other players follow. We will only look at case $\beta = 0$ for case 1, because the information on his partners strategy will only create a bigger difference but will result in the same tactics. 
+
+To determine the nash equilibrium, we will use the average values, including $\lambda_ji = 0$ for opponents. So we only look at the partner exchange with X = 0.5, $\mu = \frac{1}{14}$, $\sigma = \frac{1}{28}$.
+
+We will show the average card values with $\beta =0$. The actual payoffs can differ:
+\begin{table}[h]
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline 
+Receiving $\backslash$ Passing & A & D \\ 
+\hline 
+A & 0.5, 0.5 & $0.5+\frac{1}{14}$, $0.5-\frac{1}{14}$\\ 
+\hline 
+D & $0.5-\frac{1}{14}$, $0.5+\frac{1}{14}$ & 0.5, 0.5 \\
+\hline 
+\end{tabular}%
+}
+\end{table}
+
+1. Maximum:
+\begin{table}[h]
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline 
+Receiving $\backslash$ Passing & A & D \\ 
+\hline 
+A & 0.5, 0.5 & $0.5+\frac{1}{14}$, $0.5+\frac{1}{14}$\\ 
+\hline 
+D & $0.5+\frac{1}{14}$, $0.5+\frac{1}{14}$ & 0.5, 0.5 \\
+\hline 
+\end{tabular}%
+}
+\end{table}
+
+2. Square Addition:
+\begin{table}[h]
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline 
+Receiving $\backslash$ Passing & A & D \\ 
+\hline 
+A & 0.5, 0.5 & $\frac{25}{49}$, $\frac{25}{49}$\\ 
+\hline 
+D & $\frac{25}{49}$, $\frac{25}{49}$ & 0.5, 0.5 \\
+\hline 
+\end{tabular}%
+}
+\end{table}
+
+Assuming, Player 1 is playing strategy A with a probability of p, we will find the mixed nash-equilibrium p = 0.5, q = 0.5 if Player 2 is playing with a probability of q:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_max}
+    \caption{Case 1,2 - Maximum, Square Addition}
+    \label{fig:meine-grafik}
+\end{figure}
+
+Anologously we can find the nash equilibrium for the third case.
+
+3. Square Diffrence:
+
+\resizebox{0.5\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline 
+Receiving $\backslash$ Passing & A & D \\ 
+\hline 
+A & 0.0, 0.0 & $-\frac{1}{7}, \frac{1}{7}$ \\ 
+\hline 
+D & $-\frac{1}{7}, \frac{1}{7}$ & 0.0, 0.0 \\ 
+\hline 
+\end{tabular}%
+}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_diff}
+    \caption{Case 3 - Square Diffrence}
+    \label{fig:meine-grafik}
+\end{figure}
+
+\subsubsection{Adjusting $\beta$}
+
+If we set $\beta = 0$, we will only redefine the values, but the nash equilibrium will stay the same. Just from the cards, it is the best to play a mixed strategy for all cases. To enable this strategy in our simulation, we will now allow $\alpha$ to be in [0,1]. This will give us a well defined Exchange function as described before.
+
+We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistix approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
+\begin{align*}
+\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
+}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
+\end{align*}
+Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$ is low, Players will learn slowly about other players strategies. If k is high, this process will be faster. We will now use $k = 0.2$, because we believe it is the most realistic function for $\beta$. An average round has <20 games and a knowledge of $80\%$ is way to high, while $10\%$ is low (see Chart):
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
+    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \label{fig:meine-grafik}
+\end{figure}
+
 \section{Conclusion}
-
-
-
 \end{document}
 

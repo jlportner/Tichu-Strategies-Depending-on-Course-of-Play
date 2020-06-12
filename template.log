@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  5 JUN 2020 22:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  12 JUN 2020 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1593,6 +1593,24 @@ LaTeX Warning: Label `fig:meine-grafik' multiply defined.
 
 LaTeX Warning: Label `fig:meine-grafik@cref' multiply defined.
 
+
+LaTeX Warning: Label `fig:meine-grafik' multiply defined.
+
+
+LaTeX Warning: Label `fig:meine-grafik@cref' multiply defined.
+
+
+LaTeX Warning: Label `fig:meine-grafik' multiply defined.
+
+
+LaTeX Warning: Label `fig:meine-grafik@cref' multiply defined.
+
+
+LaTeX Warning: Label `fig:meine-grafik' multiply defined.
+
+
+LaTeX Warning: Label `fig:meine-grafik@cref' multiply defined.
+
 )
 \openout1 = `template.aux'.
 
@@ -1797,7 +1815,7 @@ Underfull \hbox (badness 1424) in paragraph at lines 120--121
 cmm/m/it/10 ^^M$ \T1/cmr/m/n/10 is dy-nam-i-cally chang-ing
  []
 
-<Bilder/graph.png, id=100, 3506.60063pt x 1492.07437pt>
+<Bilder/graph.png, id=108, 3506.60063pt x 1492.07437pt>
 File: Bilder/graph.png Graphic file (type png)
 <use Bilder/graph.png>
 Package pdftex.def Info: Bilder/graph.png  used on input line 134.
@@ -1923,28 +1941,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [5]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 315.
+(mdframed)              on input line 319.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 320.
+(mdframed)              on input line 324.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 323.
+(mdframed)              on input line 330.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 328.
+(mdframed)              on input line 335.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 331.
+(mdframed)              on input line 339.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 336.
+(mdframed)              on input line 344.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 338.
+(mdframed)              on input line 349.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 341.
+(mdframed)              on input line 353.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1953,95 +1971,36 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-<Bilder/cards_distribution.png, id=167, 433.62pt x 289.08pt>
+<Bilder/cards_distribution.png, id=175, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution.png Graphic file (type png)
 <use Bilder/cards_distribution.png>
-Package pdftex.def Info: Bilder/cards_distribution.png  used on input line 393.
+Package pdftex.def Info: Bilder/cards_distribution.png  used on input line 400.
 
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 393--394
+Overfull \hbox (5.0pt too wide) in paragraph at lines 400--401
  [][] 
  []
 
-<Bilder/cards_distribution_cumultative.png, id=169, 433.62pt x 289.08pt>
+<Bilder/cards_distribution_cumultative.png, id=177, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution_cumultative.png Graphic file (type png)
 <use Bilder/cards_distribution_cumultative.png>
 Package pdftex.def Info: Bilder/cards_distribution_cumultative.png  used on inp
-ut line 397.
+ut line 404.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 397--398
+Overfull \hbox (5.0pt too wide) in paragraph at lines 404--405
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 388--402
+Underfull \hbox (badness 10000) in paragraph at lines 395--409
 
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 388--402
+Underfull \hbox (badness 1748) in paragraph at lines 395--409
 \T1/cmr/m/n/10 We will al-ways use this ap-prox-i-ma-tion and will
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7 <./Bilder/cards_distribution.png> <./Bilder/cards_distribution_cumultative.p
-ng>]
-<Bilder/pass_function_ot.png, id=182, 433.62pt x 289.08pt>
-File: Bilder/pass_function_ot.png Graphic file (type png)
-<use Bilder/pass_function_ot.png>
-Package pdftex.def Info: Bilder/pass_function_ot.png  used on input line 409.
-(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 409--410
- [][] 
- []
-
-<Bilder/pass_function_ot_cumultative.png, id=183, 433.62pt x 289.08pt>
-File: Bilder/pass_function_ot_cumultative.png Graphic file (type png)
-<use Bilder/pass_function_ot_cumultative.png>
-Package pdftex.def Info: Bilder/pass_function_ot_cumultative.png  used on input
- line 413.
-(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 413--414
- [][] 
- []
-
-
-Overfull \hbox (5.00601pt too wide) in paragraph at lines 424--433
-[][] 
- []
-
-<Bilder/pass_function_p.png, id=184, 433.62pt x 289.08pt>
-File: Bilder/pass_function_p.png Graphic file (type png)
-<use Bilder/pass_function_p.png>
-Package pdftex.def Info: Bilder/pass_function_p.png  used on input line 441.
-(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 441--442
- [][] 
- []
-
-<Bilder/pass_function_p_cumultative.png, id=185, 433.62pt x 289.08pt>
-File: Bilder/pass_function_p_cumultative.png Graphic file (type png)
-<use Bilder/pass_function_p_cumultative.png>
-Package pdftex.def Info: Bilder/pass_function_p_cumultative.png  used on input 
-line 445.
-(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 445--446
- [][] 
  []
 
 
@@ -2053,14 +2012,86 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8 <./Bilder/pass_function_ot.png> <./Bilder/pass_function_ot_cumultative.png>]
+[7]
+<Bilder/pass_function_ot.png, id=186, 433.62pt x 289.08pt>
+File: Bilder/pass_function_ot.png Graphic file (type png)
+<use Bilder/pass_function_ot.png>
+Package pdftex.def Info: Bilder/pass_function_ot.png  used on input line 416.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--472
+Overfull \hbox (5.0pt too wide) in paragraph at lines 416--417
+ [][] 
+ []
+
+<Bilder/pass_function_ot_cumultative.png, id=187, 433.62pt x 289.08pt>
+File: Bilder/pass_function_ot_cumultative.png Graphic file (type png)
+<use Bilder/pass_function_ot_cumultative.png>
+Package pdftex.def Info: Bilder/pass_function_ot_cumultative.png  used on input
+ line 420.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 420--421
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 6741) has occurred while \output is active []
+
+
+Overfull \hbox (5.00601pt too wide) in paragraph at lines 431--440
+[][] 
+ []
+
+
+Underfull \vbox (badness 2384) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8 <./Bilder/cards_distribution.png> <./Bilder/cards_distribution_cumultative.p
+ng> <./Bilder/pass_function_ot.png> <./Bilder/pass_function_ot_cumultative.png>
+]
+<Bilder/pass_function_p.png, id=201, 433.62pt x 289.08pt>
+File: Bilder/pass_function_p.png Graphic file (type png)
+<use Bilder/pass_function_p.png>
+Package pdftex.def Info: Bilder/pass_function_p.png  used on input line 448.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 448--449
+ [][] 
+ []
+
+<Bilder/pass_function_p_cumultative.png, id=202, 433.62pt x 289.08pt>
+File: Bilder/pass_function_p_cumultative.png Graphic file (type png)
+<use Bilder/pass_function_p_cumultative.png>
+Package pdftex.def Info: Bilder/pass_function_p_cumultative.png  used on input 
+line 452.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 452--453
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
 []\T1/cmr/m/n/10 Basic ag-gres-sive-ness of the play-ers
  []
 
 
-Overfull \hbox (8.41331pt too wide) in paragraph at lines 487--489
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 <./Bilder/pass_function_p.png> <./Bilder/pass_function_p_cumultative.png>]
+Overfull \hbox (8.41331pt too wide) in paragraph at lines 494--496
 [] []\T1/cmr/bx/n/10 Cat.1[] $\OML/cmm/m/it/10 X \OT1/cmr/m/n/10 = [0\OML/cmm/m
 /it/10 ; \OT1/cmr/m/n/10 100\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 200\OML/cmm/m/it
 /10 ; \OT1/cmr/m/n/10 300\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 400\OML/cmm/m/it/10
@@ -2070,60 +2101,60 @@ Overfull \hbox (8.41331pt too wide) in paragraph at lines 487--489
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--489
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--489
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
+Underfull \hbox (badness 10000) in paragraph at lines 497--499
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--492
+Underfull \hbox (badness 10000) in paragraph at lines 497--499
 
  []
 
-<Bilder/risk_level_diffrence_200steps.png, id=196, 438.63875pt x 279.0425pt>
+<Bilder/risk_level_diffrence_200steps.png, id=217, 438.63875pt x 279.0425pt>
 File: Bilder/risk_level_diffrence_200steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_200steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_200steps.png  used on inpu
-t line 497.
+t line 504.
 (pdftex.def)             Requested size: 241.84843pt x 153.85704pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 497--498
+Overfull \hbox (5.0pt too wide) in paragraph at lines 504--505
  [][] 
  []
 
-<Bilder/risk_level_diffrence_100steps.png, id=197, 451.6875pt x 280.04625pt>
+<Bilder/risk_level_diffrence_100steps.png, id=218, 451.6875pt x 280.04625pt>
 File: Bilder/risk_level_diffrence_100steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_100steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_100steps.png  used on inpu
-t line 503.
+t line 510.
 (pdftex.def)             Requested size: 241.84843pt x 149.94931pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 503--504
+Overfull \hbox (5.0pt too wide) in paragraph at lines 510--511
  [][] 
  []
 
-<Bilder/risk_level_diffrence_nonlinear.png, id=198, 463.7325pt x 275.0275pt>
+<Bilder/risk_level_diffrence_nonlinear.png, id=219, 463.7325pt x 275.0275pt>
 File: Bilder/risk_level_diffrence_nonlinear.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_nonlinear.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_nonlinear.png  used on inp
-ut line 509.
+ut line 516.
 (pdftex.def)             Requested size: 241.84843pt x 143.43477pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 509--510
+Overfull \hbox (5.0pt too wide) in paragraph at lines 516--517
  [][] 
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 510--510
+Underfull \hbox (badness 1205) in paragraph at lines 517--517
 []\T1/cmr/m/n/10 Figure 10: []$\OML/cmm/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/
 it/10 x\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 3\OML/cmm/m/it/1
 0 :\OT1/cmr/m/n/10 87806638 \OMS/cmsy/m/n/10 ^^A \OT1/cmr/m/n/10 10[] \OMS/cmsy
@@ -2131,42 +2162,23 @@ it/10 x\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 3\OML/cmm/m/it/1
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--518
+Underfull \hbox (badness 10000) in paragraph at lines 500--525
 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[9 <./Bilder/pass_function_p.png> <./Bilder/pass_function_p_cumultative.png>]
-<Bilder/calling_winning_graph.png, id=215, 453.695pt x 282.05376pt>
+<Bilder/calling_winning_graph.png, id=220, 453.695pt x 282.05376pt>
 File: Bilder/calling_winning_graph.png Graphic file (type png)
 <use Bilder/calling_winning_graph.png>
 Package pdftex.def Info: Bilder/calling_winning_graph.png  used on input line 5
-50.
+57.
 (pdftex.def)             Requested size: 241.84843pt x 150.35283pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 550--551
+Overfull \hbox (5.0pt too wide) in paragraph at lines 557--558
  [][] 
  []
-
-
-AED: lastpage setting LastPage
-
-Underfull \vbox (badness 3838) has occurred while \output is active []
-
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2175,37 +2187,116 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10 <./Bilder/risk_level_diffrence_200steps.png> <./Bilder/risk_level_diffrence
-_100steps.png> <./Bilder/risk_level_diffrence_nonlinear.png> <./Bilder/calling_
-winning_graph.png>]
+_100steps.png> <./Bilder/risk_level_diffrence_nonlinear.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 568--572
+
+ []
+
+
+Overfull \hbox (4.99744pt too wide) in paragraph at lines 577--588
+[][] 
+ []
+
+
+Overfull \hbox (4.99744pt too wide) in paragraph at lines 592--603
+[][] 
+ []
+
+
+Overfull \hbox (5.00137pt too wide) in paragraph at lines 607--618
+[][] 
+ []
+
+<Bilder/5_max.png, id=258, 433.62pt x 289.08pt>
+File: Bilder/5_max.png Graphic file (type png)
+<use Bilder/5_max.png>
+Package pdftex.def Info: Bilder/5_max.png  used on input line 624.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 624--625
+ [][] 
+ []
+
+<Bilder/5_diff.png, id=259, 433.62pt x 289.08pt>
+File: Bilder/5_diff.png Graphic file (type png)
+<use Bilder/5_diff.png>
+Package pdftex.def Info: Bilder/5_diff.png  used on input line 646.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 646--647
+ [][] 
+ []
+
+
+Overfull \hbox (5.00137pt too wide) in paragraph at lines 633--650
+[][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 651.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\beta' on input line 651.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 651.
+
+
+Underfull \vbox (badness 2418) has occurred while \output is active []
+
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11
+[11 <./Bilder/calling_winning_graph.png> <./Bilder/5_max.png>]
+<Bilder/5_log.png, id=271, 433.62pt x 289.08pt>
+File: Bilder/5_log.png Graphic file (type png)
+<use Bilder/5_log.png>
+Package pdftex.def Info: Bilder/5_log.png  used on input line 664.
+(pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 560.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 560.
+Overfull \hbox (5.0pt too wide) in paragraph at lines 664--665
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+AED: lastpage setting LastPage
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <./Bilder/5_diff.png> <./Bilder/5_log.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 670.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 670.
  (./template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 560.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 560.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 670.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 670.
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 7E3EE6020C482D8EA80CB129D68A7691;1028.
+(rerunfilecheck)             Checksum: 9CF24967D3D26D7E8877559B11934ED9;1149.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 31803 strings out of 492982
- 599260 string characters out of 6134896
- 683759 words of memory out of 5000000
- 34764 multiletter control sequences out of 15000+600000
+ 31831 strings out of 492982
+ 599732 string characters out of 6134896
+ 678658 words of memory out of 5000000
+ 34780 multiletter control sequences out of 15000+600000
  547907 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,14n,76p,10420b,1763s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,14n,76p,10420b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -2225,10 +2316,10 @@ er/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-supe
 r/sfxc1728.pfb>
-Output written on template.pdf (11 pages, 674509 bytes).
+Output written on template.pdf (12 pages, 730300 bytes).
 PDF statistics:
- 351 PDF objects out of 1000 (max. 8388607)
- 293 compressed objects within 3 object streams
- 120 named destinations out of 1000 (max. 500000)
- 204 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 378 PDF objects out of 1000 (max. 8388607)
+ 312 compressed objects within 4 object streams
+ 129 named destinations out of 1000 (max. 500000)
+ 235 words of extra memory for PDF output out of 10000 (max. 10000000)
 

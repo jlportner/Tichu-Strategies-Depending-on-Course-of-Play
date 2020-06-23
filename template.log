@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  12 JUN 2020 12:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  23 JUN 2020 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1716,89 +1716,49 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 16.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 29--31
+Underfull \hbox (badness 10000) in paragraph at lines 28--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--56
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
+
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 52--66
 
  []
 
 
-Overfull \hbox (5.00128pt too wide) in paragraph at lines 41--56
+Overfull \hbox (5.00128pt too wide) in paragraph at lines 52--66
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--68
+Underfull \hbox (badness 10000) in paragraph at lines 67--76
 
  []
 
 
-Overfull \hbox (5.00238pt too wide) in paragraph at lines 57--68
-[]
+Overfull \hbox (5.00238pt too wide) in paragraph at lines 67--76
+[] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 80.
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 96--100
+Underfull \hbox (badness 1072) in paragraph at lines 106--110
 []\T1/cmr/m/n/10 To make it eas-ier to iden-tify the play-ers in the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--100
+Underfull \hbox (badness 10000) in paragraph at lines 106--110
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
-
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
-
- []
-
-
-Underfull \hbox (badness 1215) in paragraph at lines 107--109
-\T1/cmr/m/n/10 the sit-u-a-tions with the fol-low-ing no-ta-tion. The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 107--109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--117
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
-
- []
-
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 119.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 110.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1810,46 +1770,78 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Underfull \hbox (badness 1424) in paragraph at lines 120--121
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+
+ []
+
+
+Underfull \hbox (badness 1215) in paragraph at lines 117--119
+\T1/cmr/m/n/10 the sit-u-a-tions with the fol-low-ing no-ta-tion. The
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
+
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 130--131
 \T1/cmr/m/n/10 While $\OML/cmm/m/it/10 $ \T1/cmr/m/n/10 is in-vari-ant, $\OML/
 cmm/m/it/10 ^^M$ \T1/cmr/m/n/10 is dy-nam-i-cally chang-ing
  []
 
-<Bilder/graph.png, id=108, 3506.60063pt x 1492.07437pt>
+<Bilder/graph.png, id=116, 3506.60063pt x 1492.07437pt>
 File: Bilder/graph.png Graphic file (type png)
 <use Bilder/graph.png>
-Package pdftex.def Info: Bilder/graph.png  used on input line 134.
+Package pdftex.def Info: Bilder/graph.png  used on input line 144.
 (pdftex.def)             Requested size: 241.84843pt x 102.9077pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 134--135
+Overfull \hbox (5.0pt too wide) in paragraph at lines 144--145
  [][] 
  []
 
 
-Overfull \hbox (5.00826pt too wide) in paragraph at lines 158--169
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (5.00826pt too wide) in paragraph at lines 168--179
 [][] 
  []
 
 
-Overfull \hbox (5.00513pt too wide) in paragraph at lines 171--184
+Overfull \hbox (5.00513pt too wide) in paragraph at lines 181--194
 [][] 
  []
 
 
-LaTeX Warning: Command \textellipsis invalid in math mode on input line 189.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 193.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 195.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 196.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 198.
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 199.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.0pt.
@@ -1857,42 +1849,47 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3 <./Bilder/graph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
-
- []
-
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 203.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 205.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 217.
+(mdframed)              on input line 206.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 219.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 221.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 222.
+(mdframed)              on input line 208.
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 223.
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
 
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 225.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 235.
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 242.
-
-
-Overfull \hbox (5.00337pt too wide) in paragraph at lines 251--263
-[][] 
  []
 
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 215.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 227.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 229.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 231.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 232.
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 233.
+
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 235.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 245.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.0pt.
@@ -1900,17 +1897,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 273.
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 252.
+
+
+Overfull \hbox (5.00337pt too wide) in paragraph at lines 261--273
+[][] 
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 283.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 284.
+(mdframed)              on input line 293.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 294.
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--287
+Underfull \hbox (badness 10000) in paragraph at lines 295--297
 []\T1/cmr/m/n/10 A func-tion $\OML/cmm/m/it/10 ^^Q[] \OT1/cmr/m/n/10 : \OMS/cms
 y/m/n/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OMS/cmsy/m/n/10
  g ^^B \OT1/cmr/m/n/10 [\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ;
@@ -1919,18 +1924,18 @@ y/m/n/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OMS/cmsy/m/n/10
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 293.
+(mdframed)              on input line 303.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 294.
+(mdframed)              on input line 304.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 296.
+(mdframed)              on input line 306.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 297.
+(mdframed)              on input line 307.
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 299.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 309.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1941,28 +1946,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [5]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 319.
+(mdframed)              on input line 329.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 324.
+(mdframed)              on input line 334.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 330.
+(mdframed)              on input line 340.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 335.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 339.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 344.
+(mdframed)              on input line 345.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 349.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 353.
+(mdframed)              on input line 354.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 359.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 363.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1971,40 +1976,37 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-<Bilder/cards_distribution.png, id=175, 433.62pt x 289.08pt>
+<Bilder/cards_distribution.png, id=185, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution.png Graphic file (type png)
 <use Bilder/cards_distribution.png>
-Package pdftex.def Info: Bilder/cards_distribution.png  used on input line 400.
+Package pdftex.def Info: Bilder/cards_distribution.png  used on input line 410.
 
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 400--401
+Overfull \hbox (5.0pt too wide) in paragraph at lines 410--411
  [][] 
  []
 
-<Bilder/cards_distribution_cumultative.png, id=177, 433.62pt x 289.08pt>
+<Bilder/cards_distribution_cumultative.png, id=187, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution_cumultative.png Graphic file (type png)
 <use Bilder/cards_distribution_cumultative.png>
 Package pdftex.def Info: Bilder/cards_distribution_cumultative.png  used on inp
-ut line 404.
+ut line 414.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 404--405
+Overfull \hbox (5.0pt too wide) in paragraph at lines 414--415
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 395--409
+Underfull \hbox (badness 10000) in paragraph at lines 405--419
 
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 395--409
+Underfull \hbox (badness 1748) in paragraph at lines 405--419
 \T1/cmr/m/n/10 We will al-ways use this ap-prox-i-ma-tion and will
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2013,41 +2015,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7]
-<Bilder/pass_function_ot.png, id=186, 433.62pt x 289.08pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<Bilder/pass_function_ot.png, id=197, 433.62pt x 289.08pt>
 File: Bilder/pass_function_ot.png Graphic file (type png)
 <use Bilder/pass_function_ot.png>
-Package pdftex.def Info: Bilder/pass_function_ot.png  used on input line 416.
+Package pdftex.def Info: Bilder/pass_function_ot.png  used on input line 426.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 416--417
+Overfull \hbox (5.0pt too wide) in paragraph at lines 426--427
  [][] 
  []
 
-<Bilder/pass_function_ot_cumultative.png, id=187, 433.62pt x 289.08pt>
+<Bilder/pass_function_ot_cumultative.png, id=198, 433.62pt x 289.08pt>
 File: Bilder/pass_function_ot_cumultative.png Graphic file (type png)
 <use Bilder/pass_function_ot_cumultative.png>
 Package pdftex.def Info: Bilder/pass_function_ot_cumultative.png  used on input
- line 420.
+ line 430.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 420--421
+Overfull \hbox (5.0pt too wide) in paragraph at lines 430--431
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 6741) has occurred while \output is active []
-
-
-Overfull \hbox (5.00601pt too wide) in paragraph at lines 431--440
-[][] 
- []
-
-
-Underfull \vbox (badness 2384) has occurred while \output is active []
-
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2058,31 +2047,33 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [8 <./Bilder/cards_distribution.png> <./Bilder/cards_distribution_cumultative.p
 ng> <./Bilder/pass_function_ot.png> <./Bilder/pass_function_ot_cumultative.png>
 ]
-<Bilder/pass_function_p.png, id=201, 433.62pt x 289.08pt>
+Overfull \hbox (5.00601pt too wide) in paragraph at lines 441--450
+[][] 
+ []
+
+<Bilder/pass_function_p.png, id=211, 433.62pt x 289.08pt>
 File: Bilder/pass_function_p.png Graphic file (type png)
 <use Bilder/pass_function_p.png>
-Package pdftex.def Info: Bilder/pass_function_p.png  used on input line 448.
+Package pdftex.def Info: Bilder/pass_function_p.png  used on input line 458.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 448--449
+Overfull \hbox (5.0pt too wide) in paragraph at lines 458--459
  [][] 
  []
 
-<Bilder/pass_function_p_cumultative.png, id=202, 433.62pt x 289.08pt>
+<Bilder/pass_function_p_cumultative.png, id=212, 433.62pt x 289.08pt>
 File: Bilder/pass_function_p_cumultative.png Graphic file (type png)
 <use Bilder/pass_function_p_cumultative.png>
 Package pdftex.def Info: Bilder/pass_function_p_cumultative.png  used on input 
-line 452.
+line 462.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 452--453
+Overfull \hbox (5.0pt too wide) in paragraph at lines 462--463
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 478--479
-[]\T1/cmr/m/n/10 Basic ag-gres-sive-ness of the play-ers
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2091,7 +2082,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./Bilder/pass_function_p.png> <./Bilder/pass_function_p_cumultative.png>]
-Overfull \hbox (8.41331pt too wide) in paragraph at lines 494--496
+Underfull \hbox (badness 10000) in paragraph at lines 488--489
+[]\T1/cmr/m/n/10 Basic ag-gres-sive-ness of the play-ers
+ []
+
+
+Overfull \hbox (8.41331pt too wide) in paragraph at lines 504--506
 [] []\T1/cmr/bx/n/10 Cat.1[] $\OML/cmm/m/it/10 X \OT1/cmr/m/n/10 = [0\OML/cmm/m
 /it/10 ; \OT1/cmr/m/n/10 100\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 200\OML/cmm/m/it
 /10 ; \OT1/cmr/m/n/10 300\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 400\OML/cmm/m/it/10
@@ -2101,60 +2097,60 @@ Overfull \hbox (8.41331pt too wide) in paragraph at lines 494--496
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--496
+Underfull \hbox (badness 10000) in paragraph at lines 504--506
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--496
+Underfull \hbox (badness 10000) in paragraph at lines 504--506
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--499
+Underfull \hbox (badness 10000) in paragraph at lines 507--509
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--499
+Underfull \hbox (badness 10000) in paragraph at lines 507--509
 
  []
 
-<Bilder/risk_level_diffrence_200steps.png, id=217, 438.63875pt x 279.0425pt>
+<Bilder/risk_level_diffrence_200steps.png, id=223, 438.63875pt x 279.0425pt>
 File: Bilder/risk_level_diffrence_200steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_200steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_200steps.png  used on inpu
-t line 504.
+t line 514.
 (pdftex.def)             Requested size: 241.84843pt x 153.85704pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 504--505
+Overfull \hbox (5.0pt too wide) in paragraph at lines 514--515
  [][] 
  []
 
-<Bilder/risk_level_diffrence_100steps.png, id=218, 451.6875pt x 280.04625pt>
+<Bilder/risk_level_diffrence_100steps.png, id=224, 451.6875pt x 280.04625pt>
 File: Bilder/risk_level_diffrence_100steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_100steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_100steps.png  used on inpu
-t line 510.
+t line 520.
 (pdftex.def)             Requested size: 241.84843pt x 149.94931pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 510--511
+Overfull \hbox (5.0pt too wide) in paragraph at lines 520--521
  [][] 
  []
 
-<Bilder/risk_level_diffrence_nonlinear.png, id=219, 463.7325pt x 275.0275pt>
+<Bilder/risk_level_diffrence_nonlinear.png, id=225, 463.7325pt x 275.0275pt>
 File: Bilder/risk_level_diffrence_nonlinear.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_nonlinear.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_nonlinear.png  used on inp
-ut line 516.
+ut line 526.
 (pdftex.def)             Requested size: 241.84843pt x 143.43477pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 516--517
+Overfull \hbox (5.0pt too wide) in paragraph at lines 526--527
  [][] 
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 517--517
+Underfull \hbox (badness 1205) in paragraph at lines 527--527
 []\T1/cmr/m/n/10 Figure 10: []$\OML/cmm/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/
 it/10 x\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 3\OML/cmm/m/it/1
 0 :\OT1/cmr/m/n/10 87806638 \OMS/cmsy/m/n/10 ^^A \OT1/cmr/m/n/10 10[] \OMS/cmsy
@@ -2162,21 +2158,27 @@ it/10 x\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 3\OML/cmm/m/it/1
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--525
+Underfull \hbox (badness 10000) in paragraph at lines 510--535
 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Bilder/calling_winning_graph.png, id=220, 453.695pt x 282.05376pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Bilder/calling_winning_graph.png, id=226, 453.695pt x 282.05376pt>
 File: Bilder/calling_winning_graph.png Graphic file (type png)
 <use Bilder/calling_winning_graph.png>
 Package pdftex.def Info: Bilder/calling_winning_graph.png  used on input line 5
-57.
+67.
 (pdftex.def)             Requested size: 241.84843pt x 150.35283pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 557--558
+Overfull \hbox (5.0pt too wide) in paragraph at lines 567--568
  [][] 
  []
 
@@ -2187,66 +2189,53 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10 <./Bilder/risk_level_diffrence_200steps.png> <./Bilder/risk_level_diffrence
-_100steps.png> <./Bilder/risk_level_diffrence_nonlinear.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 568--572
+_100steps.png>]
+Underfull \vbox (badness 3838) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--582
 
  []
 
 
-Overfull \hbox (4.99744pt too wide) in paragraph at lines 577--588
+Overfull \hbox (4.99744pt too wide) in paragraph at lines 587--598
 [][] 
  []
 
 
-Overfull \hbox (4.99744pt too wide) in paragraph at lines 592--603
+Overfull \hbox (4.99744pt too wide) in paragraph at lines 602--613
 [][] 
  []
 
 
-Overfull \hbox (5.00137pt too wide) in paragraph at lines 607--618
+Overfull \hbox (5.00137pt too wide) in paragraph at lines 617--628
 [][] 
  []
 
-<Bilder/5_max.png, id=258, 433.62pt x 289.08pt>
+<Bilder/5_max.png, id=267, 433.62pt x 289.08pt>
 File: Bilder/5_max.png Graphic file (type png)
 <use Bilder/5_max.png>
-Package pdftex.def Info: Bilder/5_max.png  used on input line 624.
+Package pdftex.def Info: Bilder/5_max.png  used on input line 634.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 624--625
+Overfull \hbox (5.0pt too wide) in paragraph at lines 634--635
  [][] 
  []
 
-<Bilder/5_diff.png, id=259, 433.62pt x 289.08pt>
+<Bilder/5_diff.png, id=268, 433.62pt x 289.08pt>
 File: Bilder/5_diff.png Graphic file (type png)
 <use Bilder/5_diff.png>
-Package pdftex.def Info: Bilder/5_diff.png  used on input line 646.
+Package pdftex.def Info: Bilder/5_diff.png  used on input line 656.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 646--647
+Overfull \hbox (5.0pt too wide) in paragraph at lines 656--657
  [][] 
  []
 
 
-Overfull \hbox (5.00137pt too wide) in paragraph at lines 633--650
+Overfull \hbox (5.00137pt too wide) in paragraph at lines 643--660
 [][]
  []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 651.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\beta' on input line 651.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 651.
-
-
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2254,20 +2243,41 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11 <./Bilder/calling_winning_graph.png> <./Bilder/5_max.png>]
-<Bilder/5_log.png, id=271, 433.62pt x 289.08pt>
+[11 <./Bilder/risk_level_diffrence_nonlinear.png> <./Bilder/calling_winning_gra
+ph.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 661.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\beta' on input line 661.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 661.
+
+<Bilder/5_log.png, id=280, 433.62pt x 289.08pt>
 File: Bilder/5_log.png Graphic file (type png)
 <use Bilder/5_log.png>
-Package pdftex.def Info: Bilder/5_log.png  used on input line 664.
+Package pdftex.def Info: Bilder/5_log.png  used on input line 674.
 (pdftex.def)             Requested size: 241.84843pt x 161.23528pt.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 664--665
+Overfull \hbox (5.0pt too wide) in paragraph at lines 674--675
  [][] 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 682.
 
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <./Bilder/5_max.png> <./Bilder/5_diff.png> <./Bilder/5_log.png>]
 
 AED: lastpage setting LastPage
 
@@ -2276,27 +2286,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <./Bilder/5_diff.png> <./Bilder/5_log.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 670.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 670.
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 708.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 708.
  (./template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 670.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 670.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 708.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 708.
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 9CF24967D3D26D7E8877559B11934ED9;1149.
+(rerunfilecheck)             Checksum: A414DE67AE4AEEBF4A6E7DD324B1A711;1287.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 31831 strings out of 492982
- 599732 string characters out of 6134896
- 678658 words of memory out of 5000000
- 34780 multiletter control sequences out of 15000+600000
+ 31841 strings out of 492982
+ 599876 string characters out of 6134896
+ 680712 words of memory out of 5000000
+ 34784 multiletter control sequences out of 15000+600000
  547907 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,14n,76p,10420b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,14n,78p,10420b,1475s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -2316,10 +2326,10 @@ er/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-supe
 r/sfxc1728.pfb>
-Output written on template.pdf (12 pages, 730300 bytes).
+Output written on template.pdf (13 pages, 735620 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 312 compressed objects within 4 object streams
- 129 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 135 named destinations out of 1000 (max. 500000)
+ 251 words of extra memory for PDF output out of 10000 (max. 10000000)
 

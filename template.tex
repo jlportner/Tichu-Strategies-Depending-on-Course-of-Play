@@ -23,10 +23,19 @@ A prevalent characteristic of both mathematics and physics is their elaborate st
     Fascinated by this type of game and equipped with tools from our game theory course, we pose the general question: “which strategy should we pursue as players?”. We shall further differentiate this admittedly vague question into: “what strategy should we pursue given”: a) “we know what player-type all other players are” and b) “we do not know anything about other players”. 
 \section{Introduction on Tichu}
 
-Tichu is played by four players, where two players form a team. Tichu is subdivided into subgames, which are played repeatedly until one team reaches 1000 points and in this way wins the game.
-At the beginning of a game, every player gets 14 cards. He exchanges one card with every other player. This will be called the "Exchange Stage", which we will discuss later on. After the exchange of the cards, the regular game takes place. There are two major ways to achieve points: 1st Claiming Cards with a value, 2nd Announcing a Tichu. The Game ends, when one team finished of their cards. If one team finished of their cards before one of the opposing team finished, then the winner team receives the cards from both opponent players. If the team finished of their cards and someone from the opposing team finished before, only the last player passes away the cards to the winner team. Then you count the values of the cards and this value to your score.
+Tichu is a complicated team card game with many rounds that will be explained in detail below. The gist of it is that a set of playing cards is distributed among four players, two of which form a team, and card combinations are played to trump each other and win cards that score different amounts of points. At the beginning of each round each player exchanges a card with every other player, influencing the player dynamics of each round. Additionally, a bet, called a Tichu, can be placed on exiting a round of the game first, which yields bonus points. Teams then fight to reach 1000 points first. Obviously, this is not a full explanation, rather it serves to highlight the most important aspects of the game and subsequently the most interesting mechanisms explored in this essay, namely: the exchange stage, the player dynamics and the betting mechanism of a Tichu. 
 
-A Tichu-set consists of the cards 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A in four different colors: red, blue, green and black. There are four special cards Dragon, Phoenix, Dogs and Mah Jong. In total we have 56 cards, every player receives 14 cards. However, only a few cards have a value as listed in the table:\\
+A game of Tichu consists of two teams with two players each. The game is divided into multiple rounds that host opportunities to score and even lose points. The game ends when one team has collected 1000 or more points. In every round of the game each player is dealt 14 cards from the 56-card deck. To begin a round, each player must exchange one card with every other player; we coin this game mechanism the ‘exchange stage’. Points can be scored through:\\
+\begin{enumerate}
+\item claiming specific cards with point values
+\item announcing a Tichu (a bet)
+\item performing a double win
+\end{enumerate}
+
+A round begins when the player with the Mah Jong card in his deck (explained later) plays a valid card combination or singleton. The other players can play higher variations of strictly the same card combination-type to trump the previously played cards. A play continues until all other players are unable or unwilling to trump (they may choose to pass) the current card combination. Then, the winning player ‘claims’ the played cards and may start the next play. ‘Exiting’ a round refers to a player having played all of his 14 cards. A round ends when two players from the same team exit the round.
+
+
+A Tichu card set consists of the cards: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A in four different colours: black, blue, green and red. Additionally, four special cards include the: Dragon, Phoenix, Dog and Mah Jong (explored later). Only a few cards have specific values:\\
 \begin{scriptsize}
 \begin{center}
 \begin{tabular}{ c c c }
@@ -38,8 +47,9 @@ A Tichu-set consists of the cards 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A in four
 \end{tabular}
 \end{center}
 \end{scriptsize}
-In total, there are 100 Points every round. It is also possible to win a game with 125 or also -25 Points. Announcing a Tichu can earn your team additional points.
-A game starts, when a player plays a valid combination. The other players can now try to play a higher version of the same combination (as many cards as the combination). If no player can or wants to play a higher combination, the player with the highest combination takes the cards and can play a new combination. There are several valid combinations:
+In total a round distributes 100 points among both teams, however it is theoretically possible to end a round with a 125:-25 team point distribution as the Dragon and Phoenix cards respectively incur a win or loss of 25 points.
+
+Here are several valid card combinations:
 \\
 \\
 \resizebox{0.5\textwidth}{!}{%
@@ -54,8 +64,7 @@ A game starts, when a player plays a valid combination. The other players can no
 \end{tabular}%
 }
 
-This combinations can only be played on the same combination when it is the players turn. Following Pairs and Streets can be continued up to 14 cards. There are also bombs, which can be played at any time and on every combination (except higher or equal bombs).
-We differ between two kinds of bombs:
+These combinations can only be trumped through higher variations of strictly the same combination-type. Exempt from this rule are ‘Bombs’. Bombs can be played at any point during a round, even if it is not that player’s turn, and only yield only too higher or equal variations of itself. Bombs consist of four of a kind cards, while Street Bombs consist of single-colour streets and are stronger. As with normal Streets, Street Bombs are stronger the more cards they consist of:
 \\
 \\
 \resizebox{0.5\textwidth}{!}{%
@@ -64,23 +73,24 @@ We differ between two kinds of bombs:
 \textbf{Street Bomb} & $\sim$ & \textbf{(A,A,A,A) $<$ (2,3,4,5,6) $<$ (2,3,4,5,6, ...) $< ... < $ (...,10,J,Q,K,A)} \\ \\
 \end{tabular}%
 }
-In a street Bomb all colors have the same color. A Street Bomb is always higher than a shorter Street Bomb or a regular Bomb.
-
-The four special cards can be played under certain conditions,but special cars can not be player in a Bomb or Streetbomb:
 
 \paragraph*{Mah Jong}
-The player with this card starts the game. Mah Jong can be played as a \textbf{1} as a High Card or in a Street. The player is also allowed to request a not special card. Whoever has this card and can play it, has to play it.
+The player with this card in his deck starts the game. Mah Jong may be played as a \textbf{1} High Card or combined into a Street. Additionally, the player may request a non-special card to be played. This card must be played immediately at the next possible legal opportunity by any player.
 \paragraph*{Dog}
-The dogs can not be played in any combination. When a player uses the dog, his partner is allowed to play the next combination. If his partner is already done, the next active player is allowed to play.
+Playing this card transfers the right to begin a play to the player’s teammate. If this teammate has already exited the round, the next active player inherits this right. It cannot be played in any combination.
 \paragraph*{Phoenix}
-The phoenix can be used in two different ways. It is a valid substitute for every not special card and can be played in combinations. It can also be played on a card and count as Card + 0.5. It can also be used on an A but not on the Dragon.
+The Phoenix acts as a Joker and can substitute any non-special card and be played in any combination. Played as a singleton it counts as +0.5 of any card it trumps, excluding special cards like the Dragon.
 \paragraph{Dragon}
-The dragon is the highest High Card and can be played on every high card including the phoenix. After winning the combination with the dragon, the player has to give the cards to qqone of his enemies.
+The Dragon is the highest possible singleton available and trumps the Phoenix card. The cards claimed for any play won through this card must be awarded to either opponent. The Dragon may only be bombed, in this case the new winner can claim the cards and must not award them to either opponent.
 
-\subsubsection{Announcing a Tichu}
-A Player can announce a Tichu as long as he has not played any card yet. If he announces a Tichu, he has to be the first one who finishes the game. If he succeeds, he will earn his team 100 additional points. If he fails, his team loses 100 points. 
-A stronger version of Tichu is the Great Tichu, which is worth 200 points if won. A Great Tichu has to be announced after the player takes the first eight cards before the regular game starts. It also has an impact on the Exchange Stage. 
-If the two players from one team finish the game first, they get 200 points and the cards will not be counted. This will be called a “Double Victory”.
+Special cards cannot be played in any type of Bomb.
+
+At the end of a round, after two teammates have managed to exit, either one or both opponents have not exited the round. If one opponent remains, both his claimed cards and his remaining hand cards are gifted to the player that exited the round first. All other claimed cards are valued based on their worth as listed above and added to the team score. On the other hand, if two teammates manage to exit before both opponents, the value of claimed cards is disregarded completely and 200 points are immediately awarded to the winning team; this is called a double win.
+
+Finally, a Tichu is a 100 point bet a player takes on exiting the round first. Success scores an additional 100 points while failure incurs a cost of 100 points. A Tichu can be announced as long as the player has not played any cards yet. Similarly, a Grand Tichu is a bet of 200 points and must be announced after the 8th card is dealt. A Grand Tichu may therefore also have an impact on the Exchange stage.
+
+For the following discussion we would like to coin ‘good’ cards, in contrast to ‘bad’ cards, as cards that allow for strong combinations and possibly multiple different strong actions throughout the development of the round.
+
 
 \section{Our Model and approximations}
 \subsection{Basic assumptions}
@@ -667,5 +677,33 @@ Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$
 \end{figure}
 
 \section{Conclusion}
+At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.
+
+\subsubsection{Subgame B.0}
+
+Here is probably the most essential approximation that the Great Tichu was neglected. This is of course essential for the scuffing, because it makes the scuffing much clearer. Each team partner (with Common Knowledge) would then give his team mate a very good card, because he himself can and needs no more Tichu. At the same time, the opponents will try to get the worst possible cards, like the dog that doesn't fit into any combination. Also the card 1 is usually nudged by the opponents in such a way that the player who has announced the Great Tichu comes second and thus must react to the request.
+Problems could also result from normal distributions etc. Even if these were chosen sensibly, they do not always reflect reality very well. Calculating the values of cards based on their combination is extremely difficult, since the time course of the game also influences the value of a combination.
+
+\subsubsection{Subgame B.1}
+
+Basically this part has a very theoretical basis. There are of course more possibilities to change parameters and to cover different cases to get a better evaluation.
+But even here, a certain arbitrariness is sometimes found in the eta and xi function, for example, but the result is meaningful, as can be seen at the Nash equilibrium. This could of course be further improved with certain calculations and statistical surveys.
+
+\subsubsection{Subgame B.2}
+
+The model has of course been simplified at one point or another.
+First we start with the player model. It is of course very difficult to map a player type exactly. The division into 3 types is of course not small enough to reflect reality. Above all, the increase in risk will also depend on the type of player. Although the basic aggressiveness was taken as the underlying, the increase was calculated independently. But it is precisely the different situations that will provoke different human reactions. Even if the average of the survey showed this, it may be different for individuals.
+Also the assumption of common knowledge will not apply to every player in every situation. For once we have also used this assumption to eradicate certain situations and not have to take them into account.
+For example, we said that if a Tichu from Team 1 and Team 2 is announced, one of the two teams will win in any case. But it is also possible that a third player wins this Tichu and this without violating the assumption of common knowledge.
+The irrational behaviour could occur for various reasons.
+An example would be a player's lack of experience. After all, you cannot conclude with 100% certainty from your own cards that you are superior to your opponents.
+The experience gained also goes hand in hand with certain strategies. For example, the convention that one shuffles an even card to the right and an odd card to the left. This is very useful, provided that both team members adhere to it. But it cannot be interpreted as Common Knowledge, because right even and left odd was chosen arbitrarily and would make sense as well, if it was swapped.
+Another component that we have neglected is the timing of the game. By waiting for certain tricks, one can exclude that certain cards are still in the game and thus increase the probability for an own Tichu if necessary. However, this was not taken into account in this case.
+One possible technical error is, for example, the interpolation of data from the onlinetichu.com website. Various errors can occur, especially during interpolation.
+
+
+Especially since little or no data is provided for higher announcement rates, for example.
+In the future, it would be possible to work on all these points in order to improve the model further.
+
 \end{document}
 

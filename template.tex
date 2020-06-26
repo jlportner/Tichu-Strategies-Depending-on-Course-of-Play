@@ -6,7 +6,7 @@
 %\usepackage{slashbox}
 \usepackage{multirow}
 \usepackage{listings}
-
+\usepackage{commath}
 \begin{document}
 
 \title{Tichu strategies depending on course of play}
@@ -104,7 +104,7 @@ The second player is the "defensive player". This stands in contrast to the "agg
 When exchanging cards he decides to give the good card to his partner instead of keeping it himself.
 
 To make it easier to identify the players in the following, the following notation is introduced:
-We will store information on the players behaviour in a vector $\alpha \in \{0,1\}^4$.
+We will store information on the players behaviour in a vector $\alpha \in [0,1]^4$.For our first attempt, we will only focus on the extreme cases $\alpha \in \{0,1\}^4$
 \\ 
 \begin{itemize}
 \item A: "aggressive player" will be assigned to $\alpha_i = 1$
@@ -114,7 +114,7 @@ In our approximation of Tichu, we consider two possible situations.
 The first situation is characterized by transparency. Every player knows exactly which type the other players are and acts up to this information.
 In the second situation, the players are not aware of the tactics. They only know how they act by themself.
 
-Like the different types of players, we will identify the situations with the following notation. The information is stored in a vector $\beta \in \{0,1\}^4$. \\ 
+Like the different types of players, we will identify the situations with the following notation. The information is stored in a vector $\beta \in [0,1]^4$. Same as $\alpha$ we will set $\beta \in \{0,1\}^4$\\ 
 \begin{itemize}
 \item T: “transparent” will be assigned to $\beta_i = 1$
 \item $\overline{T}$: “not transparent” will be assigned to $\beta_i = 0$ \\
@@ -122,7 +122,7 @@ Like the different types of players, we will identify the situations with the fo
 
 We will assume  $\beta_i = \beta_j \forall i, j\in \{1,2,3,4\}$ in the beginning. 
 
-We also introduce the possibility to take a higher risk depending on the current score. If a player is risky, he will definitely announce a Tichu. If he is shy, he will never announce a Tichu. We will store information on the player's possibility to announce a tichu in a vector $\gamma \in \{0,1\}^4$. \\
+We also introduce the possibility to take a higher risk depending on the current score. If a player is risky, he will definitely announce a Tichu. If he is shy, he will never announce a Tichu. We will store information on the player's possibility to announce a tichu in a vector $\gamma \in [0,1]^4$. For our consideration set  $\gamma \in \{0,1\}^4$: \\
 \begin{itemize}
 \item R: “risky” will be assigned to $\gamma_i = 1$
 \item $\overline{R}$: “not risky” will be assigned to $\gamma_i = 0$ \\
@@ -475,6 +475,44 @@ We now have created Pass-functions $\xi_{ji}$ and a Receive-Function $\eta_{ji} 
 0 & 0 &  \xi_{43} & 1 - \xi_{34} \\
 \end{pmatrix}
 \end{gather*}
+
+Dies lässt sich weiter verallgemeinern. Jetzt setzen wir $\eta$ nicht mehr der Identität sondern lassen den Kartenwert und das Erhalten verändern. Für die Definition der $\eta$-Funktion haben wir verschiedene Grundannahme getroffen. Wir nehmen an, dass diese auch vom Wissenstand der Spieler abhängt. Für die $\eta$-Funktion definieren wir eine Hilsfunktion, die eine Wahrscheinlichkeitsdichte darstellt. Im Grunde verändert die $\eta$-Funktion den Wert der Karten nach dem Schupfen nur geringfügig, es gibt jedoch geringe Wahrscheinlichkeiten, dass durch das Erhalten der Karten, sich der Kartenwert verbessert. Somit folgt die Definition:
+\begin{definition}[Wahrscheinlichkeitsdichte]
+Die Wahrscheinlichkeitsdichte $\rho$ ist definiert durch eine Funktion, die normiert über das Integral von -0.25 bis $\infty$ 1 ergibt und als $\hat{\rho}$ bezeichnet wird:
+$$
+\rho (t) := \frac{1}{4.39426613065366}\cdot\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
+$$
+$$
+\widehat{\rho} = \int\limits_{-0.25}^{\infty}\rho (t)\mathrm{d} t
+$$
+\end{definition}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/b1_e}
+    \caption{$\rho$(t) - Wahrscheinlichkeitsdichte}
+    \label{fig:meine-grafik}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/b1_f}
+    \caption{$\widehat{\rho}(t) - Wahrscheinlichkeit$}
+    \label{fig:meine-grafik}
+\end{figure}
+Dieser Wahrscheinlichkeitswert $\hat{\rho}(t)$ wird dann Zufallsgeneriert für ein $t\in [-0.25,0.7]$. Damit lässt sich die $\eta$-Funktion definieren:
+\begin{equation*}
+\eta_{ij}(\xi_{ij}(X),\beta) = \xi_{ij}(X)\cdot(1+\mathrm{sgn}(X)\cdot\beta\cdot\langle\widehat{\rho}\rangle)
+\end{equation*}
+
+
+Somit verändert sich $\Lambda$ zu:
+\\ \\
+\noindent\resizebox{0.45\textwidth}{!}{
+$
+\Lambda = \begin{pmatrix} 
+1 - \sum\limits_{\substack{i=1 \\ i\neq 1}}^4\eta_{i1}(\xi_{i1}) & \eta_{21}(\xi_{21}) & \eta_{31}(\xi_{31}) & \eta_{41}(\xi_{41}) \\
+\eta_{12}(\xi_{21}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 2}}^4\eta_{i1}(\xi_{i1})  & \eta_{32}(\xi_{32}) & \eta_{42}(\xi_{42}) \\
+\eta_{13}(\xi_{13}) & \eta_{23}(\xi_{23}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 3}}^4\eta_{i1}(\xi_{i1})  & \eta_{43}(\xi_{43}) \\
+\eta_{14}(\xi_{24}) & \eta_{23}(\xi_{23}) &  \eta_{34}(\xi_{43}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 4}}^4\eta_{i1}(\xi_{i1})  \\
+\end{pmatrix}
+$}
 
 \subsection{Subgame B.2}
 With the actual Tichus play there are several combinations and possibilities how this can run off. Especially decisive can be for example, who starts. Because of the combination of the cards it could be that all 4 players have the possibility to announce the Tichu. To approximate this problem as best as possible, we have considered that we simply look at the probability of winning Tichu, rather than the individual hand cards.

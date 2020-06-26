@@ -416,6 +416,25 @@ We will receive this plot which shows the possibility to get cards with a certai
     \label{fig:meine-grafik}
 \end{figure}
 \\ \\We will always use this approximation and will not discuss it furthermore.
+
+\subsubsection{Adjusting $\beta$}
+
+If we set $\beta = 0$, we will only redefine the values, but the nash equilibrium will stay the same. Just from the cards, it is the best to play a mixed strategy for all cases. To enable this strategy in our simulation, we will now allow $\alpha$ to be in [0,1]. This will give us a well defined Exchange function as described before.
+
+We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistix approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
+\begin{align*}
+\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
+}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
+\end{align*}
+Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$ is low, Players will learn slowly about other players strategies. If k is high, this process will be faster. We will now use $k = 0.2$, because we believe it is the most realistic function for $\beta$. An average round has <20 games and a knowledge of $80\%$ is way to high, while $10\%$ is low (see Chart):
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
+    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \label{fig:meine-grafik}
+\end{figure}
+
 \subsection{Subgame B.1}
 To approximate the game, we will start with the most simple approach possible. A player can only pass one card, he has 14 cards on his hand. Therefore, if he passes all cards away, the average value will be $\frac{X}{14}$. This is not a perfect approximation, but it will work for the beginning. Later on, we can redefine this value if necessary. 
 
@@ -608,7 +627,37 @@ So a graph of the tichu rate in relation to tichu announcements / rounds plots.
 \end{figure}
 The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
 \section{Simulation}
-\subsection{B.1}
+\subsubsection{Introduction to Software}
+Tichu Simulation Software, short introduction
+In order to simulate a Tichu according to our approximations, we have designed a python program consisting of three major files. We will give a brief introduction to these programs.
+
+Python and Modules:
+Our script is based on Python 3.7.1. and includes NumPy, SciPy and MatPlotLib as additional packages. 
+
+Simulation:
+This is the core of our program. We simulate a game with given start-values for alpha, beta, gamma and delta. In Addition, we set maxRounds and maxScore (40, 1000 by default). 
+Due to the different approaches we made, we give different modes for each part of the simulation in a NumpyArray. The different parts of the Simulation are:
+\begin{enumerate}
+\item B0 – How do we generate the card values e.g. normal or linear distributed, equal
+\item B1 – How do we exchange cards e.g. no exchange, average exchange, including receive
+\item B2 – How do we distribute the points e.g. equal, normal distributed, highest, statistics
+\item adj. alpha – Will alpha be adjusted after each round
+\item adj. beta – Will beta be adjusted after each round e.g. increase
+\item adj. gamma – How will the risk be adjusted e.g. according to surveys
+\end{enumerate}
+The used simulation modes are explained in our script on github-Link or trivial. 
+
+Data Structure:
+In order to save most of the data from a simulation, we created a class Solution which stores the data and a second class SimulationSet which can combine the data from many simulations. We also enabled saving and loading datasets and single simulations from files. Attention: We enabled pickle to load SolutionSet objects!  
+
+Analysing and Plotting
+We created methods in the Solution-class to plot games and developments. To run and plot bigger simulations we used an external file which is also attached. 
+
+Balancing and Switching
+Due to rounding errors in python, we observed that Team 2 wins more game than Team 1. 
+To balance the game, we created a switching method, which switches the teams position every round. This leads to additional runtime but balances the game. 
+We also created a method in the Solution class to switch the teams in the simulation. This is necessary to reduce the runtime. 
+\subsection{Optimal strategy in "Exchange"-Stage}
 First of all, we will have a look on the outcome of the Exchange Stage under different circumstances. But which outcome is the best for a team? We try to get a maximal value in three different ways:
 
 \paragraph{Maximum}  We are only looking at the card value of the higher cards, because this can lead to a win of Tichu
@@ -695,24 +744,113 @@ D & $-\frac{1}{7}, \frac{1}{7}$ & 0.0, 0.0 \\
     \caption{Case 3 - Square Diffrence}
     \label{fig:meine-grafik}
 \end{figure}
+\subsection{Simulation of the game}
+We have previously shown which strategy the other player should theoretically play, taking into account different metrics, if his opponent chooses a strategy and have hypothetically assumed average values (card values X=0.5) with the standard deviation we have determined.
 
-\subsubsection{Adjusting $\beta$}
+We now try to generalize it and use the functions we developed in the theoretical part of the work. The goal of the game simulation is to simulate the course of a game depending on parameters given by us and thus to determine the best possible combination of $\alpha$ for the team.
 
-If we set $\beta = 0$, we will only redefine the values, but the nash equilibrium will stay the same. Just from the cards, it is the best to play a mixed strategy for all cases. To enable this strategy in our simulation, we will now allow $\alpha$ to be in [0,1]. This will give us a well defined Exchange function as described before.
+The basis for each round is the card value X for each individual player. This is simulated by a normal distribution and is changed by the functions $\xi$ and $\eta$ during the exchange phase. The new card value X' is then saved and transferred for the game B.2, since the risk susceptibility is calculated from it.
 
-We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistix approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
-\begin{align*}
-\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
-}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
-\end{align*}
-Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$ is low, Players will learn slowly about other players strategies. If k is high, this process will be faster. We will now use $k = 0.2$, because we believe it is the most realistic function for $\beta$. An average round has <20 games and a knowledge of $80\%$ is way to high, while $10\%$ is low (see Chart):
+In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game.
 
-\begin{figure}[h!]
+(Schaubilder)
+
+The 3 cases show the influence of $\alpha$ on the card value and also on the exchange behaviour. It is noticeable in the range 0.8-1.0 that the aggressive players 1.3 improve the card value after the exchange phase and players 2.4 tend to worsen the card value.
+
+We have now exemplarily seen how the parameters influence the card value, but the question arises, what is the optimal combination of player types, if you want to win the Tichu?
+
+\subsubsection{Subgame B.2}
+Of course the ideal situation would be to simulate every possible combination of our parameters a significant number of times to then get the best results. Due to our limited computation power we had to restrict our simulations. It was decided to simulate 100 games for each set of parameters. For the parameters we chose to fix $\alpha_3$ and $\alpha_4$ to $0.5$. And vary $\alpha_1$ and $\alpha_2$ from 0 to 1 in 0.01 increments. This means that team two plays with average aggressivity and team one’s aggressivity varies from totally passive to extremely aggressive. As in our simulation each player in a team is equal this allows us to use some symmetry, e.g. ($\alpha_1$,$\alpha_2$) = (1,0) yields the same result as (0,1). Therefore we could reduce the amount to simulate here. This left us with approximately 500.000 simulated games. Naturally this already is a tremendous task, especially considering our usage of python which is not the fastest.
+
+For the Betas we therefore had to reduce the different cases as else this would have exploded into the uncomputable. Therefore we decided to select 3 cases:
+\begin{enumerate}
+\item $\beta$ equals zero for all players throughout every game. This is equal to no player knowing the strategies of the others
+\item $\beta$ starts at zero but increases logistically throughout one game. Here the players deduce the strategies of the others as the game goes on
+\item $\beta$ equals one throughout every game. Meaning all players not the other players strategies.
+\end{enumerate}
+Each of these simulations already took more than 16 hours. So doing varying beta more lies beyond our abilities. 
+
+The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is Beta equal 0 for all players, the middle one for the logistical Beta and the right one for beta of 1.
+
+\begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
-    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \includegraphics[width=0.5\textwidth]{Bilder/simulation_2_2}
+    \caption{Simulation 1}
+    \label{fig:meine-grafik}
+    \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/simulation_3_2}
+    \caption{Simulation 6}
+    \label{fig:meine-grafik}
+    \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/simulation_4_2}
+    \caption{Simulation 10}
     \label{fig:meine-grafik}
 \end{figure}
+
+As one can see an higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
+Consequently to get a better overview we only plotted the points where Team 1 won in more than 60$\%$ (first graphs) or lost in more than 60$\%$ (second graphs). Once again with the varying betas in the same order as above.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_2_3}
+    \caption{Simulation 4}
+    \label{fig:meine-grafik}
+    \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_3_3}
+    \caption{Simulation 8}
+    \label{fig:meine-grafik}
+    \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_4_3}
+    \caption{Simulation 12}
+    \label{fig:meine-grafik}
+\end{figure}
+
+
+Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph). Also one can see the trend of points converging to the two diagonals of the grid with higher betas.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_2_5}
+    \caption{Simulation Looses}
+    \label{fig:meine-grafik}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_3_5}
+    \caption{Simulation Looses}
+    \label{fig:meine-grafik}
+    \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_4_5}
+    \caption{Simulation Looses}
+    \label{fig:meine-grafik}
+\end{figure}
+
+For the better overview we have plotted all values in one graph, where you win  more than 60$\%$ of the games:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Bilder/simulation_16}
+    \caption{Case 3 - Square Diffrence}
+    \label{fig:meine-grafik}
+\end{figure}
+
+
+TODO
+Now we can compare the two sets of plots and find TODO
+
+The best agressivities for the different betas are found as … Therefore a team should try to play …
+
+
 
 \section{Conclusion}
 At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.
@@ -734,7 +872,7 @@ First we start with the player model. It is of course very difficult to map a pl
 Also the assumption of common knowledge will not apply to every player in every situation. For once we have also used this assumption to eradicate certain situations and not have to take them into account.
 For example, we said that if a Tichu from Team 1 and Team 2 is announced, one of the two teams will win in any case. But it is also possible that a third player wins this Tichu and this without violating the assumption of common knowledge.
 The irrational behaviour could occur for various reasons.
-An example would be a player's lack of experience. After all, you cannot conclude with 100% certainty from your own cards that you are superior to your opponents.
+An example would be a player's lack of experience. After all, you cannot conclude with 100$\%$ certainty from your own cards that you are superior to your opponents.
 The experience gained also goes hand in hand with certain strategies. For example, the convention that one shuffles an even card to the right and an odd card to the left. This is very useful, provided that both team members adhere to it. But it cannot be interpreted as Common Knowledge, because right even and left odd was chosen arbitrarily and would make sense as well, if it was swapped.
 Another component that we have neglected is the timing of the game. By waiting for certain tricks, one can exclude that certain cards are still in the game and thus increase the probability for an own Tichu if necessary. However, this was not taken into account in this case.
 One possible technical error is, for example, the interpolation of data from the onlinetichu.com website. Various errors can occur, especially during interpolation.

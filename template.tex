@@ -14,6 +14,9 @@
 \author{Matthias Schmickler \and Paul Sander \and Jean-Luc Portner \and Tom Haidinger \and Andrey Bryutkin \\ \\ Swiss Federal Institute of Technology Zurich (ETH)}
 \maketitle
 
+\section*{Abstract}
+We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 10,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 10,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
+
 \section{Motivation and goals}
 
 A prevalent characteristic of both mathematics and physics is their elaborate structure of interdependent concepts. It is only natural, then, for us students to thrive off of complexity and intricateness both within our courses as well as throughout our daily life. One such endeavour we satisfy our free time with is the game of Tichu. Tichu is a team card game taught to us by older students of our courses during the, albeit not very wide-ranging, cultural melting-pot between years – that unproductive period when our courses’ study hall slowly turns into the Mensa. 
@@ -234,7 +237,7 @@ We assume we have given $\alpha$, $\beta$, X. A function $\pi: \{0,1\}^8 \times 
 \paragraph{Randomness and Average}
 $\alpha$, $\beta$, X are fixed. Then there is $\Delta X \subset [0,1]^4$ with $X’ \in \Delta X$. We will write $\pi^* (\alpha, \beta, X) = X^* \in \Delta X$ for the average of $\pi(\alpha, \beta, X)$. $\pi^*$ is a well-defined function, while $\pi$ allows random values around $\pi^*$.
 \paragraph{Continuous and monotony of X}
-$\alpha$, $\beta$ and X are fixed. If we change X in only one value that $X_i$ becomes $wide\hat{X_i}$, it applies to the following rules:
+$\alpha$, $\beta$ and X are fixed. If we change X in only one value that $X_i$ becomes $\widehat{X_i}$, it applies to the following rules:
 \begin{axioms}[(C1)]
 \item $\forall \epsilon > 0, \exists \delta > 0$ with $| X_i - \widehat{X_i}| < \delta$ \\$\Rightarrow | \pi^*(X_i) - \pi^*(\widehat{X_i}) | < \epsilon $
 \item $\widehat{X_i} \leq X_i \Rightarrow \pi^*(\widehat{X_i}) \leq \pi(X_i)$
@@ -403,7 +406,7 @@ We will now adjust our basic model to realistic data which helps to achieve an a
 
 \subsection{Subgame B.0}
 In our basic approach, we assume an average hand to have a value $X_i$ = 0.5, this value is based on the data from tichuonline.ch, the winning rate is almost normal distributed by 0.5 with (skewness) to 0, in our idealistic scenario we assume that the distribution is symmetric. $X_i$ = 0 has no chance in winning the game and $X_i$ = 1 is equal to an guaranteed win. The only question is, to which percentage do we get really good cards? Assuming, the card value is symmetric around 0.5, we can agree, that instant loose and guaranteed win are very rare. We now have to make an arbitrary choice, which value corresponds to which card combinations. 
-Given, that a Great Tichu is only won in 2.21$\%$ of all games, We will set $P(X_i \geq 0.9) = 0.221$, the share of Winning a great Tichu in reference to all games. This gives us a $\sigma$ of 0.199. A Tichu is only won in 8.53$\%$ of all games, which is equal to $X \geq 0.78$
+Given, that a Great Tichu is only won in 2.21$\%$ of all games, We will set $P(X_i \geq 0.9) = 0.0221$, the share of Winning a great Tichu in reference to all games. This gives us a $\sigma$ of 0.199. A Tichu is only won in 8.53$\%$ of all games, which is equal to $X \geq 0.78$
 We will receive this plot which shows the possibility to get cards with a certain value.
 \begin{figure}[h]
     \centering
@@ -421,7 +424,7 @@ We will receive this plot which shows the possibility to get cards with a certai
 
 If we set $\beta = 0$, we will only redefine the values, but the nash equilibrium will stay the same. Just from the cards, it is the best to play a mixed strategy for all cases. To enable this strategy in our simulation, we will now allow $\alpha$ to be in [0,1]. This will give us a well defined Exchange function as described before.
 
-We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistix approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
+We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistic approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
 \begin{align*}
 \beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
 }{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
@@ -471,7 +474,9 @@ We can construct a formula using this table:
 \begin{equation*}
 z_{ji} = (1 - 2\cdot\alpha_i) + \beta_i \cdot (2\cdot\alpha_j - 1)
 \end{equation*}
+
 We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This will give us one function for $\xi_P$:
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p}
@@ -482,7 +487,7 @@ We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This
     \caption{pass function for your teampartner cumultative}
     \label{fig:meine-grafik}
 \end{figure}
-\\
+
 A card which has a negative value to player $P_i$ can have a positive value to $P_j$ (can complete a bomb). Therefore the value can change during the exchange from $\hat{\xi}_{ij}$ to $\hat{\eta}_{ij}$. In this approach, we will set $\eta_{ij} = id$, because the effect is very small in a large number of games. 
 
 We now have created Pass-functions $\xi_{ji}$ and a Receive-Function $\eta_{ji} = 1$. We can use this functions to analyse the outcome of the Exchange-Stage $\lambda_{ji} = \xi_{ji}$. We can write $\Lambda$ using the average:
@@ -495,9 +500,9 @@ We now have created Pass-functions $\xi_{ji}$ and a Receive-Function $\eta_{ji} 
 \end{pmatrix}
 \end{gather*}
 
-Dies lässt sich weiter verallgemeinern. Jetzt setzen wir $\eta$ nicht mehr der Identität sondern lassen den Kartenwert und das Erhalten verändern. Für die Definition der $\eta$-Funktion haben wir verschiedene Grundannahme getroffen. Wir nehmen an, dass diese auch vom Wissenstand der Spieler abhängt. Für die $\eta$-Funktion definieren wir eine Hilsfunktion, die eine Wahrscheinlichkeitsdichte darstellt. Im Grunde verändert die $\eta$-Funktion den Wert der Karten nach dem Schupfen nur geringfügig, es gibt jedoch geringe Wahrscheinlichkeiten, dass durch das Erhalten der Karten, sich der Kartenwert verbessert. Somit folgt die Definition:
-\begin{definition}[Wahrscheinlichkeitsdichte]
-Die Wahrscheinlichkeitsdichte $\rho$ ist definiert durch eine Funktion, die normiert über das Integral von -0.25 bis $\infty$ 1 ergibt und als $\hat{\rho}$ bezeichnet wird:
+This can be further generalised. Now we no longer bet $\eta$ of the identity but let the card value and getting change. For the definition of the $\eta$ function we have made several basic assumptions. We assume that it also depends on the knowledge level of the players. For the $\eta$ function, we define a help function that represents a probability density. Basically, the $\eta$ function changes the value of the cards only slightly after they have been dealt, but there is a small probability that by getting the cards, the card value will improve. So here is the definition:
+\begin{definition}[probability density]
+The probability density $\rho$ is defined by a function which, normalized over the integral from -0.25 to $\infty$ 1, is called $\hat{\rho}$:
 $$
 \rho (t) := \frac{1}{4.39426613065366}\cdot\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
 $$
@@ -515,21 +520,20 @@ $$
     \caption{$\widehat{\rho}(t) - Wahrscheinlichkeit$}
     \label{fig:meine-grafik}
 \end{figure}
-Dieser Wahrscheinlichkeitswert $\hat{\rho}(t)$ wird dann Zufallsgeneriert für ein $t\in [-0.25,0.7]$. Damit lässt sich die $\eta$-Funktion definieren:
+This probability value $\hat{\rho}(t)$ is then randomly generated for a $t\in [-0.25,0.7]$. This allows the $\eta$ function to be defined:
 \begin{equation*}
 \eta_{ij}(\xi_{ij}(X),\beta) = \xi_{ij}(X)\cdot(1+\mathrm{sgn}(X)\cdot\beta\cdot\langle\widehat{\rho}\rangle)
 \end{equation*}
-
-
-Somit verändert sich $\Lambda$ zu:
+Furthermore set $\eta_{ij}(t)=0\;\forall t\not\in [-0.25, 0.75]$
+So $\Lambda$ changes to:
 \\ \\
 \noindent\resizebox{0.45\textwidth}{!}{
 $
 \Lambda = \begin{pmatrix} 
-1 - \sum\limits_{\substack{i=1 \\ i\neq 1}}^4\eta_{i1}(\xi_{i1}) & \eta_{21}(\xi_{21}) & \eta_{31}(\xi_{31}) & \eta_{41}(\xi_{41}) \\
-\eta_{12}(\xi_{21}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 2}}^4\eta_{i1}(\xi_{i1})  & \eta_{32}(\xi_{32}) & \eta_{42}(\xi_{42}) \\
-\eta_{13}(\xi_{13}) & \eta_{23}(\xi_{23}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 3}}^4\eta_{i1}(\xi_{i1})  & \eta_{43}(\xi_{43}) \\
-\eta_{14}(\xi_{24}) & \eta_{23}(\xi_{23}) &  \eta_{34}(\xi_{43}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 4}}^4\eta_{i1}(\xi_{i1})  \\
+1 - \sum\limits_{\substack{i=1 \\ i\neq 1}}^4\xi_{i1} & \eta_{21}(\xi_{21}) & \eta_{31}(\xi_{31}) & \eta_{41}(\xi_{41}) \\
+\eta_{12}(\xi_{21}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 2}}^4\xi_{i2}  & \eta_{32}(\xi_{32}) & \eta_{42}(\xi_{42}) \\
+\eta_{13}(\xi_{13}) & \eta_{23}(\xi_{23}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 3}}^4\xi_{i3}  & \eta_{43}(\xi_{43}) \\
+\eta_{14}(\xi_{24}) & \eta_{23}(\xi_{23}) &  \eta_{34}(\xi_{43}) & 1 - \sum\limits_{\substack{i=1 \\ i\neq 4}}^4\xi_{i4} \\
 \end{pmatrix}
 $}
 
@@ -657,7 +661,9 @@ Balancing and Switching
 Due to rounding errors in python, we observed that Team 2 wins more game than Team 1. 
 To balance the game, we created a switching method, which switches the teams position every round. This leads to additional runtime but balances the game. 
 We also created a method in the Solution class to switch the teams in the simulation. This is necessary to reduce the runtime. 
+
 \subsection{Optimal strategy in "Exchange"-Stage}
+
 First of all, we will have a look on the outcome of the Exchange Stage under different circumstances. But which outcome is the best for a team? We try to get a maximal value in three different ways:
 
 \paragraph{Maximum}  We are only looking at the card value of the higher cards, because this can lead to a win of Tichu

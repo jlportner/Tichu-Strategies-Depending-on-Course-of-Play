@@ -3,22 +3,22 @@
 \BOOKMARK [1][-]{section.3}{Our Model and approximations}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Basic assumptions}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Introducing the game model}{section.3}% 5
-\BOOKMARK [3][-]{subsubsection*.2}{Subgame A}{subsection.3.2}% 6
+\BOOKMARK [3][-]{subsubsection*.3}{Subgame A}{subsection.3.2}% 6
 \BOOKMARK [2][-]{subsection.3.3}{Subgame B.0}{section.3}% 7
 \BOOKMARK [2][-]{subsection.3.4}{Subgame B.1}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.5}{Subgame B.2}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection*.17}{Course of the game}{subsection.3.5}% 10
+\BOOKMARK [3][-]{subsubsection*.21}{Course of the game}{subsection.3.5}% 10
 \BOOKMARK [1][-]{section.4}{Realisation}{}% 11
 \BOOKMARK [2][-]{subsection.4.1}{Subgame B.0}{section.4}% 12
-\BOOKMARK [3][-]{subsubsection*.18}{Adjusting }{subsection.4.1}% 13
+\BOOKMARK [3][-]{subsubsection*.23}{Adjusting }{subsection.4.1}% 13
 \BOOKMARK [2][-]{subsection.4.2}{Subgame B.1}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.3}{Subgame B.2}{section.4}% 15
 \BOOKMARK [1][-]{section.5}{Simulation}{}% 16
-\BOOKMARK [2][-]{subsubsection*.22}{Introduction to Software}{section.5}% 17
+\BOOKMARK [2][-]{subsubsection*.36}{Introduction to Software}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.1}{Optimal strategy in "Exchange"-Stage}{section.5}% 18
 \BOOKMARK [2][-]{subsection.5.2}{Simulation of the game}{section.5}% 19
-\BOOKMARK [3][-]{subsubsection*.26}{Subgame B.2}{subsection.5.2}% 20
+\BOOKMARK [3][-]{subsubsection*.45}{Subgame B.2}{subsection.5.2}% 20
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 21
-\BOOKMARK [2][-]{subsubsection*.27}{Subgame B.0}{section.6}% 22
-\BOOKMARK [3][-]{subsubsection*.28}{Subgame B.1}{subsubsection*.27}% 23
-\BOOKMARK [3][-]{subsubsection*.29}{Subgame B.2}{subsubsection*.27}% 24
+\BOOKMARK [2][-]{subsubsection*.50}{Subgame B.0}{section.6}% 22
+\BOOKMARK [3][-]{subsubsection*.51}{Subgame B.1}{subsubsection*.50}% 23
+\BOOKMARK [3][-]{subsubsection*.52}{Subgame B.2}{subsubsection*.50}% 24

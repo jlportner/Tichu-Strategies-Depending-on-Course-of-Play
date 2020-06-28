@@ -7,6 +7,9 @@
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{commath}
+\usepackage{subcaption}
+\usepackage{float}
+
 \begin{document}
 
 \title{Tichu strategies depending on course of play}
@@ -778,68 +781,12 @@ Each of these simulations already took more than 16 hours. So doing varying beta
 
 The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is Beta equal 0 for all players, the middle one for the logistical Beta and the right one for beta of 1.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/simulation_2_2}
-    \caption{Simulation 1}
-    \label{fig:meine-grafik}
-    \end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/simulation_3_2}
-    \caption{Simulation 6}
-    \label{fig:meine-grafik}
-    \end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/simulation_4_2}
-    \caption{Simulation 10}
-    \label{fig:meine-grafik}
-\end{figure}
-
 As one can see an higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
 Consequently to get a better overview we only plotted the points where Team 1 won in more than 60$\%$ (first graphs) or lost in more than 60$\%$ (second graphs). Once again with the varying betas in the same order as above.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_2_3}
-    \caption{Simulation 4}
-    \label{fig:meine-grafik}
-    \end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_3_3}
-    \caption{Simulation 8}
-    \label{fig:meine-grafik}
-    \end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_4_3}
-    \caption{Simulation 12}
-    \label{fig:meine-grafik}
-\end{figure}
-
-
+\newpage
 Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph). Also one can see the trend of points converging to the two diagonals of the grid with higher betas.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_2_5}
-    \caption{Simulation Looses}
-    \label{fig:meine-grafik}
-\end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_3_5}
-    \caption{Simulation Looses}
-    \label{fig:meine-grafik}
-    \end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Bilder/simulation_4_5}
-    \caption{Simulation Looses}
-    \label{fig:meine-grafik}
-\end{figure}
 
 For the better overview we have plotted all values in one graph, where you win  more than 60$\%$ of the games:
 
@@ -857,12 +804,77 @@ Now we can compare the two sets of plots and find TODO
 The best agressivities for the different betas are found as … Therefore a team should try to play …
 
 
+\begin{figure*}[!ht]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_2_2}
+	    \caption{Simulation 1}
+	    \label{fig:meine-grafik}
+    \end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
+	    \caption{Simulation 6}
+	    \label{fig:meine-grafik}
+    \end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_4_2}
+	    \caption{Simulation 10}
+	    \label{fig:meine-grafik}
+	\end{subfigure}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\centering
+	\begin{subfigure}{.3\textwidth}
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_3}
+    	\caption{Simulation 4}
+    \label{fig:meine-grafik}
+	\end{subfigure}%
+		\begin{subfigure}{.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
+	    \caption{Simulation 8}
+	    \label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{.3\textwidth}
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_3}
+    	\caption{Simulation 12}
+    	\label{fig:meine-grafik}
+	\end{subfigure}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\centering
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+	\end{subfigure}%
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_3_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+	\end{subfigure}
+\end{figure*}
+\newpage
 
 \section{Conclusion}
 At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.
 
 \subsubsection{Subgame B.0}
-
 Here is probably the most essential approximation that the Great Tichu was neglected. This is of course essential for the scuffing, because it makes the scuffing much clearer. Each team partner (with Common Knowledge) would then give his team mate a very good card, because he himself can and needs no more Tichu. At the same time, the opponents will try to get the worst possible cards, like the dog that doesn't fit into any combination. Also the card 1 is usually nudged by the opponents in such a way that the player who has announced the Great Tichu comes second and thus must react to the request.
 Problems could also result from normal distributions etc. Even if these were chosen sensibly, they do not always reflect reality very well. Calculating the values of cards based on their combination is extremely difficult, since the time course of the game also influences the value of a combination.
 

@@ -144,7 +144,7 @@ The following approximations are made about the game to make simply our model. T
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/graph}
     \caption{Game model}
-    \label{fig:meine-grafik}
+    \label{fig:1}
 \end{figure}
 
 A game tree represents the different stages the game propagates through until one team reaches 1000 points and wins the game. This tree divides the game into sections that each deal with a game mechanism, each of which will be described in the following sections.
@@ -401,11 +401,11 @@ In our basic approach we assume an average card hand to have a value of $X_i = 0
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/cards_distribution}
     \caption{cards distribution}
-    \label{fig:meine-grafik}
+    \label{fig:2}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/cards_distribution_cumultative}
     \caption{cards distribution cumultative}
-    \label{fig:meine-grafik}
+    \label{fig:3}
 \end{figure}
 We will always use this approximation and will not discuss it furthermore.
 
@@ -418,11 +418,11 @@ We start with the simplest model, namely passing exactly one card to any other p
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_ot}
     \caption{pass function for oppoenent player}
-    \label{fig:meine-grafik}
+    \label{fig:4}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_ot_cumultative}
     \caption{pass function for the opponent player cumultative}
-    \label{fig:meine-grafik}
+    \label{fig:5}
 \end{figure}
 \\
 The pass function towards a partner is more difficult but also more interesting to define. As well as aiming for an optimal result, partners can consider each others player behaviour and act on it if there exists transparency of information.
@@ -455,11 +455,11 @@ We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p}
     \caption{pass function for your team partner}
-    \label{fig:meine-grafik}
+    \label{fig:6}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p_cumultative}
     \caption{pass function for your teampartner cumultative}
-    \label{fig:meine-grafik}
+    \label{fig:7}
 \end{figure}
 
 A card which has a negative value to player $P_i$ can have a positive value to $P_j$ as this card could help build a new or stronger combination or bomb. Therefore, the card value can change during the exchange from $\hat{\xi}$ to $\hat{\eta}$. In this approach, we set $\eta_{ij} = id$, as the effect is very small in over a large number of games. 
@@ -489,11 +489,11 @@ $$
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_e}
     \caption{$\rho$(t) - Wahrscheinlichkeitsdichte}
-    \label{fig:meine-grafik}
+    \label{fig:8}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_f}
     \caption{$\widehat{\rho}(t) - Wahrscheinlichkeit$}
-    \label{fig:meine-grafik}
+    \label{fig:9}
 \end{figure}
 This probability value $\hat{\rho}(t)$ is then randomly generated for a $t\in [-0.25,0.7]$. This allows the $\eta$ function to be defined:
 \begin{equation*}
@@ -534,13 +534,13 @@ Respondents were asked about risk sensitiveness in three areas:
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_200steps}
     \caption{$f_1(x)=0.00591631\cdot x+3.65194805$}
-    \label{fig:meine-grafik}
+    \label{fig:10}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_100steps}
     \caption{$f_2(x)=-0.00354308390\cdot x+6.70748299$}
-    \label{fig:meine-grafik}
+    \label{fig:11}
 \end{subfigure}
 \end{figure*}
 
@@ -548,7 +548,7 @@ Respondents were asked about risk sensitiveness in three areas:
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_nonlinear}
     \caption{$f_3(x)=-3.87806638\cdot 10^{-11}\cdot x^4+7.31721982\cdot 10^{-8}\cdot x^3+ -4.95400433\cdot 10^{-5} \cdot x^2+ 1.36745860 \cdot 10^{-2} \cdot x+3.57993197$}
-    \label{fig:meine-grafik}
+    \label{fig:12}
 \end{figure}
 
 The scale here was the willingness to take risks from 1 to 10, whereby in category (1) and (2) 10 meant a lot of risk and 1 normal. For (3), 1 was normal risk and 10 was particularly low risk.
@@ -603,7 +603,7 @@ So a graph of the tichu rate in relation to tichu announcements / rounds plots.
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/calling_winning_graph}
     \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
-    \label{fig:meine-grafik}
+    \label{fig:13}
 \end{figure}
 The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
 
@@ -624,7 +624,7 @@ where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile i
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/5_log}
     \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
-    \label{fig:meine-grafik}
+    \label{fig:14}
 \end{figure}
 
 For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
@@ -723,7 +723,7 @@ Assuming, Player 1 is playing strategy A with a probability of p, we will find t
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/5_max}
     \caption{Case 1,2 - Maximum, Square Addition}
-    \label{fig:meine-grafik}
+    \label{fig:15}
 \end{figure}
 
 Anologously we can find the nash equilibrium for the third case.
@@ -744,7 +744,7 @@ D & $-\frac{1}{7}, \frac{1}{7}$ & 0.0, 0.0 \\
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/5_diff}
     \caption{Case 3 - Square Diffrence}
-    \label{fig:meine-grafik}
+    \label{fig:16}
 \end{figure}
 \subsection{Simulation of the game}
 We have previously shown which strategy the other player should theoretically play, taking into account different metrics, if his opponent chooses a strategy and have hypothetically assumed average values (card values X=0.5) with the standard deviation we have determined.
@@ -761,13 +761,13 @@ We start with an example of the exchange phase, in which we show how the simulat
     \centering
     \includegraphics[width=1\linewidth]{Bilder/example_1}
     \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 1 game}
-    \label{fig:meine-grafik}
+    \label{fig:17}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/example_2}
     \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 6 games}
-    \label{fig:meine-grafik}
+    \label{fig:18}
 \end{subfigure}
 \end{figure*}
 
@@ -803,56 +803,54 @@ Each of these simulations already took more than 16 hours. So doing varying beta
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_2_2}
-	    \caption{Simulation 1}
-	    \label{fig:meine-grafik}
+	    \caption{$\beta=0$}
+	    \label{fig:19}
     \end{subfigure}%
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
-	    \caption{Simulation 6}
-	    \label{fig:meine-grafik}
+	    \caption{$\beta_0=0.1$ - logistic}
+	    \label{fig:20}
     \end{subfigure}%
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_4_2}
-	    \caption{Simulation 10}
-	    \label{fig:meine-grafik}
+	    \caption{$\beta=1$}
+	    \label{fig:21}
 	\end{subfigure}
 	\begin{subfigure}{.3\textwidth}
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_2_3}
-    	\caption{Simulation 4}
-    \label{fig:meine-grafik}
+    	\caption{$\beta=0$}
+    \label{fig:22}
 	\end{subfigure}%
 		\begin{subfigure}{.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
-	    \caption{Simulation 8}
-	    \label{fig:meine-grafik}
+	    \caption{$\beta_0=0.1$ - logistic}
+	    \label{fig:23}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_4_3}
-    	\caption{Simulation 12}
-    	\label{fig:meine-grafik}
+    	\caption{$\beta=1$}
+    	\label{fig:24}
 	\end{subfigure}
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_2_5}
-    	\caption{Simulation Looses}
-    	%\label{fig:meine-grafik}
+    	\label{fig:25}
 	\end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_3_5}
-    	\caption{Simulation Looses}
-    	%\label{fig:meine-grafik}
+    	\caption*{Best aggresitivity plot added and losses are marked gray}
+    	\label{fig:26}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_4_5}
-    	\caption{Simulation Looses}
-    	%\label{fig:meine-grafik}
+    	\label{fig:27}
 	\end{subfigure}
 \end{figure*}
 
@@ -870,7 +868,7 @@ For the better overview we have plotted all values in one graph, where you win  
     \centering
     \includegraphics[width=0.35\textwidth]{Bilder/simulation_16}
     \caption{Overview plot - $\beta=0,1,logistic$}
-    \label{fig:meine-grafik}
+    \label{fig:28}
 \end{figure}
 
 By comparing the different simulations, the following relationships can be established. With the tile model, there is almost no difference between the case $\beta=0$ and $\beta=1$, so that one can conclude that the strategy one should play is not influenced by the extremes. However, if you look at the tile model of logistic development, you can see a clear color difference, especially you can see that it becomes very blue when you are near (0,0). To examine this connection more clearly, we will only look at the profits with a probability of over 60$\%$ and profits with a probability of less than 40$\%$, i.e. rather the losses. Here you can see that although in the extreme cases $\beta=0.1$ the winnings are distributed over the whole quadrant, the losses at $\beta=1$ increase with a more aggressive playing style, so that a defensive playing strategy is more advantageous. This can also be seen in the diagram where $\beta$ is logistically distributed. The winnings are very much concentrated in the lower half of the square. If you add in the optimal aggressiveness, you can see that the winnings are near the bottom of the graph.

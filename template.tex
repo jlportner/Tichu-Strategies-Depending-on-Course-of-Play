@@ -8,7 +8,7 @@
 \usepackage{listings}
 \usepackage{commath}
 \usepackage{subcaption}
-\usepackage{float}
+\usepackage{stfloats}
 
 \begin{document}
 
@@ -546,6 +546,29 @@ Respondents were asked about risk sensitiveness in three areas:
 \item edge of wedge
 \item own distance to victory
 \end{enumerate}
+
+\begin{figure*}[ht]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_200steps}
+    \caption{$f_1(x)=0.00591631\cdot x+3.65194805$}
+    \label{fig:meine-grafik}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_100steps}
+    \caption{$f_2(x)=-0.00354308390\cdot x+6.70748299$}
+    \label{fig:meine-grafik}
+\end{subfigure}
+\end{figure*}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_nonlinear}
+    \caption{$f_3(x)=-3.87806638\cdot 10^{-11}\cdot x^4+7.31721982\cdot 10^{-8}\cdot x^3+ -4.95400433\cdot 10^{-5} \cdot x^2+ 1.36745860 \cdot 10^{-2} \cdot x+3.57993197$}
+    \label{fig:meine-grafik}
+\end{figure}
+
 The scale here was the willingness to take risks from 1 to 10, whereby in category (1) and (2) 10 meant a lot of risk and 1 normal. For (3), 1 was normal risk and 10 was particularly low risk.
  As the survey revealed, Category (1) > Category (2) > Category (3) is in the ranking. The fluctuations in category (1) are 5 points.
  For category (2) 2.5 points and in (3) 0.5 points. In this weighting, these categories are also considered in the function.
@@ -559,24 +582,9 @@ $Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{1
 \paragraph{Cat.3}\par
 $X=[100,200,300,400,500,600,700,800]$\\ \\
 $Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/risk_level_diffrence_200steps}
-    \caption{$f_1(x)=0.00591631\cdot x+3.65194805$}
-    \label{fig:meine-grafik}
-\end{figure}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/risk_level_diffrence_100steps}
-    \caption{$f_2(x)=-0.00354308390\cdot x+6.70748299$}
-    \label{fig:meine-grafik}
-\end{figure}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/risk_level_diffrence_nonlinear}
-    \caption{$f_3(x)=-3.87806638\cdot 10^{-11}\cdot x^4+7.31721982\cdot 10^{-8}\cdot x^3+ -4.95400433\cdot 10^{-5} \cdot x^2+ 1.36745860 \cdot 10^{-2} \cdot x+3.57993197$}
-    \label{fig:meine-grafik}
-\end{figure}
+
+
+
 This increase should now be offset against the basic aggressiveness.
 The following additional conditions are set:
 If in category 1 the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
@@ -607,7 +615,6 @@ f(play_1,play_2,t1,t2) :
         return a+b-c+d
     else: return 0
 \end{lstlisting}
-
 
 In addition, there are other probabilities that must be known for the simulation. For example, the probability that a team will win the double or not. The average probability for the double victory is calculated from the average of all players: so total number of doubles divided by the total number of rounds. Also the probability that a player will win a Tichu must of course depend on the announcement frequency. This is what is described below.
 So a graph of the tichu rate in relation to tichu announcements / rounds plots.
@@ -748,21 +755,24 @@ The basis for each round is the card value X for each individual player. This is
 
 We start with an example of the exchange phase, in which we show how the simulation works. We have set the $\alpha$ values so that they add up to 1, i.e. $\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$. We have also set the initial $\beta$ value for all 4 players to 10$\%$, so $\beta_i=0.1$ and knowledge will logistically increase with the number of rounds. We have run a game with an average of 20 rounds. The following diagram shows the randomly generated value $X$ and how the functions $\xi$ and $\eta$ affect the card value:
 
-\begin{figure}[!ht]
+\begin{figure*}[ht]
+\begin{subfigure}{0.5\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/example_1}
+    \includegraphics[width=1\linewidth]{Bilder/example_1}
     \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 1 game}
     \label{fig:meine-grafik}
-\end{figure}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Bilder/example_2}
+    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 6 games}
+    \label{fig:meine-grafik}
+\end{subfigure}
+\end{figure*}
 
 If 6 games can be played with these values, the differences in the effects of $\alpha_i$ can be seen better with the individual players. One can see, that if you play more defensive, the $\xi$ function has a much stronger effect on your card value and your card value would be smaler, the opposite is happening if your strategy is aggressive.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/example_2}
-    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 6 games}
-    \label{fig:meine-grafik}
-\end{figure}
+
 
 
 In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game. In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
@@ -787,6 +797,64 @@ For the Betas we therefore had to reduce the different cases as else this would 
 \end{enumerate}
 Each of these simulations already took more than 16 hours. So doing varying beta more lies beyond our abilities. 
 
+\begin{figure*}[!hb]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_2_2}
+	    \caption{Simulation 1}
+	    \label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
+	    \caption{Simulation 6}
+	    \label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{0.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_4_2}
+	    \caption{Simulation 10}
+	    \label{fig:meine-grafik}
+	\end{subfigure}
+	\begin{subfigure}{.3\textwidth}
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_3}
+    	\caption{Simulation 4}
+    \label{fig:meine-grafik}
+	\end{subfigure}%
+		\begin{subfigure}{.3\textwidth}
+	    \centering
+	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
+	    \caption{Simulation 8}
+	    \label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{.3\textwidth}
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_3}
+    	\caption{Simulation 12}
+    	\label{fig:meine-grafik}
+	\end{subfigure}
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+	\end{subfigure}%
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_3_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+    \end{subfigure}%
+	\begin{subfigure}{.3\textwidth}%[!ht]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_5}
+    	\caption{Simulation Looses}
+    	%\label{fig:meine-grafik}
+	\end{subfigure}
+\end{figure*}
+
 The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is Beta equal 0 for all players, the middle one for the logistical Beta and the right one for beta of 1.
 
 As one can see an higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
@@ -808,71 +876,6 @@ By comparing the different simulations, the following relationships can be estab
 
 We conclude that with increasing transparency a defensive play is always an advantage.
 
-\begin{figure*}[!ht]
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-	    \centering
-	    \includegraphics[width=1\linewidth]{Bilder/simulation_2_2}
-	    \caption{$\beta=0$}
-	    \label{fig:meine-grafik}
-    \end{subfigure}
-	\begin{subfigure}{0.3\textwidth}
-	    \centering
-	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
-	    \caption{$\beta_0=0.1$ - logistic}
-	    \label{fig:meine-grafik}
-    \end{subfigure}
-	\begin{subfigure}{0.3\textwidth}
-	    \centering
-	    \includegraphics[width=1\linewidth]{Bilder/simulation_4_2}
-	    \caption{$\beta=1$}
-	    \label{fig:meine-grafik}
-	\end{subfigure}
-\end{figure*}
-
-\begin{figure*}[!ht]
-	\centering
-	\begin{subfigure}{.3\textwidth}
-    	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_3}
-    	\caption{$\beta=0$}
-    \label{fig:meine-grafik}
-	\end{subfigure}%
-		\begin{subfigure}{.3\textwidth}
-	    \centering
-	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
-	    \caption{$\beta_0=0.1$ - logistic}
-	    \label{fig:meine-grafik}
-    \end{subfigure}%
-	\begin{subfigure}{.3\textwidth}
-    	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_3}
-    	\caption{$\beta=1$}
-    	\label{fig:meine-grafik}
-	\end{subfigure}
-\end{figure*}
-
-\begin{figure*}[!ht]
-	\centering
-	\begin{subfigure}{.3\textwidth}%[!ht]
-    	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_4}
-    	\caption{$\beta=0$ - losses - gray}
-    	%\label{fig:meine-grafik}
-	\end{subfigure}%
-	\begin{subfigure}{.3\textwidth}%[!ht]
-    	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_3_4}
-    	\caption{$\beta_0=0.1$ logistic - losses - gray}
-    	%\label{fig:meine-grafik}
-    \end{subfigure}%
-	\begin{subfigure}{.3\textwidth}%[!ht]
-    	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_4}
-    	\caption{$\beta = 1$ - losses - gray}
-    	%\label{fig:meine-grafik}
-	\end{subfigure}
-\end{figure*}
 
 \section{Conclusion}
 At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.

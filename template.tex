@@ -520,7 +520,40 @@ To approximate this problem as best as possible we have decided to look at the p
 \item Basic aggressiveness of the players (team$_{\alpha_1}$,team$_{\alpha_2}$)
 \item  Additional risk tolerance depending on the score
 \end{enumerate}
-The basic aggressiveness of the players is converted to a basic aggressiveness of the team. This basic aggressiveness is derived from the player behaviour models. However, both aggressive and defensive players can take additional risk motivated through the current score of both teams. To assess the significance of these risks we conducted the following survey.
+The basic aggressiveness of the players is converted to a basic aggressiveness of the team. This basic aggressiveness is derived from the player behaviour models. However, both aggressive and defensive players can take additional risk motivated through the current score of both teams. To assess the significance of these risks we conducted a survey, which helped us to adjust $\gamma$, which is described later.
+
+In addition, there are other probabilities that must be known for the simulation. For example, the probability that a team will win the double or not. The average probability for the double victory is calculated from the average of all players: so total number of doubles divided by the total number of rounds. Also the probability that a player will win a Tichu must of course depend on the announcement frequency. This is what is described below.
+So a graph of the tichu rate in relation to tichu announcements / rounds plots.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/calling_winning_graph}
+    \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
+    \label{fig:13}
+\end{figure}
+The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
+
+From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section.
+
+\subsubsection{Adjusting $\beta$}
+
+Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
+
+\begin{align*}
+\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
+}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
+\end{align*}
+
+where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
+    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \label{fig:14}
+\end{figure}
+
+For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
+\subsection{Adjusting $\gamma$}
 
 Respondents were asked about risk sensitiveness in three areas:
 \begin{enumerate}[(1)]
@@ -572,62 +605,36 @@ If in category 1 the willingness to take risks is 8.5, the team should announce 
 While category 1 can make a difference of up to 100$\%$, category 2 should have a maximum of 50$\%$. Again, linear.
 Category 3 should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
 \begin{lstlisting}
-f(play_1,play_2,t1,t2) :
-    a=(play_1+play_2)/2
-    if t2>=t1:
-        d=(f1(t2-t1)-f1(0))/f1(900)
-    else: 
-        d=0
-    if d>=1:
-        return 1
-    if t2<=200:
-        b=0
-    else:
-        b=0.5*(f2(1000-t2)-f2(800))/
-        (f2(100)-f2(800))
-    if t1>=100 and t1<=800:
-        c=0.1*(f3(1000-t1)-f3(800))/
-        (f3(800)-f3(250))
-    else:
-        c=0
-    if a+b-c+d>=1:
-        return 1
-    elif a+b-c+d>=0:
-        return a+b-c+d
-    else: return 0
+#risk ~ difference
+def a(x):
+    if x <= 0:
+        return 0
+            
+return (f1(x)-f1(0))/(f1(1000)-f1(0))
+            
+#risk ~ enemies points
+def b(x):
+    if x <= 200:
+        return 0
+            
+return 0.5*(f2(1000-x)-f2(800))
+		/(f2(0)-f2(800))
+        
+#risk ~ team points
+def c(x):
+    if x < 100 or x > 800:
+        return 0
+            
+return 0.1*(f3(x)-f3(250))/(f3(250)-f3(800))
+
+k = 0.25    
+gamma[T1] = k*a(delta[1]-delta[0])
+	+b(delta[1])+c(delta[0]) 
+gamma[T2] = k*a(delta[0]-delta[1])
+	+b(delta[0])+c(delta[1])
+
 \end{lstlisting}
 
-In addition, there are other probabilities that must be known for the simulation. For example, the probability that a team will win the double or not. The average probability for the double victory is calculated from the average of all players: so total number of doubles divided by the total number of rounds. Also the probability that a player will win a Tichu must of course depend on the announcement frequency. This is what is described below.
-So a graph of the tichu rate in relation to tichu announcements / rounds plots.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/calling_winning_graph}
-    \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
-    \label{fig:13}
-\end{figure}
-The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
-
-From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section.
-
-\subsubsection{Adjusting $\beta$}
-
-Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
-
-\begin{align*}
-\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
-}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
-\end{align*}
-
-where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
-    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
-    \label{fig:14}
-\end{figure}
-
-For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 \section{Simulation}
 \subsubsection{Introduction to Software}
 In order to simulate a Tichu according to our approximations, we have designed a python program consisting of three major files. We will give a brief introduction to these programs.

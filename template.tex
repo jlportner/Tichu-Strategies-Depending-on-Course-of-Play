@@ -13,7 +13,7 @@
 \begin{document}
 
 \title{Tichu strategies depending on course of play}
-\date{June 03, 2020}
+\date{June 30, 2020}
 \author{Matthias Schmickler \and Paul Sander \and Jean-Luc Portner \and Tom Haidinger \and Andrey Bryutkin \\ \\ Swiss Federal Institute of Technology Zurich (ETH)}
 \maketitle
 
@@ -153,7 +153,7 @@ The game starts when four players divide into two teams and enter the game. Thes
 In every round B, the dynamic or invariant parameters $\alpha, \beta, \gamma, \delta$ are considered. The repetition of subgame B ends when one team wins at 1000 points reached. Our first approximations consider $\beta$ and $\gamma$ as invariant.
 
 
-\subsubsection{Subgame A}
+\subsection{Subgame A}
 To start a game of Tichu, we assign a player $\alpha_i$ and $\beta_i$ values. As assumed before, all $\beta_i$ are equal at either 0 or 1. This leaves two possibilities on $\beta$ and 16 possible combinations for $\alpha$. Team aspects, symmetry and equal permutations reduce the number of combinations to six as seen below. We denote a combination as $\tilde{\alpha}_i$.\\
 \begin{table}[h]
 \resizebox{0.5\textwidth}{!}{%
@@ -392,7 +392,7 @@ This completes a round of the game. Now the subgames $B.0,B.1,B.2$ are repeated 
 \end{axioms}
 (Schaubild)
 \section{Realisation}
-We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $/Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will initially treat $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. start with modeling a function for B.0.
+We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $\Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will initially treat $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. start with modeling a function for B.0.
 
 \subsection{Subgame B.0}
 In our basic approach we assume an average card hand to have a value of $X_i = 0.5$, as the data from tichuonline.com shows the win rate almost normally distributed around 0.5, with an assumed symmetric normal distribution. $X_i = 0$ represents no chance of winning the game and $X_i = 1$ is equal to a guaranteed win. The question that arises is: to what percentage do players receive good enough cards to win a Tichu. We are now left with an arbitrary choice, which card set values correspond to which card combinations. Given that a Great Tichu is only won in 2.21$\%$ of all games, we can set $P(X_i \geq 0.9) = 0.0221$: the share of winning a great Tichu in reference to all games. This gives us a sigma of 0.199. Similarly, a Tichu is only won in 8.53$\%$ of all games, equalling $X_i\geq 0.78$. This results in the plot below that shows the probability a player has to receive a card set with a certain value.
@@ -408,26 +408,6 @@ In our basic approach we assume an average card hand to have a value of $X_i = 0
     \label{fig:meine-grafik}
 \end{figure}
 We will always use this approximation and will not discuss it furthermore.
-
-\subsubsection{Adjusting $\beta$}
-
-Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
-
-\begin{align*}
-\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
-}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
-\end{align*}
-
-where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
-    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
-    \label{fig:meine-grafik}
-\end{figure}
-
-For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 
 \subsection{Subgame B.1}
 The next game theoretical mechanism we want to realise is the exchange stage mechanism. We want to distinguish our models between passing to an opponent and passing to a partner and look at each of these types of trade individually. 
@@ -573,14 +553,14 @@ Respondents were asked about risk sensitiveness in three areas:
 
 The scale here was the willingness to take risks from 1 to 10, whereby in category (1) and (2) 10 meant a lot of risk and 1 normal. For (3), 1 was normal risk and 10 was particularly low risk.
  As the survey revealed, Category (1) > Category (2) > Category (3) is in the ranking. The fluctuations in category (1) are 5 points.
- For category (2) 2.5 points and in (3) 0.5 points. In this weighting, these categories are also considered in the function.
-The survey revealed the following data points (based on this point we generated with numpy a regression):
+ For category (2) 2.5 points and in (3) 0.5 points. These categories are also considered in the function.
+The survey revealed the data points:
 \paragraph{Cat.1}
 $X=[0,100,200,300,400,500,600,700,800,900]$ \\ \\
-$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$\\
+$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$
 \paragraph{Cat.2}\par
 $X=[100,200,300,400,500,600,700,800]$ \\ \\
-$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$\\
+$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$
 \paragraph{Cat.3}\par
 $X=[100,200,300,400,500,600,700,800]$\\ \\
 $Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$
@@ -628,6 +608,26 @@ So a graph of the tichu rate in relation to tichu announcements / rounds plots.
 The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
 
 From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section.
+
+\subsubsection{Adjusting $\beta$}
+
+Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
+
+\begin{align*}
+\beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
+}{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
+\end{align*}
+
+where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
+    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \label{fig:meine-grafik}
+\end{figure}
+
+For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 \section{Simulation}
 \subsubsection{Introduction to Software}
 In order to simulate a Tichu according to our approximations, we have designed a python program consisting of three major files. We will give a brief introduction to these programs.
@@ -728,8 +728,7 @@ Assuming, Player 1 is playing strategy A with a probability of p, we will find t
 
 Anologously we can find the nash equilibrium for the third case.
 
-3. Square Diffrence:
-
+3. Square Diffrence: \\
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline 
@@ -752,6 +751,7 @@ We have previously shown which strategy the other player should theoretically pl
 
 We now try to generalize it and use the functions we developed in the theoretical part of the work. The goal of the game simulation is to simulate the course of a game depending on parameters given by us and thus to determine the best possible combination of $\alpha$ for the team.
 
+\subsubsection{Subgame B.0/B.1}
 The basis for each round is the card value X for each individual player. This is simulated by a normal distribution and is changed by the functions $\xi$ and $\eta$ during the exchange phase. The new card value X' is then saved and transferred for the game B.2, since the risk susceptibility is calculated from it.
 
 We start with an example of the exchange phase, in which we show how the simulation works. We have set the $\alpha$ values so that they add up to 1, i.e. $\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$. We have also set the initial $\beta$ value for all 4 players to 10$\%$, so $\beta_i=0.1$ and knowledge will logistically increase with the number of rounds. We have run a game with an average of 20 rounds. The following diagram shows the randomly generated value $X$ and how the functions $\xi$ and $\eta$ affect the card value:

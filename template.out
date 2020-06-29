@@ -2,22 +2,23 @@
 \BOOKMARK [1][-]{section.2}{Our Model and approximations}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Basic assumptions}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Introducing the game model}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection*.3}{Subgame A}{subsection.2.2}% 5
-\BOOKMARK [2][-]{subsection.2.3}{Subgame B.0}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.4}{Subgame B.1}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.5}{Subgame B.2}{section.2}% 8
-\BOOKMARK [3][-]{subsubsection*.21}{Course of the game}{subsection.2.5}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Subgame A}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Subgame B.0}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Subgame B.1}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Subgame B.2}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection*.20}{Course of the game}{subsection.2.6}% 9
 \BOOKMARK [1][-]{section.3}{Realisation}{}% 10
 \BOOKMARK [2][-]{subsection.3.1}{Subgame B.0}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection*.23}{Adjusting }{subsection.3.1}% 12
-\BOOKMARK [2][-]{subsection.3.2}{Subgame B.1}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.3}{Subgame B.2}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{Subgame B.1}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Subgame B.2}{section.3}% 13
+\BOOKMARK [3][-]{subsubsection*.32}{Adjusting }{subsection.3.3}% 14
 \BOOKMARK [1][-]{section.4}{Simulation}{}% 15
-\BOOKMARK [2][-]{subsubsection*.35}{Introduction to Software}{section.4}% 16
+\BOOKMARK [2][-]{subsubsection*.34}{Introduction to Software}{section.4}% 16
 \BOOKMARK [2][-]{subsection.4.1}{Optimal strategy in "Exchange"-Stage}{section.4}% 17
 \BOOKMARK [2][-]{subsection.4.2}{Simulation of the game}{section.4}% 18
-\BOOKMARK [3][-]{subsubsection*.50}{Subgame B.2}{subsection.4.2}% 19
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 20
-\BOOKMARK [2][-]{subsubsection*.53}{Subgame B.0}{section.5}% 21
-\BOOKMARK [3][-]{subsubsection*.54}{Subgame B.1}{subsubsection*.53}% 22
-\BOOKMARK [3][-]{subsubsection*.55}{Subgame B.2}{subsubsection*.53}% 23
+\BOOKMARK [3][-]{subsubsection*.48}{Subgame B.0/B.1}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection*.50}{Subgame B.2}{subsection.4.2}% 20
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 21
+\BOOKMARK [2][-]{subsubsection*.53}{Subgame B.0}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection*.54}{Subgame B.1}{subsubsection*.53}% 23
+\BOOKMARK [3][-]{subsubsection*.55}{Subgame B.2}{subsubsection*.53}% 24

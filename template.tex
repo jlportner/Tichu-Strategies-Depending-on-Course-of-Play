@@ -411,14 +411,14 @@ We will always use this approximation and will not discuss it furthermore.
 
 \subsubsection{Adjusting $\beta$}
 
-If we set $\beta = 0$, we will only redefine the values, but the nash equilibrium will stay the same. Just from the cards, it is the best to play a mixed strategy for all cases. To enable this strategy in our simulation, we will now allow $\alpha$ to be in [0,1]. This will give us a well defined Exchange function as described before.
+Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
 
-We always used $\beta$ as a fixed value in $\{0,1\}$. But in a real game, players can recognize the strategy of another player if they play enough games. Taking this into account, we will adjust $\beta$ during the game after each round. We decided to simulate the growth of knowledge with a logistic function, this is, in our point of view, the most realistic approximation of $\beta$ as at the beginning the growth of your information on other players is slowly but after some amount of games it speeded up. At the beginning, a Player has some information on the other players strategies (or does not). This value will be $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. Note that now the knowledge of diffrent players $P_i\neq P_j$ can differ and develop throughout the game in diffrent ways based on the information given before the game. The player can get more information during the game. If he has much information, he will need more rounds to get new information on the other players. We will adjust this value to $\beta^{(1)}_{P}$ for the first round. This notation will lead us to the following adjusting, which will be described later on:
 \begin{align*}
 \beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
 }{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
 \end{align*}
-Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$ is low, Players will learn slowly about other players strategies. If k is high, this process will be faster. We will now use $k = 0.2$, because we believe it is the most realistic function for $\beta$. An average round has <20 games and a knowledge of $80\%$ is way to high, while $10\%$ is low (see Chart):
+
+where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
 
 \begin{figure}[h!]
     \centering
@@ -426,6 +426,8 @@ Where $k$ is in $\mathbb{R}_{>0}$ and $r$ is the number of rounds played. If $k$
     \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
     \label{fig:meine-grafik}
 \end{figure}
+
+For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 
 \subsection{Subgame B.1}
 The next game theoretical mechanism we want to realise is the exchange stage mechanism. We want to distinguish our models between passing to an opponent and passing to a partner and look at each of these types of trade individually. 
@@ -543,7 +545,7 @@ The basic aggressiveness of the players is converted to a basic aggressiveness o
 Respondents were asked about risk sensitiveness in three areas:
 \begin{enumerate}[(1)]
 \item diffrence in scores
-\item edge of wedge
+\item oppents distance to victory
 \item own distance to victory
 \end{enumerate}
 
@@ -582,14 +584,13 @@ $Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{1
 \paragraph{Cat.3}\par
 $X=[100,200,300,400,500,600,700,800]$\\ \\
 $Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$
-
-
-
+\\
+\\
 This increase should now be offset against the basic aggressiveness.
 The following additional conditions are set:
 If in category 1 the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
 While category 1 can make a difference of up to 100$\%$, category 2 should have a maximum of 50$\%$. Again, linear.
-Category 3 should bring in a maximum of 10$\%$. This function has level 4.
+Category 3 should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
 \begin{lstlisting}
 f(play_1,play_2,t1,t2) :
     a=(play_1+play_2)/2
@@ -638,9 +639,9 @@ Our script is based on Python 3.7.1. and includes NumPy, SciPy and MatPlotLib as
 This is the core of our program. We simulate a game with given start-values for alpha, beta, gamma and delta. In Addition, we set maxRounds and maxScore (40, 1000 by default). 
 Due to the different approaches we made, we give different modes for each part of the simulation in a NumpyArray. The different parts of the Simulation are:
 \begin{enumerate}
-\item B0 – How do we generate the card values e.g. normal or linear distributed, equal
-\item B1 – How do we exchange cards e.g. no exchange, average exchange, including receive
-\item B2 – How do we distribute the points e.g. equal, normal distributed, highest, statistics
+\item B.0 – How do we generate the card values e.g. normally, linearly or equally distributed
+\item B.1 – How do we exchange cards e.g. no exchange, average exchange, do we include Receive-Function
+\item B.2 – How do we distribute the points e.g. equally, normally distributed, highest, statistics
 \item adj. $\alpha$ – Will $\alpha$ be adjusted after each round
 \item adj. $\beta$ – Will $\beta$ be adjusted after each round e.g. increase
 \item adj. $\gamma$ – How will the risk be adjusted e.g. according to surveys

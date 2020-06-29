@@ -17,16 +17,17 @@
 \author{Matthias Schmickler \and Paul Sander \and Jean-Luc Portner \and Tom Haidinger \and Andrey Bryutkin \\ \\ Swiss Federal Institute of Technology Zurich (ETH)}
 \maketitle
 
-\section*{Abstract}
-We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 10,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 10,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
-
-\section{Motivation and goals}
+\section*{Motivation and goals}
 
 A prevalent characteristic of both mathematics and physics is their elaborate structure of interdependent concepts. It is only natural, then, for us students to thrive off of complexity and intricateness both within our courses as well as throughout our daily life. One such endeavour we satisfy our free time with is the game of Tichu. Tichu is a team card game taught to us by older students of our courses during the, albeit not very wide-ranging, cultural melting-pot between years – that unproductive period when our courses’ study hall slowly turns into the Mensa. 
 
     In addition to luck and strategy, this game became popular within our friend-group due to its fairly unique aspect of interaction. Allowing for multiple possible card combinations, special cards and a process of card switching, Tichu derives its complexity not through complicated rules, but rather through diverseness of strategy. Indeed, given one must adapt to one’s opponents’ and teammate’s strategies, one may say its strategies are interactive and reactive in nature. Therefore – although we note that card games are hard to analyse in general – we believe Tichu is indeed approachable through game-theoretic methods. 
 
     Fascinated by this type of game and equipped with tools from our game theory course, we pose the general question: “which strategy should we pursue as players?”. We shall further differentiate this admittedly vague question into: “what strategy should we pursue given”: a) “we know what player-type all other players are” and b) “we do not know anything about other players”. 
+    
+\section*{Abstract}
+We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 10,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 10,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
+
 \section{Introduction on Tichu}
 
 Tichu is a complicated team card game with many rounds that will be explained in detail below. The gist of it is that a set of playing cards is distributed among four players, two of which form a team, and card combinations are played to trump each other and win cards that score different amounts of points. At the beginning of each round each player exchanges a card with every other player, influencing the player dynamics of each round. Additionally, a bet, called a Tichu, can be placed on exiting a round of the game first, which yields bonus points. Teams then fight to reach 1000 points first. Obviously, this is not a full explanation, rather it serves to highlight the most important aspects of the game and subsequently the most interesting mechanisms explored in this essay, namely: the exchange stage, the player dynamics and the betting mechanism of a Tichu. 
@@ -153,7 +154,7 @@ In every round B, the dynamic or invariant parameters $\alpha, \beta, \gamma, \d
 
 
 \subsubsection{Subgame A}
-To start a game of Tichu, we assign a player $\alpha_i$ and $\beta_i$ values. As assumed before, all $\beta_i$ are equal at either 0 or 1. This leaves two possibilities on $\beta$ and 16 possible combinations for $\alpha$. Due to the team aspects, symmetry and equal permutations reduce the number of combinations to six as seen below. We denote a combination as $\tilde{\alpha}_i$.\\
+To start a game of Tichu, we assign a player $\alpha_i$ and $\beta_i$ values. As assumed before, all $\beta_i$ are equal at either 0 or 1. This leaves two possibilities on $\beta$ and 16 possible combinations for $\alpha$. Team aspects, symmetry and equal permutations reduce the number of combinations to six as seen below. We denote a combination as $\tilde{\alpha}_i$.\\
 \begin{table}[h]
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
@@ -173,11 +174,11 @@ B & 2 (DA = AD) & 3 (DD) \\
 \hline 
 Player 1 $\backslash$ Player 2 & 1 & 2 & 3 \\ 
 \hline 
-1 & $\alpha_1$ (AAAA) & $\alpha_2$ (AAAD) & $\alpha_3$ (AADD) \\ 
+1 & $\tilde{\alpha}_1$ (AAAA) & $\tilde{\alpha}_2$ (AAAD) & $\tilde{\alpha}_3$ (AADD) \\ 
 \hline 
-2 & $\alpha_2$ (ADAA) & $\alpha_4$ (ADAD) & $\alpha_5$ (DDAD) \\ 
+2 & $\tilde{\alpha}_2$ (ADAA) & $\tilde{\alpha}_4$ (ADAD) & $\tilde{\alpha}_5$ (DDAD) \\ 
 \hline 
-3 & $\alpha_3$ (DDAA) & $\alpha_5$ (ADDD) & $\alpha_6$ (DDDD) \\ 
+3 & $\tilde{\alpha}_3$ (DDAA) & $\tilde{\alpha}_5$ (ADDD) & $\tilde{\alpha}_6$ (DDDD) \\ 
 \hline 
 \end{tabular}%
 } 
@@ -219,7 +220,7 @@ We define $T_1 = [P_1,P_2]$  and $T_2 = [P_3,P_4]$. Therefore, $PT_1 = T_1$, $OT
 We will say, two players $P_i$, $P_j$ with  $i \neq j$ share a symmetric game perspective if $P_i = P_j$, $PT_i = PT_j$, $OT_i = OT_j$, in words: They have the same cards and the teams are identically from their point of view. 
 \end{definition}
 \begin{definition}[Total Exchange-Function]
-We assume we have given $\alpha$, $\beta$, X. A function $\pi: \{0,1\}^8 \times [0,1]^4 \to [0,1]^4, (\alpha, \beta, X) \mapsto (X’)$ will be called an Exchange-function to B.1  if it applies to the following rules:
+We assume we have given $\alpha$, $\beta$, X. A function $\pi: [0,1]^{12} \to [0,1]^4, (\alpha, \beta, X) \mapsto (X’)$ will be called an Exchange-function to B.1  if it applies to the following rules:
 \paragraph{Randomness and Average}
 $\alpha$, $\beta$, X are fixed. Then there is $\Delta X \subset [0,1]^4$ with $X’ \in \Delta X$. We will write $\pi^* (\alpha, \beta, X) = X^* \in \Delta X$ for the average of $\pi(\alpha, \beta, X)$. $\pi^*$ is a well-defined function, while $\pi$ allows random values around $\pi^*$.
 \paragraph{Continuous and monotony of X}
@@ -273,7 +274,7 @@ The player knows his own and his partner’s strategy. Therefore his results wil
 This information motivates the following two definitions of the pass and receive function. Then, they  are compiled into one total Exchange Stage function. 
 
 \begin{definition}[Pass-Function]
-A function $\xi_{ji} : \{0,1\}^5 \to [-1,1], (\alpha, \beta_i) \to \hat{\xi}_{ji}$ will be called a pass function, if it describes what $P_i$ gives to $P_j$ according to certain rules:
+A function $\xi_{ji} : [0,1]^5 \to [-1,1], (\alpha, \beta_i) \to \hat{\xi}_{ji}$ will be called a pass function, if it describes what $P_i$ gives to $P_j$ according to certain rules:
 \paragraph{Randomness and Average}
 $\alpha$, $\beta_i$ are fixed. Then there is $\Delta  \hat{\xi_{ji}} \subset [-1,1]$ with  $\hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$. We will write $\{xi_{ji}\}^* (\alpha, \beta_i) =  \hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$ for the average of $\xi(\alpha, \beta_i)$. $\xi_{ji}^*$ is a well-defined function, while $\xi$ allows random values around $\xi^*$.
 \paragraph{Symmetric outcome}
@@ -284,7 +285,7 @@ $\sum_{j = 1}^4 \hat{\xi_{ji}} = 1$
 $\hat{\xi_{ii}} >>  \hat{\xi_{ji}}$ with $ i \neq j $
 \end{definition}
 \begin{definition}[Receive-Function]
-A function $\eta_{ji}: \{0,1\} \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi_{ji}}) \mapsto \hat{\eta_{ji}}$ will be
+A function $\eta_{ji}: [0,1] \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi_{ji}}) \mapsto \hat{\eta_{ji}}$ will be
 called a “Receive-Function”, if it describes how $P_j$ receives cards from $P_i$ according to certain rules:
 \paragraph{Randomness and Average}
 $\beta_i$, $\hat{\xi_{ji}}$ are fixed. Then there is $\Delta  \hat{\eta_{ji}} \subset [-1,1]$ with  $\hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$. We will write $\{\eta_{ji}\}^* (\beta_i, \hat{\xi_{ji}}) =  \hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$ for the average of $\eta(\beta_i, \hat{\xi_{ji}})$. $\eta_{ji}^*$ is a well-defined function, while $\eta$ allows random values around $\eta^*$.
@@ -294,7 +295,7 @@ If two players $P_i$, $P_j$ have a symmetric game perspective towards each other
 $\eta_{ii}(\hat{\xi_{ii}}) = \hat{\xi_{ii}} $
 \end{definition}
 \begin{definition}[Exchange-Function]
-A function $\lambda_{ji}: \{0,1\}^5 \to [-1,1], \lambda_{ji} = \eta_{ji} \circ \xi_{ji}$ with $\eta_{ji}$ a Receive-Function and $\xi_{ji}$ a Pass-Function with existing $\alpha$, $\beta_i$.
+A function $\lambda_{ji}: [0,1]^5 \to [-1,1], \lambda_{ji} = \eta_{ji} \circ \xi_{ji}$ with $\eta_{ji}$ a Receive-Function and $\xi_{ji}$ a Pass-Function with existing $\alpha$, $\beta_i$.
 \end{definition}
 \begin{remark}[Construction]
 We will now construct a Total Exchange Function based on an Exchange Function $\lambda_{ji}$. We will define $\Lambda = (\lambda_{ji})$ as a quadratic matrix. 
@@ -306,7 +307,7 @@ $X^*$
 \item $\Lambda^*$ is a linear function, therefore continuous and monotone
 \item Symmetric outcome is induced from the combination of $\xi_{ji}$ and $\eta_{ji}$ in every argument as in 1
 \end{axioms}
-We have now created a matrix $\Lambda$ which describes the Exchange Stage. To complete the definitions, we will introduce $ \Pi : \{0,1\}^8 \to M(4 \times 4, \mathbb{R}), (\alpha, \beta) \mapsto \Lambda $
+We have now created a matrix $\Lambda$ which describes the Exchange Stage. To complete the definitions, we will introduce $ \Pi : [0,1]^8 \to M(4 \times 4, \mathbb{R}), (\alpha, \beta) \mapsto \Lambda $
 \end{remark}
 
 \subsection{Subgame B.2}
@@ -321,7 +322,7 @@ We shall start by defining the relevant terms and functions needed for this disc
 \begin{definition}[Double Win Function]
 For each team we define a double win function $D_i(T_1, T_2)$.
 \begin{align*}
-D_i: ({0,1}^5 \times [0,1])^4 \to [0,1] (T1,T2) \mapsto d_i
+D_i: ([0,1]^6)^2\times([0,1]^6)^2 \to [0,1]\; ,\;(T_1,T_2) \mapsto d_i
 \end{align*}
 \end{definition}
 This function returns the probability of a double win of each team for a round. As teams are always aiming for this bonus through a double win, we describe this function as independent of the current score and probably more dependent on the team strategies and the value of the cards. Whether or not player strategies have any influence on this probability will be heuristically/ empirically determined in the realisation section of this essay.
@@ -332,7 +333,7 @@ Next, as scoring a Tichu requires both calling and winning a Tichu, we separate 
 \begin{definition}[Tichu Announcment Function]
 For each team we define a Tichu announcement function $C_i(T_i, S)$, where $T_i$ are the respective teams and S is the current score:
 \begin{align*}
-C_i: ({0,1}^5 \times [0,1])^2 \times \Z^2 \to [0,1] (T_i,S) \mapsto c_i
+C_i: [0,1]^6 \times [0,1]^6 \times \Z^2 \to [0,1] (T_i,S) \mapsto c_i
 \end{align*}
 \end{definition}
 This function returns the Tichu announcement probability of each team for a round. It depends on a host of different variables including the player and team strategies as well as the current score and score difference. Such a function allows us to, for example, represent a greater probability of calling a Tichu when the opposing team has a large score margin or is very close to 1000 points.
@@ -365,8 +366,8 @@ The alternative case, $Z(d_1) = 0 \land Z(d_2) = 0$, requires more theory as we 
 
 For this calculation, we introduce two normally distributed random variables $n_1$ and $n_2$ whose mean value and standard deviation are to be determined in the realisation section of this essay. The purpose of these random variables is to simulate the fluctuations in scores obtained every round by both teams throughout the game. This will be explained further in the next section. The scored points for a round are to be calculated as follows: Let $X_{tot} = \sum_{i=1}^{4} X_i$ be the total sum of card values in this round, then
 \begin{align*}
-    &\Delta S_1 = (X_1\cdot n_1 + X_2\cdot n_2)/ X_{tot} \cdot 125 - 25\\
-    &\Delta S_2 = (X_3\cdot n_1 + X_4\cdot n_2)/ X_{tot} * 125 - 25\\
+    &\Delta S_1 = (X_1\cdot n_1 + X_2\cdot n_2)/ X_{tot} \cdot 150 - 25\\
+    &\Delta S_2 = (X_3\cdot n_3 + X_4\cdot n_4)/ X_{tot} \cdot 150 - 25\\
 \end{align*}
 represent the change in score for each team for a round, where $\Delta S_1$ and $\Delta S_2$ are rounded to the nearest multiple of 5. Thus the change in score is calculated as a percentage of the card values for a specific round. The correctional factors 125 and -25 as well as the rounding serve to adjust the point value to the frame of a Tichu round.
 
@@ -391,7 +392,7 @@ This completes a round of the game. Now the subgames $B.0,B.1,B.2$ are repeated 
 \end{axioms}
 (Schaubild)
 \section{Realisation}
-We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $/Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will treat initially $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. start with modeling a function for B.0.
+We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $/Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will initially treat $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. start with modeling a function for B.0.
 
 \subsection{Subgame B.0}
 In our basic approach we assume an average card hand to have a value of $X_i = 0.5$, as the data from tichuonline.com shows the win rate almost normally distributed around 0.5, with an assumed symmetric normal distribution. $X_i = 0$ represents no chance of winning the game and $X_i = 1$ is equal to a guaranteed win. The question that arises is: to what percentage do players receive good enough cards to win a Tichu. We are now left with an arbitrary choice, which card set values correspond to which card combinations. Given that a Great Tichu is only won in 2.21$\%$ of all games, we can set $P(X_i \geq 0.9) = 0.0221$: the share of winning a great Tichu in reference to all games. This gives us a sigma of 0.199. Similarly, a Tichu is only won in 8.53$\%$ of all games, equalling $X_i\geq 0.78$. This results in the plot below that shows the probability a player has to receive a card set with a certain value.
@@ -496,10 +497,10 @@ This can be further generalised. Now we no longer bet $\eta$ of the identity but
 \begin{definition}[probability density]
 The probability density $\rho$ is defined by a function which, normalized over the integral from -0.25 to $\infty$ 1, is called $\hat{\rho}$:
 $$
-\rho (t) := \frac{1}{4.39426613065366}\cdot\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
+\rho (t) := \left(\int\limits_{-\infty}^{\infty}\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}\right)^{-1}\cdot\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
 $$
 $$
-\widehat{\rho} = \int\limits_{-0.25}^{\infty}\rho (t)\mathrm{d} t
+\widehat{\rho} = \int\limits_{-0.25}^{x}\rho (t)\mathrm{d} t\widehat{=}\mathrm{propability}
 $$
 \end{definition}
 \begin{figure}[h]
@@ -656,7 +657,7 @@ First of all, we will have a look on the outcome of the Exchange Stage under dif
 
 \paragraph{Maximum}  We are only looking at the card value of the higher cards, because this can lead to a win of Tichu
 \paragraph{Square Addition}  We sum the squares of both card values, because it doesn’t look only at the higher card value and consider both card values of the team.
-\paragraph{Square Diffrence} We take the difference of the squares of both card values and try to minimize it, because it can be good to have balanced players. 
+\paragraph{Square Diffrence} We take the diffrence of the squares of both card values and try to minimize it, because it can be good to have balanced players. 
 \\
 \\
 We try to find the nash equilibrium in all three cases and set $\beta = 0$. The players will not know which strategies the other players follow. We will only look at case $\beta = 0$ for case 1, because the information on his partners strategy will only create a bigger difference but will result in the same tactics. 
@@ -750,7 +751,7 @@ We start with an example of the exchange phase, in which we show how the simulat
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/example_1}
-    \caption{Beispiel}
+    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 1 game}
     \label{fig:meine-grafik}
 \end{figure}
 
@@ -759,7 +760,7 @@ If 6 games can be played with these values, the differences in the effects of $\
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/example_2}
-    \caption{Case 3 - Square Diffrence}
+    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 6 games}
     \label{fig:meine-grafik}
 \end{figure}
 
@@ -799,7 +800,7 @@ For the better overview we have plotted all values in one graph, where you win  
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.35\textwidth]{Bilder/simulation_16}
-    \caption{Case 3 - Square Diffrence}
+    \caption{Overview plot - $\beta=0,1,logistic$}
     \label{fig:meine-grafik}
 \end{figure}
 
@@ -812,19 +813,19 @@ We conclude that with increasing transparency a defensive play is always an adva
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_2_2}
-	    \caption{Simulation 1}
+	    \caption{$\beta=0$}
 	    \label{fig:meine-grafik}
     \end{subfigure}
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
-	    \caption{Simulation 6}
+	    \caption{$\beta_0=0.1$ - logistic}
 	    \label{fig:meine-grafik}
     \end{subfigure}
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_4_2}
-	    \caption{Simulation 10}
+	    \caption{$\beta=1$}
 	    \label{fig:meine-grafik}
 	\end{subfigure}
 \end{figure*}
@@ -834,19 +835,19 @@ We conclude that with increasing transparency a defensive play is always an adva
 	\begin{subfigure}{.3\textwidth}
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_2_3}
-    	\caption{Simulation 4}
+    	\caption{$\beta=0$}
     \label{fig:meine-grafik}
 	\end{subfigure}%
 		\begin{subfigure}{.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
-	    \caption{Simulation 8}
+	    \caption{$\beta_0=0.1$ - logistic}
 	    \label{fig:meine-grafik}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_4_3}
-    	\caption{Simulation 12}
+    	\caption{$\beta=1$}
     	\label{fig:meine-grafik}
 	\end{subfigure}
 \end{figure*}
@@ -855,20 +856,20 @@ We conclude that with increasing transparency a defensive play is always an adva
 	\centering
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_5}
-    	\caption{Simulation Looses}
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_2_4}
+    	\caption{$\beta=0$ - losses - gray}
     	%\label{fig:meine-grafik}
 	\end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_3_5}
-    	\caption{Simulation Looses}
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_3_4}
+    	\caption{$\beta_0=0.1$ logistic - losses - gray}
     	%\label{fig:meine-grafik}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
-    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_5}
-    	\caption{Simulation Looses}
+    	\includegraphics[width=1\linewidth]{Bilder/simulation_4_4}
+    	\caption{$\beta = 1$ - losses - gray}
     	%\label{fig:meine-grafik}
 	\end{subfigure}
 \end{figure*}

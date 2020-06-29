@@ -10,6 +10,14 @@
 \usepackage{subcaption}
 \usepackage{stfloats}
 
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3pt  \@plus 1pt \@minus 1pt}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+
+\makeatother
+
 \begin{document}
 
 \title{Tichu strategies depending on course of play}
@@ -247,7 +255,7 @@ If we first examine the pass function, we notice the following:\\
 We put these facts together in a Diagram (the numbers represent diffrent exchange functions and $P_P$ - is a Player passing; $P_R$ - is a Player receiving):
 
 \begin{table}[h]
-\caption{Table 1.1} \bigskip
+	\caption{}
 \label{tab:my-table}
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{l|l|ll|l|ll|}
@@ -432,9 +440,10 @@ Again we assume the basic model from above, where the value of the average passe
 
 In addition to this simple model, partners have the possibility of taking advantage of each others known player types. If a player is defensive and requires above average cards to announce a Tichu he will more likely pass cards with higher value to his teammate. Correspondingly, if a player knows his partner is defensive, he can pass a lower valued card, while if a player knows his partner is aggressive, he would consider passing a high valued card. The following table shows what aggressive and defensive players pass with different amounts of information on their partner. \\
 \begin{table}[h]
-\caption{Table 2} \bigskip
+\centering
+\caption{} 
 \label{tab:my-table}
-\resizebox{0.5\textwidth}{!}{%
+\resizebox{0.45\textwidth}{!}{%
 \begin{tabular}{|l|ll|l|ll|}
 \hline
 \multicolumn{3}{|l|}{$\beta = 0$} & \multicolumn{3}{l|}{$\beta=1$} \\ \hline
@@ -488,11 +497,11 @@ $$
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_e}
-    \caption{$\rho$(t) - Wahrscheinlichkeitsdichte}
+    \caption{$\rho(t)$ - Probabilitydensity}
     \label{fig:8}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_f}
-    \caption{$\widehat{\rho}(t) - Wahrscheinlichkeit$}
+    \caption{$\widehat{\rho}(t)$ - Probability}
     \label{fig:9}
 \end{figure}
 This probability value $\hat{\rho}(t)$ is then randomly generated for a $t\in [-0.25,0.7]$. This allows the $\eta$ function to be defined:
@@ -524,18 +533,17 @@ The basic aggressiveness of the players is converted to a basic aggressiveness o
 
 In addition, there are other probabilities that must be known for the simulation. For example, the probability that a team will win the double or not. The average probability for the double victory is calculated from the average of all players: so total number of doubles divided by the total number of rounds. Also the probability that a player will win a Tichu must of course depend on the announcement frequency. This is what is described below.
 So a graph of the tichu rate in relation to tichu announcements / rounds plots.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/calling_winning_graph}
-    \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
-    \label{fig:13}
-\end{figure}
 The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
 
 From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section.
 
-\subsubsection{Adjusting $\beta$}
-
+\subsection{Adjusting $\beta$}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
+    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
+    \label{fig:14}
+\end{figure}
 Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
 
 \begin{align*}
@@ -545,19 +553,12 @@ Before moving on to the next section, we introduce ways to vary $\beta$: the lev
 
 where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Bilder/5_log}
-    \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
-    \label{fig:14}
-\end{figure}
-
 For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 \subsection{Adjusting $\gamma$}
 
 Respondents were asked about risk sensitiveness in three areas:
 \begin{enumerate}[(1)]
-\item diffrence in scores
+\item difference in scores
 \item oppents distance to victory
 \item own distance to victory
 \end{enumerate}
@@ -568,63 +569,63 @@ Respondents were asked about risk sensitiveness in three areas:
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_200steps}
     \caption{$f_1(x)=0.00591631\cdot x+3.65194805$}
     \label{fig:10}
-\end{subfigure}
+\end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_100steps}
     \caption{$f_2(x)=-0.00354308390\cdot x+6.70748299$}
     \label{fig:11}
 \end{subfigure}
-\end{figure*}
-
-\begin{figure}[ht]
+\begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_nonlinear}
     \caption{$f_3(x)=-3.87806638\cdot 10^{-11}\cdot x^4+7.31721982\cdot 10^{-8}\cdot x^3+ -4.95400433\cdot 10^{-5} \cdot x^2+ 1.36745860 \cdot 10^{-2} \cdot x+3.57993197$}
     \label{fig:12}
-\end{figure}
-
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{Bilder/calling_winning_graph}
+    \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
+    \label{fig:13}
+\end{subfigure}
+\end{figure*}
 The scale here was the willingness to take risks from 1 to 10, whereby in category (1) and (2) 10 meant a lot of risk and 1 normal. For (3), 1 was normal risk and 10 was particularly low risk.
  As the survey revealed, Category (1) > Category (2) > Category (3) is in the ranking. The fluctuations in category (1) are 5 points.
  For category (2) 2.5 points and in (3) 0.5 points. These categories are also considered in the function.
 The survey revealed the data points:
-\paragraph{Cat.1}
-$X=[0,100,200,300,400,500,600,700,800,900]$ \\ \\
-$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$
-\paragraph{Cat.2}\par
-$X=[100,200,300,400,500,600,700,800]$ \\ \\
-$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$
-\paragraph{Cat.3}\par
-$X=[100,200,300,400,500,600,700,800]$\\ \\
+\begin{itemize}
+	\item \textbf{Cat. 1:} See Figure \ref{fig:10}.\\
+			$X=[0,100,200,300,400,500,600,700,800,900]$\\
+			$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$
+	\item \textbf{Cat. 2:} See Figure \ref{fig:11}.\\
+			$X=[100,200,300,400,500,600,700,800]$\\
+			$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$
+	\item \textbf{Cat. 3:} See Figure \ref{fig:12}.\\
+$X=[100,200,300,400,500,600,700,800]$\\
 $Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$
-\\
-\\
+\end{itemize}
+
 This increase should now be offset against the basic aggressiveness.
 The following additional conditions are set:
 If in category 1 the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
 While category 1 can make a difference of up to 100$\%$, category 2 should have a maximum of 50$\%$. Again, linear.
 Category 3 should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
+
 \begin{lstlisting}
-#risk ~ difference
-def a(x):
+def a(x):   #risk - difference
     if x <= 0:
         return 0
-            
 return (f1(x)-f1(0))/(f1(1000)-f1(0))
             
-#risk ~ enemies points
-def b(x):
+def b(x):   #risk - enemies points
     if x <= 200:
         return 0
-            
 return 0.5*(f2(1000-x)-f2(800))
 		/(f2(0)-f2(800))
         
-#risk ~ team points
-def c(x):
+def c(x):   #risk - team points
     if x < 100 or x > 800:
         return 0
-            
 return 0.1*(f3(x)-f3(250))/(f3(250)-f3(800))
 
 k = 0.25    
@@ -634,6 +635,7 @@ gamma[T2] = k*a(delta[0]-delta[1])
 	+b(delta[0])+c(delta[1])
 
 \end{lstlisting}
+
 
 \section{Simulation}
 \subsubsection{Introduction to Software}
@@ -780,9 +782,6 @@ We start with an example of the exchange phase, in which we show how the simulat
 
 If 6 games can be played with these values, the differences in the effects of $\alpha_i$ can be seen better with the individual players. One can see, that if you play more defensive, the $\xi$ function has a much stronger effect on your card value and your card value would be smaler, the opposite is happening if your strategy is aggressive.
 
-
-
-
 In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game. In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
 93$\%$is the value, which should result from the added aggressions, in order to achieve maximum points with the Tichu. The number 93 is the cumulative probability of the two team partners. It is the digit of the maximum of the function $x\cdot f(x)$, where f(x) is the probability of winning a tichu. Thus it gives the place of the maximum of the score.
 At the edges the error of the theoretical model is of course bigger, because it is unrealistic that a player from the card distribution can get the tichu every round. 
@@ -867,8 +866,7 @@ As one can see an higher Beta makes the graph more blue, meaning that the more a
 Consequently to get a better overview we only plotted the points where Team 1 won in more than 60$\%$ (first graphs) or lost in more than 60$\%$ (second graphs). Once again with the varying betas in the same order as above.
 
 Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph). Also one can see the trend of points converging to the two diagonals of the grid with higher betas.
-
-
+\newpage
 For the better overview we have plotted all values in one graph, where you win  more than 60$\%$ of the games:
 
 \begin{figure}[!ht]

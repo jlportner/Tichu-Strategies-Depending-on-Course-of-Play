@@ -6,20 +6,20 @@
 \BOOKMARK [2][-]{subsection.2.4}{Subgame B.0}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Subgame B.1}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.6}{Subgame B.2}{section.2}% 8
-\BOOKMARK [3][-]{subsubsection*.20}{Course of the game}{subsection.2.6}% 9
+\BOOKMARK [3][-]{subsubsection*.23}{Course of the game}{subsection.2.6}% 9
 \BOOKMARK [1][-]{section.3}{Realisation}{}% 10
 \BOOKMARK [2][-]{subsection.3.1}{Subgame B.0}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.2}{Subgame B.1}{section.3}% 12
 \BOOKMARK [2][-]{subsection.3.3}{Subgame B.2}{section.3}% 13
-\BOOKMARK [3][-]{subsubsection*.27}{Adjusting }{subsection.3.3}% 14
-\BOOKMARK [2][-]{subsection.3.4}{Adjusting }{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Adjusting }{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.5}{Adjusting }{section.3}% 15
 \BOOKMARK [1][-]{section.4}{Simulation}{}% 16
-\BOOKMARK [2][-]{subsubsection*.34}{Introduction to Software}{section.4}% 17
+\BOOKMARK [2][-]{subsubsection*.31}{Introduction to Software}{section.4}% 17
 \BOOKMARK [2][-]{subsection.4.1}{Optimal strategy in "Exchange"-Stage}{section.4}% 18
 \BOOKMARK [2][-]{subsection.4.2}{Simulation of the game}{section.4}% 19
-\BOOKMARK [3][-]{subsubsection*.48}{Subgame B.0/B.1}{subsection.4.2}% 20
-\BOOKMARK [3][-]{subsubsection*.50}{Subgame B.2}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection*.45}{Subgame B.0/B.1}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection*.47}{Subgame B.2}{subsection.4.2}% 21
 \BOOKMARK [1][-]{section.5}{Conclusion}{}% 22
-\BOOKMARK [2][-]{subsubsection*.53}{Subgame B.0}{section.5}% 23
-\BOOKMARK [3][-]{subsubsection*.54}{Subgame B.1}{subsubsection*.53}% 24
-\BOOKMARK [3][-]{subsubsection*.55}{Subgame B.2}{subsubsection*.53}% 25
+\BOOKMARK [2][-]{subsubsection*.50}{Subgame B.0}{section.5}% 23
+\BOOKMARK [3][-]{subsubsection*.51}{Subgame B.1}{subsubsection*.50}% 24
+\BOOKMARK [3][-]{subsubsection*.52}{Subgame B.2}{subsubsection*.50}% 25

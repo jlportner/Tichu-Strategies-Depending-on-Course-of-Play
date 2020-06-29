@@ -367,9 +367,6 @@ INPUT ./Bilder/cards_distribution.png
 INPUT Bilder/cards_distribution_cumultative.png
 INPUT ./Bilder/cards_distribution_cumultative.png
 INPUT ./Bilder/cards_distribution_cumultative.png
-INPUT Bilder/5_log.png
-INPUT ./Bilder/5_log.png
-INPUT ./Bilder/5_log.png
 INPUT Bilder/pass_function_ot.png
 INPUT ./Bilder/pass_function_ot.png
 INPUT ./Bilder/pass_function_ot.png
@@ -388,6 +385,15 @@ INPUT ./Bilder/b1_e.png
 INPUT Bilder/b1_f.png
 INPUT ./Bilder/b1_f.png
 INPUT ./Bilder/b1_f.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT Bilder/5_log.png
+INPUT ./Bilder/5_log.png
+INPUT ./Bilder/5_log.png
 INPUT Bilder/risk_level_diffrence_200steps.png
 INPUT ./Bilder/risk_level_diffrence_200steps.png
 INPUT ./Bilder/risk_level_diffrence_200steps.png
@@ -455,6 +461,7 @@ INPUT ./template.out
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
@@ -465,6 +472,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

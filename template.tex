@@ -745,6 +745,25 @@ We now try to generalize it and use the functions we developed in the theoretica
 
 The basis for each round is the card value X for each individual player. This is simulated by a normal distribution and is changed by the functions $\xi$ and $\eta$ during the exchange phase. The new card value X' is then saved and transferred for the game B.2, since the risk susceptibility is calculated from it.
 
+We start with an example of the exchange phase, in which we show how the simulation works. We have set the $\alpha$ values so that they add up to 1, i.e. $\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$. We have also set the initial $\beta$ value for all 4 players to 10$\%$, so $\beta_i=0.1$ and knowledge will logistically increase with the number of rounds. We have run a game with an average of 20 rounds. The following diagram shows the randomly generated value $X$ and how the functions $\xi$ and $\eta$ affect the card value:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/example_1}
+    \caption{Beispiel}
+    \label{fig:meine-grafik}
+\end{figure}
+
+If 6 games can be played with these values, the differences in the effects of $\alpha_i$ can be seen better with the individual players. One can see, that if you play more defensive, the $\xi$ function has a much stronger effect on your card value and your card value would be smaler, the opposite is happening if your strategy is aggressive.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Bilder/example_2}
+    \caption{Case 3 - Square Diffrence}
+    \label{fig:meine-grafik}
+\end{figure}
+
+
 In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game. In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
 93$\%$is the value, which should result from the added aggressions, in order to achieve maximum points with the Tichu. The number 93 is the cumulative probability of the two team partners. It is the digit of the maximum of the function $x\cdot f(x)$, where f(x) is the probability of winning a tichu. Thus it gives the place of the maximum of the score.
 At the edges the error of the theoretical model is of course bigger, because it is unrealistic that a player from the card distribution can get the tichu every round. 
@@ -784,8 +803,9 @@ For the better overview we have plotted all values in one graph, where you win  
     \label{fig:meine-grafik}
 \end{figure}
 
+By comparing the different simulations, the following relationships can be established. With the tile model, there is almost no difference between the case $\beta=0$ and $\beta=1$, so that one can conclude that the strategy one should play is not influenced by the extremes. However, if you look at the tile model of logistic development, you can see a clear color difference, especially you can see that it becomes very blue when you are near (0,0). To examine this connection more clearly, we will only look at the profits with a probability of over 60$\%$ and profits with a probability of less than 40$\%$, i.e. rather the losses. Here you can see that although in the extreme cases $\beta=0.1$ the winnings are distributed over the whole quadrant, the losses at $\beta=1$ increase with a more aggressive playing style, so that a defensive playing strategy is more advantageous. This can also be seen in the diagram where $\beta$ is logistically distributed. The winnings are very much concentrated in the lower half of the square. If you add in the optimal aggressiveness, you can see that the winnings are near the bottom of the graph.
 
-
+We conclude that with increasing transparency a defensive play is always an advantage.
 
 \begin{figure*}[!ht]
 	\centering
@@ -852,7 +872,6 @@ For the better overview we have plotted all values in one graph, where you win  
     	%\label{fig:meine-grafik}
 	\end{subfigure}
 \end{figure*}
-\newpage
 
 \section{Conclusion}
 At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.

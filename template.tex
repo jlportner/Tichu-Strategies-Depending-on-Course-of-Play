@@ -20,7 +20,7 @@
 
 \begin{document}
 
-\title{Tichu strategies depending on course of play}
+\title{\textbf{Tichu Strategies Depending on Course of Play}}
 \date{June 30, 2020}
 \author{Matthias Schmickler \and Paul Sander \and Jean-Luc Portner \and Tom Haidinger \and Andrey Bryutkin \\ \\ Swiss Federal Institute of Technology Zurich (ETH)}
 \maketitle
@@ -34,7 +34,7 @@ A prevalent characteristic of both mathematics and physics is their elaborate st
     Fascinated by this type of game and equipped with tools from our game theory course, we pose the general question: “which strategy should we pursue as players?”. We shall further differentiate this admittedly vague question into: “what strategy should we pursue given”: a) “we know what player-type all other players are” and b) “we do not know anything about other players”. 
     
 \section*{Abstract}
-We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 10,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 10,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
+We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 13,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 100,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
 
 \section{Introduction on Tichu}
 
@@ -98,9 +98,7 @@ The Phoenix acts as a Joker and can substitute any non-special card and be playe
 \paragraph{Dragon}
 The Dragon is the highest possible singleton available and trumps the Phoenix card. The cards claimed for any play won through this card must be awarded to either opponent. The Dragon may only be bombed, in this case the new winner can claim the cards and must not award them to either opponent.
 
-Special cards cannot be played in any type of Bomb.
-
-At the end of a round, after two teammates have managed to exit, either one or both opponents have not exited the round. If one opponent remains, both his claimed cards and his remaining hand cards are gifted to the player that exited the round first. All other claimed cards are valued based on their worth as listed above and added to the team score. On the other hand, if two teammates manage to exit before both opponents, the value of claimed cards is disregarded completely and 200 points are immediately awarded to the winning team; this is called a double win.
+Special cards cannot be played in any type of Bomb. At the end of a round, after two teammates have managed to exit, either one or both opponents have not exited the round. If one opponent remains, both his claimed cards and his remaining hand cards are gifted to the player that exited the round first. All other claimed cards are valued based on their worth as listed above and added to the team score. On the other hand, if two teammates manage to exit before both opponents, the value of claimed cards is disregarded completely and 200 points are immediately awarded to the winning team; this is called a double win.
 
 Finally, a Tichu is a 100 point bet a player takes on exiting the round first. Success scores an additional 100 points while failure incurs a cost of 100 points. A Tichu can be announced as long as the player has not played any cards yet. Similarly, a Grand Tichu is a bet of 200 points and must be announced after the 8th card is dealt. A Grand Tichu may therefore also have an impact on the Exchange stage.
 
@@ -113,9 +111,7 @@ In this section we shall develop a model for simulating the Tichu game. We clear
 
 In addition to player behaviour, we shall also define transparency of information and score-based risk. Initially, we want to investigate player dynamics between the following types of players: the aggressive and defensive player. The aggressive player is characterised as risk-seeking, prioritising his own cards above his teammate’s cards. In case of doubt he is unwilling to trade away a good card to his teammate and will rather keep his best cards in his possession. This willingness to take risks materialises as a readiness to announce Tichus even with below average cards, relative to cards with which the average player would announce a Tichu. On the contrary, the defensive player is risk-averse: he requires above average cards to announce a Tichu. This player is ready to trade a good card to his partner, even with a bad hand of cards.
 
-The following notation is introduced:
-
-We will store information on the players behaviour in a vector $\alpha \in [0,1]^4$.For our first attempt, we will only focus on the extreme cases $\alpha \in \{0,1\}^4$
+The following notation is introduced: \\We will store information on the players behaviour in a vector $\alpha \in [0,1]^4$.For our first attempt, we will only focus on the discrete cases $\alpha \in \{0,1\}^4$:
 \\ 
 \begin{itemize}
 \item A: "aggressive player" will be assigned to $\alpha_i = 1$
@@ -124,13 +120,14 @@ We will store information on the players behaviour in a vector $\alpha \in [0,1]
 
 Next, transparency of information is introduced. In one simulation we deal with transparency between players: every player is aware of all player-types in the game and acts upon this information. In a second simulation we explore the game without transparency of information, each player acts by themselves.
 
-Like the different types of players, we will identify the situations with the following notation. The information is stored in a vector $\beta \in [0,1]^4$. Same as $\alpha$ we will set $\beta \in \{0,1\}^4$\\ 
+Like the different types of players, we will identify the situations with the following notation. The information is stored in a vector $\beta \in [0,1]^4$. Same as $\alpha$ we will set $\beta \in \{0,1\}^4$:
+\\ 
 \begin{itemize}
 \item T: “transparent” will be assigned to $\beta_i = 1$
 \item $\overline{T}$: “not transparent” will be assigned to $\beta_i = 0$ \\
 \end{itemize}
 
-We will assume  $\beta_i = \beta_j \forall i, j\in \{1,2,3,4\}$ in the beginning. 
+We will assume  $\beta_i = \beta_j\;\forall i, j\in \{1,2,3,4\}$ in the beginning. 
 
 Finally, we introduce score based-risk as additional risk taken by players depending on the current team score. If one team is close to winning, the opposing team is willing to take on more risk in order to increase their chances of winning. The score-based risk aims to reflect this behaviour. Different players may treat this risk differently, depending on their personal risk adverseness independent of their current card hand.
 
@@ -141,8 +138,7 @@ Finally, we introduce score based-risk as additional risk taken by players depen
 \end{itemize}
 While $\alpha$ is invariant, $\gamma$ is dynamically changing throughout the game. 
 
-It is important to note that while we define $\alpha$ to be invariant throughout the game, $\beta,\gamma$ are dynamic and escpecially $\gamma$ changes depending on the current team scores. The current team score, in turn, is stored in $\delta \in \mathbb{Z}^4$. 
-$\delta_{1,2} \widehat{=}$ total score, $\delta_{3,4} \widehat{=}$ last round score
+It is important to note that while we define $\alpha$ to be invariant throughout the game, $\beta$ and $\gamma$ are dynamic and escpecially $\gamma$ changes depending on the current team scores. The current team score, in turn, is stored in $\delta \in \mathbb{Z}^4$: $\delta_{1,2} \widehat{=}$ total score, $\delta_{3,4} \widehat{=}$ last round score.
 
 The following approximations are made about the game to make simply our model. These simplifications refer to mechanisms we feel have little impact on gameplay, relative to the other mechanism we discuss, and are therefore assumed to be negligible in our model. The Great Tichu, i.e. the announcement of a Tichu before the exchange of cards, is very rare and is therefore negligible for our basic model. Additionally, the possibility to announce a Tichu during the game, i.e. when other players have already played cards but one player has yet to play a card, is neglected. Furthermore, all rules are known to the players ("common knowledge") and they act rational to win the game without causing harm to their own team.
 
@@ -157,8 +153,8 @@ The following approximations are made about the game to make simply our model. T
 
 A game tree represents the different stages the game propagates through until one team reaches 1000 points and wins the game. This tree divides the game into sections that each deal with a game mechanism, each of which will be described in the following sections.
 
-The game starts when four players divide into two teams and enter the game. These players each have assigned player behaviours $\alpha$ and are assigned a level of transparency of information $\beta$. The next subgame B is further divided into the distribution of cards (B.0), the exchange stage (B.1) and the active game of triumphing and laying cards (B.2). B.0 simulates the distribution of a card set to each player, each card set is represented by a value $X_i \in [0,1]$. The sum of all four card sets can be greater than 1, as the value of each set is not determined by single card values but rather their ability to be played in powerful combinations. This points distribution mechanism is a topic of discussion later in this essay again. The basic model only implements statistics in part B.0, however with the development of our model we will incorporate game theoretical aspects as well. The second part B.1 represents the Exchange Stage. Depending on a player’s cards and strategy, every player gives away three $\Delta X$ and receives three $\Delta X$, which can either be positive or negative. The payoff will be represented by a Util. In this section we will also define pass and receive functions to construct and define a Total Exchange Function semantically. The third part B.2 takes the card values X and the current score from part B.1 and processes these. They are used to determine the actual outcome of a game, reflecting the player’s strategies and accounting for possibilities to take higher risks due to score differences. This results in a Util  function that allocates the 100 available points per round and additional Tichu and double win points to the two teams.
-In every round B, the dynamic or invariant parameters $\alpha, \beta, \gamma, \delta$ are considered. The repetition of subgame B ends when one team wins at 1000 points reached. Our first approximations consider $\beta$ and $\gamma$ as invariant.
+The game starts when four players divide into two teams and enter the game. These players each have assigned player behaviours $\alpha$ and are assigned a level of transparency of information $\beta$. The next subgame B is further divided into the distribution of cards (B.0), the exchange stage (B.1) and the active game of triumphing and laying cards (B.2). B.0 simulates the distribution of a card set to each player, each card set is represented by a value $X_i \in [0,1]$. The sum of all four card sets can be greater than 1, as the value of each set is not determined by single card values but rather their ability to be played in powerful combinations. This points distribution mechanism is a topic of discussion later in this essay again. The basic model only implements statistics in part B.0, however with the development of our model we will incorporate game theoretical aspects as well. The second part B.1 represents the Exchange Stage. Depending on a player’s cards and strategy, every player gives away three $\Delta X$ and receives three $\Delta X$, which can either be positive or negative. The payoff will be represented by a Util. In this section we will also define pass and receive functions to construct and define a Total-Exchange-Function semantically. The third part B.2 takes the card values X and the current score from part B.1 and processes these. They are used to determine the actual outcome of a game, reflecting the player’s strategies and accounting for possibilities to take higher risks due to score differences. This results in a Util  function that allocates the 100 available points per round and additional Tichu and double win points to the two teams.
+In every round B, the dynamic or invariant parameters $\alpha, \beta, \gamma, \delta$ are considered. The repetition of subgame B ends when one team wins, e.g. 1000 points are reached. Our first approximations consider $\beta$ and $\gamma$ as invariant.
 
 
 \subsection{Subgame A}
@@ -167,11 +163,11 @@ To start a game of Tichu, we assign a player $\alpha_i$ and $\beta_i$ values. As
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline 
-Player 1 $\backslash$ Player 2 & A & B \\ 
+Player 1 $\backslash$ Player 2 & A & D \\ 
 \hline 
 A & 1 (AA) & 2 (AD = DA) \\ 
 \hline 
-B & 2 (DA = AD) & 3 (DD) \\
+D & 2 (DA = AD) & 3 (DD) \\
 \hline 
 \end{tabular}%
 }
@@ -192,11 +188,11 @@ Player 1 $\backslash$ Player 2 & 1 & 2 & 3 \\
 } 
 \end{table}
 \subsection{Subgame B.0}
-Our basic model considers B.0 as invariant under all $\alpha$, $\beta$, $\gamma$ and $\delta$. It is based on statistics gathered from collected online data and a survey we distributed. Initially we assign $X_i$ (a player’s distributed card set in each round) to be an element of the normal distribution with parameters $\mu, \sigma$. We set $\mu$ to 0.5 and define $X_i$ in the domain $1\geq X_i \geq 0$. We set $\sigma$ according to real world data and surveys. We have now ensured subgame B.0 always delivers an $X = \{X_1, …, X_4\}$, the card values used in the next two sections.
+Our basic model considers B.0 as invariant under all $\alpha$, $\beta$, $\gamma$ and $\delta$. It is based on statistics gathered from collected online data and a survey we distributed. Initially we assign $X_i$ (a player’s distributed card set in each round) to be an element of the normal distribution with parameters $\mu$ and $\sigma$. We set $\mu$ to 0.5 and define $X_i$ in the domain $1\geq X_i \geq 0$. We set $\sigma$ according to real world data and surveys. We have now ensured subgame B.0 always delivers an $X = \{X_1, …, X_4\}$, the card values used in the next two sections.
 
 
 \subsection{Subgame B.1}
-The aim of this section is to give a logical foundation for the Exchange Stage function we construct and show that it is indeed semantically viable. We shall first propose a few logical assumptions and define some key properties of a total exchange stage function before constructing a compilation of two simpler functions that pass and receive card values between players. First of all we definie some terms:
+The aim of this section is to give a logical foundation for the Exchange-Stage-Function we construct and show that it is indeed semantically viable. We shall first propose a few logical assumptions and define some key properties of a total exchange stage function before constructing a compilation of two simpler functions that pass and receive card values between players. First of all we definie some terms:
 \begin{definition}["good" cards]
 "Good" cards are for example bombs, high cards like ace or long, specific combinations that other players do not have.
 \end{definition}
@@ -227,14 +223,14 @@ We define $T_1 = [P_1,P_2]$  and $T_2 = [P_3,P_4]$. Therefore, $PT_1 = T_1$, $OT
 \begin{definition}[Symmetric game perspective]
 We will say, two players $P_i$, $P_j$ with  $i \neq j$ share a symmetric game perspective if $P_i = P_j$, $PT_i = PT_j$, $OT_i = OT_j$, in words: They have the same cards and the teams are identically from their point of view. 
 \end{definition}
-\begin{definition}[Total Exchange-Function]
+\begin{definition}[Total-Exchange-Function]
 We assume we have given $\alpha$, $\beta$, X. A function $\pi: [0,1]^{12} \to [0,1]^4, (\alpha, \beta, X) \mapsto (X’)$ will be called an Exchange-function to B.1  if it applies to the following rules:
 \paragraph{Randomness and Average}
 $\alpha$, $\beta$, X are fixed. Then there is $\Delta X \subset [0,1]^4$ with $X’ \in \Delta X$. We will write $\pi^* (\alpha, \beta, X) = X^* \in \Delta X$ for the average of $\pi(\alpha, \beta, X)$. $\pi^*$ is a well-defined function, while $\pi$ allows random values around $\pi^*$.
 \paragraph{Continuous and monotony of X}
 $\alpha$, $\beta$ and X are fixed. If we change X in only one value that $X_i$ becomes $\widehat{X_i}$, it applies to the following rules:
 \begin{axioms}[(C1)]
-\item $\forall \epsilon > 0, \exists \delta > 0$ with $| X_i - \widehat{X_i}| < \delta$ \\$\Rightarrow | \pi^*(X_i) - \pi^*(\widehat{X_i}) | < \epsilon $
+\item $\forall \epsilon > 0, \exists \delta > 0$ with $| X_i - \widehat{X_i}| < \delta$ \\$\Rightarrow | \pi^*(X_i) - \pi^*(\widehat{X_i}) | < \varepsilon $
 \item $\widehat{X_i} \leq X_i \Rightarrow \pi^*(\widehat{X_i}) \leq \pi(X_i)$
 \end{axioms}
 
@@ -242,9 +238,9 @@ $\alpha$, $\beta$ and X are fixed. If we change X in only one value that $X_i$ b
 If two players $P_i$, $P_j$ have a symmetric game perspective, $\pi^*(X_i) = \pi^*(X_j)$
 \end{definition}
 
-Based on our approximations of this subgame, we can now construct an Exchange Function. We can split this task into a pass function and a receive function which respectively describe how a player gives away and receives cards.
+Based on our approximations of this subgame, we can now construct an Exchange-Function. We can split this task into a Pass-Function and a Receive-Function which respectively describe how a player gives away and receives cards.
 
-If we first examine the pass function, we notice the following:\\
+If we first examine the Pass-Function, we notice the following:\\
 \begin{axioms}[(F1)]
 \item For Player $P_i$, only $\alpha$, $\beta_i$ and $X_i$ are relevant.
 \item Player $P_i$ does not differ between Opponents. 
@@ -252,10 +248,9 @@ If we first examine the pass function, we notice the following:\\
 \item In fact, he only needs to know his strategy, who he selects cards for and if known, his partner’s strategy. 
 \end{axioms}
 
-We put these facts together in a Diagram (the numbers represent diffrent exchange functions and $P_P$ - is a Player passing; $P_R$ - is a Player receiving):
+We put these facts together in a Diagram (the numbers represent diffrent Exchange-Functions and $P_P$ - is a Player passing; $P_R$ - is a Player receiving):
 
 \begin{table}[h]
-	\caption{}
 \label{tab:my-table}
 \resizebox{0.5\textwidth}{!}{%
 \begin{tabular}{l|l|ll|l|ll|}
@@ -284,50 +279,50 @@ This information motivates the following two definitions of the pass and receive
 \begin{definition}[Pass-Function]
 A function $\xi_{ji} : [0,1]^5 \to [-1,1], (\alpha, \beta_i) \to \hat{\xi}_{ji}$ will be called a pass function, if it describes what $P_i$ gives to $P_j$ according to certain rules:
 \paragraph{Randomness and Average}
-$\alpha$, $\beta_i$ are fixed. Then there is $\Delta  \hat{\xi_{ji}} \subset [-1,1]$ with  $\hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$. We will write $\{xi_{ji}\}^* (\alpha, \beta_i) =  \hat{\xi_{ji}} \in \Delta  \hat{\xi_{ji}}$ for the average of $\xi(\alpha, \beta_i)$. $\xi_{ji}^*$ is a well-defined function, while $\xi$ allows random values around $\xi^*$.
+$\alpha$, $\beta_i$ are fixed. Then there is $\Delta  \hat{\xi}_{ji} \subset [-1,1]$ with  $\hat{\xi}_{ji} \in \Delta  \hat{\xi}_{ji}$. We will write $\langle\xi_{ji}\rangle^* (\alpha, \beta_i) =  \hat{\xi}_{ji} \in \Delta  \hat{\xi}_{ji}$ for the average of $\xi(\alpha, \beta_i)$. $\xi_{ji}^*$ is a well-defined function, while $\xi$ allows random values around $\xi^*$.
 \paragraph{Symmetric outcome}
-If two players $P_i$, $P_j$ have a symmetric game perspective towards each other,  $\hat{\xi_{ji}}^* =  \hat{\xi_{ji}}^*$
+If two players $P_i$, $P_j$ have a symmetric game perspective towards each other,  $\hat{\xi}_{ji}^* =  \hat{\xi}_{ij}^*$
 \paragraph{Normative aspects}
-$\sum_{j = 1}^4 \hat{\xi_{ji}} = 1$
+$\sum_{j = 1}^4 \hat{\xi}_{ji} = 1$
 \paragraph{Realistic passing}
-$\hat{\xi_{ii}} >>  \hat{\xi_{ji}}$ with $ i \neq j $
+$\hat{\xi}_{ii} >>  \hat{\xi}_{ji}$ with $ i \neq j $
 \end{definition}
 \begin{definition}[Receive-Function]
-A function $\eta_{ji}: [0,1] \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi_{ji}}) \mapsto \hat{\eta_{ji}}$ will be
+A function $\eta_{ji}: [0,1] \times [-1,1] \to [-1,1], (\beta_i,  \hat{\xi}_{ji}) \mapsto \hat{\eta_{ji}}$ will be
 called a “Receive-Function”, if it describes how $P_j$ receives cards from $P_i$ according to certain rules:
 \paragraph{Randomness and Average}
-$\beta_i$, $\hat{\xi_{ji}}$ are fixed. Then there is $\Delta  \hat{\eta_{ji}} \subset [-1,1]$ with  $\hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$. We will write $\{\eta_{ji}\}^* (\beta_i, \hat{\xi_{ji}}) =  \hat{\eta_{ji}} \in \Delta  \hat{\eta_{ji}}$ for the average of $\eta(\beta_i, \hat{\xi_{ji}})$. $\eta_{ji}^*$ is a well-defined function, while $\eta$ allows random values around $\eta^*$.
+$\beta_i$, $\hat{\xi}_{ji}$ are fixed. Then there is $\Delta  \hat{\eta}_{ji} \subset [-1,1]$ with  $\hat{\eta}_{ji} \in \Delta  \hat{\eta}_{ji}$. We will write $\langle\eta_{ji}\rangle^* (\beta_i, \hat{\xi}_{ji}) =  \hat{\eta}_{ji} \in \Delta  \hat{\eta}_{ji}$ for the average of $\eta(\beta_i, \hat{\xi}_{ji})$. $\eta_{ji}^*$ is a well-defined function, while $\eta$ allows random values around $\eta^*$.
 \paragraph{Symmetric outcome}
-If two players $P_i$, $P_j$ have a symmetric game perspective towards each other:  $\hat{\xi_{ji}}^* =  \hat{\xi_{ij}}^*$
+If two players $P_i$, $P_j$ have a symmetric game perspective towards each other:  $\hat{\xi}_{ji}^* =  \hat{\xi}_{ij}^*$
 \paragraph{Self passing}
-$\eta_{ii}(\hat{\xi_{ii}}) = \hat{\xi_{ii}} $
+$\eta_{ii}(\hat{\xi}_{ii}) = \hat{\xi}_{ii} $
 \end{definition}
 \begin{definition}[Exchange-Function]
 A function $\lambda_{ji}: [0,1]^5 \to [-1,1], \lambda_{ji} = \eta_{ji} \circ \xi_{ji}$ with $\eta_{ji}$ a Receive-Function and $\xi_{ji}$ a Pass-Function with existing $\alpha$, $\beta_i$.
 \end{definition}
 \begin{remark}[Construction]
-We will now construct a Total Exchange Function based on an Exchange Function $\lambda_{ji}$. We will define $\Lambda = (\lambda_{ji})$ as a quadratic matrix. 
+We will now construct a Total-Exchange-Function based on an Exchange Function $\lambda_{ji}$. We will define $\Lambda = (\lambda_{ji})$ as a quadratic matrix. 
 The Total Exchange-Function will be $\Lambda: X \mapsto \Lambda X = X’$
 We now have to prove that this construction fits the definition.
 \begin{axioms}[(1)]
 \item Randomness and Average: This is induced from the combination of $\xi_{ji}$ and $\eta_{ji}$ in every argument. Therefore we can find an $\Delta \Lambda$ and $\Lambda^* $ which lead to $\Delta X $ and 
 $X^*$
 \item $\Lambda^*$ is a linear function, therefore continuous and monotone
-\item Symmetric outcome is induced from the combination of $\xi_{ji}$ and $\eta_{ji}$ in every argument as in 1
+\item Symmetric outcome is induced from the combination of $\xi_{ji}$ and $\eta_{ji}$ in every argument as in (1)
 \end{axioms}
 We have now created a matrix $\Lambda$ which describes the Exchange Stage. To complete the definitions, we will introduce $ \Pi : [0,1]^8 \to M(4 \times 4, \mathbb{R}), (\alpha, \beta) \mapsto \Lambda $
 \end{remark}
 
 \subsection{Subgame B.2}
-We shall now explore the active game, i.e. the laying and trumping of cards. We will first define a few new terms and three basic functions, including a double win probability function as well as a tichu announcement and tichu win probability function. We will then simulate the theory of an entire game consisting of multiple rounds and establish the different possible cases that can occur throughout a round.
+We shall now explore the active game, i.e. the laying and trumping of cards. We will first define a few new terms and three basic functions, including a double win probability function as well as a tichu announcement and Tichu win probability function. We will then simulate the theory of an entire game consisting of multiple rounds and establish the different possible cases that can occur throughout a round.
 
-We further assume players are completely rational and do not harm their own chances. Concretely, we presuppose that no counter-tichu will be called on a teammate’s tichu announcement. At this stage we can therefore treat two teammates as simply one element.
+We further assume players are completely rational and do not harm their own chances. Concretely, we presuppose that no counter-Tichu will be called on a teammate’s Tichu announcement. At this stage we can therefore treat two teammates as simply one element.
 
-As a reminder, teams are defined by combining the two player triples $P_1$, $P_2$ and $P_3$, $P_4$into one element $T_1 = \{P1,P2\}$ and $T_2 = \{P3,P4\}$.
+As a reminder, teams are defined by combining the two player triples $P_1$, $P_2$ and $P_3$, $P_4$into one element $T_1 = \{P_1,P_2\}$ and $T_2 = \{P_3,P_4\}$.
 
 We shall start by defining the relevant terms and functions needed for this discussion. Let S define the game score, given by $S = \{S_1, S_2\} \in \mathbb{Z}^2$ where $S_1$ and $S_2$ are the scores of $T_1$ and $T_2$ respectively.
 
-\begin{definition}[Double Win Function]
+\begin{definition}[Double-Win-Function]
 For each team we define a double win function $D_i(T_1, T_2)$.
 \begin{align*}
 D_i: ([0,1]^6)^2\times([0,1]^6)^2 \to [0,1]\; ,\;(T_1,T_2) \mapsto d_i
@@ -338,7 +333,7 @@ This function returns the probability of a double win of each team for a round. 
 Next, as scoring a Tichu requires both calling and winning a Tichu, we separate the Tichu scoring opportunity into a Tichu announcement and Tichu winning function. For each team we define a Tichu announcement function $C_i(T_i, S)$, where $T_i$ are the respective teams and S is the current score. 
 
 
-\begin{definition}[Tichu Announcment Function]
+\begin{definition}[Tichu-Announcment-Function]
 For each team we define a Tichu announcement function $C_i(T_i, S)$, where $T_i$ are the respective teams and S is the current score:
 \begin{align*}
 C_i: [0,1]^6 \times [0,1]^6 \times \Z^2 \to [0,1] (T_i,S) \mapsto c_i
@@ -364,15 +359,15 @@ We initially want to define a helper function, namely a \textbf{binary random va
 \end{definition}
 
 \subsubsection{Course of the game}
-At the beginning we determine, through two binary random variables $Z(c_1)$ and $Z(c_2)$, whether team 1 or 2 announces a Tichu $(Z(c_1) = 1$ or $Z(c_2) = 1)$. Similarly, a binary random variable $Z(d_1)$ determines whether team 1 makes a double victory $(Z(d_1) = 1)$ or not $(Z(d_1) = 0)$. If $Z(d_1) = 0$, another binary random variable $Z(d'_2)$ determines if team 2 makes a double victory $(Z(d'_2) = 1)$ or not $(Z(d'_2) = 0)$. $d'_2$ is given by $d'_2 =d_2\cdot\frac{1}{1-d_1}$ because this case is only determined in $1-d_1\cdot 100$ percent of the cases. If $Z(d_1) = 1$, then $Z(d_2)$ is automatically 0, since a double victory of one team strictly excludes a double victory of the other.
+At the beginning we determine, through two binary random variables $Z(c_1)$ and $Z(c_2)$, whether $T_1$ or $T_2$ announces a Tichu $(Z(c_1) = 1$ or $Z(c_2) = 1)$. Similarly, a binary random variable $Z(d_1)$ determines whether $T_1$ makes a double victory $(Z(d_1) = 1)$ or not $(Z(d_1) = 0)$. If $Z(d_1) = 0$, another binary random variable $Z(d'_2)$ determines if team 2 makes a double victory $(Z(d'_2) = 1)$ or not $(Z(d'_2) = 0)$. $d'_2$ is given by $d'_2 =d_2\cdot\frac{1}{1-d_1}$ because this case is only determined in $1-d_1\cdot 100\%$of the cases. If $Z(d_1) = 1$, then $Z(d_2)$ is automatically 0, since a double victory of one team strictly excludes a double victory of the other.
 
 Here we make the first differentiation between cases depending on whether a double win is scored or not. This is because a double win immediately awards +200 points to the scoring team regardless of the points distribution during the round. If a double win is not achieved by either team the points distribution must be calculated.
 
-In the case $Z(d_1) = 1 \lor Z(d_2) = 1$, i.e. a double victory has been achieved, the score of team $T_i$ for which $Z(d_i) = 1$ applies will be increased by 200 points $(S_i += 200)$. Furthermore, if $Z(c_i) = 1$, Team $T_i$ has won its announced Tichu and therefore gets another 100 points $(S_i += 100)$. However, if the opposing team $T_j (i != j)$ has announced Tichu $(Z(c_j) = 1)$, this team loses 100 points $(S_j -= 100)$ as the calling player was unable to exit the round first.
+In the case $Z(d_1) = 1\; \lor\; Z(d_2) = 1$, i.e. a double victory has been achieved, the score of team $T_i$ for which $Z(d_i) = 1$ applies will be increased by 200 points $(S_i = S_i + 200)$. Furthermore, if $Z(c_i) = 1$, Team $T_i$ has won its announced Tichu and therefore gets another 100 points $(S_i = S_i + 100)$. However, if the opposing team $T_j (i \neq j)$ has announced Tichu $(Z(c_j) = 1)$, this team loses 100 points $(S_j = S_j - 100)$ as the calling player was unable to exit the round first.
 
-The alternative case, $Z(d_1) = 0 \land Z(d_2) = 0$, requires more theory as we must determine how many points each team scores during a round. We assume that the announcement of Tichus has no effect on the distribution of points, although the opposing team may, for example, prioritise exiting the round first over scoring maximum points through won card values. We argue any such shift by a Tichu announcement in any specific round would generally be balanced out over all rounds of the game. Thus, we must only determine the points scored through the distribution of won cards.
+The alternative case, $Z(d_1) = 0\; \land\; Z(d_2) = 0$, requires more theory as we must determine how many points each team scores during a round. We assume that the announcement of Tichus has no effect on the distribution of points, although the opposing team may, for example, prioritise exiting the round first over scoring maximum points through won card values. We argue any such shift by a Tichu announcement in any specific round would generally be balanced out over all rounds of the game. Thus, we must only determine the points scored through the distribution of won cards.
 
-For this calculation, we introduce two normally distributed random variables $n_1$ and $n_2$ whose mean value and standard deviation are to be determined in the realisation section of this essay. The purpose of these random variables is to simulate the fluctuations in scores obtained every round by both teams throughout the game. This will be explained further in the next section. The scored points for a round are to be calculated as follows: Let $X_{tot} = \sum_{i=1}^{4} X_i$ be the total sum of card values in this round, then
+For this calculation, we introduce two normally distributed random variables $n_1,n_2$ and $n_3,n_4$ whose mean value and standard deviation are to be determined in the realisation section of this essay. The purpose of these random variables is to simulate the fluctuations in scores obtained every round by both teams throughout the game. This will be explained further in the next section. The scored points for a round are to be calculated as follows: Let $X_{tot} = \sum_{i=1}^{4} X_i$ be the total sum of card values in this round, then
 \begin{align*}
     &\Delta S_1 = (X_1\cdot n_1 + X_2\cdot n_2)/ X_{tot} \cdot 150 - 25\\
     &\Delta S_2 = (X_3\cdot n_3 + X_4\cdot n_4)/ X_{tot} \cdot 150 - 25\\
@@ -382,28 +377,27 @@ represent the change in score for each team for a round, where $\Delta S_1$ and 
 Compounded onto the above theory are the following three cases as they relate to possible Tichu scenarios, namely: none, one or both teams announcing a Tichu:
 
 \begin{axioms}[(C1)]
-\item   If no team announces a Tichu $(Z(c_1) = 0 \land Z(c_2) = 0)$, then the point changes are simply added to the score.
+\item   If no team announces a Tichu $(Z(c_1) = 0\;\land\; Z(c_2) = 0)$, then the point changes are simply added to the score.
 \begin{gather*}
-S_1 += \Delta S_1 \qquad S_2 += \Delta S_2
+S_1 = S_1 + \Delta S_1 \qquad S_2 = S_2 + \Delta S_2
 \end{gather*}
-\item If one of the teams announces a Tichu $(Z(c_1) = 1$ XOR $Z(c_2) = 1)$ then a binary random variable $Z(w_i)$ determines whether this team makes the announced tichu. Here $w_i$ is, as defined earlier, the team's win probability. If $Z(w_i) = 1$ then the change of points is
+\item If one of the teams announces a Tichu $(Z(c_1) = 1$ XOR $Z(c_2) = 1)$ then a binary random variable $Z(w_i)$ determines whether this team makes the announced Tichu. Here $w_i$ is, as defined earlier, the team's win probability. If $Z(w_i) = 1$ then the change of points is
 \begin{gather*}
-S_i += \Delta S_i + 100 \qquad S_j += \Delta S_j
+S_i = S_i + \Delta S_i + 100 \qquad S_j = S_j + \Delta S_j
 \end{gather*}
-Where $S_j$ represents the score of the opposing team. If $Z(w_i) = 0$ for the announced Tichu, then 100 points are subtracted from $S_i$. Other than that, the scores are added up as in case 1.
-\item Both teams have announced a Tichu $(Z(c_1) = 1 \land Z(c_2) = 1)$. Since we assume every player to be rational, we assume that one of the two Tichus is definitely made. Now the probability that team 1 will make the Tichu is $w'_1 = \frac{w_1}{w_1+w_2}$, while $w'_2 =\frac{w_2}{w_1+w_2} = 1- w'_1$ represents the probability for team 2. Again, with the help of a binary random variable $Z(w'_1)$, we determine whether team 1 $(Z(w'_1) = 1)$ or team 2 $(Z(w'_1) = 0)$ has made the Tichu. If $T_i$ makes the Tichu and $T_j$ is the opponent team, the score is:
+Where $S_j$ represents the score of the opposing team. If $Z(w_i) = 0$ for the announced Tichu, then 100 points are subtracted from $S_i$. Other than that, the scores are added up as in Case 1 (C1).
+\item Both teams have announced a Tichu $(Z(c_1) = 1\;\land\; Z(c_2) = 1)$. Since we assume every player to be rational, we assume that one of the two Tichus is definitely made. Now the probability that team $T_1$ will make the Tichu is $w'_1 = \frac{w_1}{w_1+w_2}$, while $w'_2 =\frac{w_2}{w_1+w_2} = 1- w'_1$ represents the probability for team $T_2$. Again, with the help of a binary random variable $Z(w'_1)$, we determine whether team $T_1$ $(Z(w'_1) = 1)$ or team $T_2$ $(Z(w'_1) = 0)$ has made the Tichu. If $T_i$ makes the Tichu and $T_j$ is the opponent team, the score is:
 
 \begin{gather*}
-S_i += \Delta S_i + 100 \qquad S_j += \Delta S_j - 100
+S_i = S_i + \Delta S_i + 100 \qquad S_j = S_j + \Delta S_j - 100
 \end{gather*}
-This completes a round of the game. Now the subgames $B.0,B.1,B.2$ are repeated until $S_1 > 1000$ or $S_2 > 1000$ applies. In the following flowchart the process of $B.2$ is visualized once again:
+This completes a round of the game. Now the subgames B.0,B.1,B.2 are repeated until $S_1 > 1000$ or $S_2 > 1000$ applies.
 \end{axioms}
-(Schaubild)
 \section{Realisation}
-We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $\Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will initially treat $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. start with modeling a function for B.0.
+We shall now concretely define some of the theoretical aspects of our model: we want to ‘realise’ our model. For this we establish multiple distributions of card values and determine some distribution curves for the $\Delta  X$ in card value the exchange stage results in for each player. A dataset of more than 13,000 player statistics collected from onlinetichu.com using a web scrapper will help us gain statistical insight into our normal game and exchange stage mechanisms. Meanwhile, a quantitive survey we distributed will help us gain insight into risk and behaviour we are trying to simulate in our models and how sensitive our models should be to different kinds of risk. We will initially treat $\alpha$ and $\beta$ as constant, but then vary $\alpha$ in the subgame B.1 section and discuss ways to vary beta as well at the end of this section. Start with modeling a function for B.0.
 
 \subsection{Subgame B.0}
-In our basic approach we assume an average card hand to have a value of $X_i = 0.5$, as the data from tichuonline.com shows the win rate almost normally distributed around 0.5, with an assumed symmetric normal distribution. $X_i = 0$ represents no chance of winning the game and $X_i = 1$ is equal to a guaranteed win. The question that arises is: to what percentage do players receive good enough cards to win a Tichu. We are now left with an arbitrary choice, which card set values correspond to which card combinations. Given that a Great Tichu is only won in 2.21$\%$ of all games, we can set $P(X_i \geq 0.9) = 0.0221$: the share of winning a great Tichu in reference to all games. This gives us a sigma of 0.199. Similarly, a Tichu is only won in 8.53$\%$ of all games, equalling $X_i\geq 0.78$. This results in the plot below that shows the probability a player has to receive a card set with a certain value.
+In our basic approach we assume an average card hand to have a value of $X_i = 0.5$, as the data from tichuonline.com shows the win rate almost normally distributed around 50$\%$, with an assumed symmetric normal distribution. $X_i = 0$ represents no chance of winning the game and $X_i = 1$ is equal to a guaranteed win. The question that arises is: to what percentage do players receive good enough cards to win a Tichu. We are now left with an arbitrary choice, which card set values correspond to which card combinations. Given that a Great Tichu is only won in 2.21$\%$ of all games, we can set $P(X_i \geq 0.9) = 0.0221$: the share of winning a great Tichu in reference to all games. This gives us a $\sigma$ of 0.199. Similarly, a Tichu is only won in 8.53$\%$ of all games, equalling P($X_i\geq 0.78$) = 0.0853. This results in the plot below that shows the probability a player has to receive a card set with a certain value. Additional information about our approximations of probabilities can be found at github.
 
 \begin{figure}[h]
     \centering
@@ -415,33 +409,31 @@ In our basic approach we assume an average card hand to have a value of $X_i = 0
     \caption{cards distribution cumultative}
     \label{fig:3}
 \end{figure}
-We will always use this approximation and will not discuss it furthermore.
-
 \subsection{Subgame B.1}
 The next game theoretical mechanism we want to realise is the exchange stage mechanism. We want to distinguish our models between passing to an opponent and passing to a partner and look at each of these types of trade individually. 
 
-We start with the simplest model, namely passing exactly one card to any other player from their set of 14 cards. If he passes any random card, the average value of that card is $\frac{X_i}{14}$. This simple approximation is obviously not well-founded but we will expand on it shortly. There are two scenarios when passing a card to an opponent, one in which the player know the opponents behaviour and one in which there is no transparency of information. However, we treat the differences in the cases towards opponents as marginal and don’t consider these because a player will always want the worst result for an opponent, no matter the transparency of information. Therefore, there is only one possible exchange function towards an opponent. We call this function $\xi_O$ and assume it is normal distributed. We set $\mu = 0$, as normally giving away one card does not significantly change the value of your hand. According to this initial basic approach we set $2\sigma = \frac{1}{14}$, as it is the value of an average card and exchanging cards always includes the small possibility of building a new combination or bomb. The two graphs below describe this model.
+We start with the simplest model, namely passing exactly one card to any other player from their set of 14 cards. If he passes any random card, the average value of that card is $\frac{X_i}{14}$. This simple approximation is obviously not well-founded but we will expand on it shortly. There are two scenarios when passing a card to an opponent, one in which the player knows the opponents behaviour and one in which there is no transparency of information. However, we treat the differences in the cases towards opponents as marginal and don’t consider these because a player will always want the worst result for an opponent, no matter the transparency of information. Therefore, there is only one possible exchange function towards an opponent. We call this function $\xi_O$ and assume it is normal distributed. We set $\mu = 0$, as normally giving away one card does not significantly change the value of your hand. According to this initial basic approach we set $2\sigma = \frac{1}{14}$, as it is the value of an average card and exchanging cards always includes the small possibility of building a new combination or bomb. The two followingv grapgs describe this model (\ref{fig:4},\ref{fig:5}).
  \\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_ot}
-    \caption{pass function for oppoenent player}
+    \caption{Pass-Function $\xi_O$}
     \label{fig:4}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_ot_cumultative}
-    \caption{pass function for the opponent player cumultative}
+    \caption{Pass-Function $\xi_O$ cumultative}
     \label{fig:5}
 \end{figure}
 \\
 The pass function towards a partner is more difficult but also more interesting to define. As well as aiming for an optimal result, partners can consider each others player behaviour and act on it if there exists transparency of information.
 
-Again we assume the basic model from above, where the value of the average passed card is $X_i/14$ and normally distributed over a wide range. We therefore define $\xi_P$ as the Pass Function towards a Partner with $\mu_P =\frac{1}{14}$ and $\sigma_P = \frac{1}{14}$.
+Again we assume the basic model from above, where the value of the average passed card is $\frac{X_i}{14}$ and normally distributed over a wide range. We therefore define $\xi_P$ as the Pass Function towards a Partner with $\mu_P =\frac{1}{14}$ and $\sigma_P = \frac{1}{14}$.
 
 
 In addition to this simple model, partners have the possibility of taking advantage of each others known player types. If a player is defensive and requires above average cards to announce a Tichu he will more likely pass cards with higher value to his teammate. Correspondingly, if a player knows his partner is defensive, he can pass a lower valued card, while if a player knows his partner is aggressive, he would consider passing a high valued card. The following table shows what aggressive and defensive players pass with different amounts of information on their partner. \\
 \begin{table}[h]
 \centering
-\caption{} 
+\caption*{$P_R$ - Player receiving, $P_P$ - Player passing} 
 \label{tab:my-table}
 \resizebox{0.45\textwidth}{!}{%
 \begin{tabular}{|l|ll|l|ll|}
@@ -458,22 +450,22 @@ We can construct a formula using this table:
 z_{ji} = (1 - 2\cdot\alpha_i) + \beta_i \cdot (2\cdot\alpha_j - 1)
 \end{equation*}
 
-We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This will give us one function for $\xi_P$:
+We will set $\mu = \mu_P + \frac{\sigma_P}{2} \cdot z_{ji}(\alpha, \beta)$. This will give us one function for $\xi_P$ (\ref{fig:6},\ref{fig:7}).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p}
-    \caption{pass function for your team partner}
+    \caption{Pass-Function $\xi_P$}
     \label{fig:6}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/pass_function_p_cumultative}
-    \caption{pass function for your teampartner cumultative}
+    \caption{Pass-Function $\xi_P$ cumultative}
     \label{fig:7}
 \end{figure}
 
 A card which has a negative value to player $P_i$ can have a positive value to $P_j$ as this card could help build a new or stronger combination or bomb. Therefore, the card value can change during the exchange from $\hat{\xi}$ to $\hat{\eta}$. In this approach, we set $\eta_{ij} = id$, as the effect is very small in over a large number of games. 
 
-We now have constructed Pass-functions $\xi_ji$ and a Receive Function $\eta_{ji} = 1$. We can use these functions to analyse the outcome of the Exchange-Stage $\lambda_{ji} = \xi_{ji}$. We can write $\Lambda$ using the average:
+We now have constructed Pass-functions $\xi_{ji}$ and a Receive Function $\eta_{ji} = 1$. We can use these functions to analyse the outcome of the Exchange-Stage $\lambda_{ji} = \xi_{ji}$. We can write $\Lambda$ using the average:
 
 \begin{gather*}
 \Lambda = \begin{pmatrix} 
@@ -484,27 +476,27 @@ We now have constructed Pass-functions $\xi_ji$ and a Receive Function $\eta_{ji
 \end{pmatrix}
 \end{gather*}
 
-This can be further generalised. Now we no longer bet $\eta$ of the identity but let the card value and getting change. For the definition of the $\eta$ function we have made several basic assumptions. We assume that it also depends on the knowledge level of the players. For the $\eta$ function, we define a help function that represents a probability density. Basically, the $\eta$ function changes the value of the cards only slightly after they have been dealt, but there is a small probability that by getting the cards, the card value will improve. So here is the definition:
+This can be further generalised. We no longer set $\eta$ to the identity and let this function also change the card value X after $\xi$ was executed. For the definition of the $\eta$ function we have made several basic assumptions. We assume that it also depends on the knowledge level of the players. For the $\eta$ function, we define a helpper function that represents a probability density. Basically, the $\eta$ function changes the value of the cards only slightly after they have been dealt, but there is a small probability that by getting the cards, the card value will improve. So here is the definition:
 \begin{definition}[probability density]
-The probability density $\rho$ is defined by a function which, normalized over the integral from -0.25 to $\infty$ 1, is called $\hat{\rho}$:
+The probability density $\rho$ is defined by a function which, normalized:
 $$
-\rho (t) := \left(\int\limits_{-\infty}^{\infty}\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}\right)^{-1}\cdot\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
+\rho (t) := \left(\int\limits_{-\infty}^{\infty}\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}\mathrm{dt}\right)^{-1}\cdot\;\abs{\frac{\sin(4\cdot\pi\cdot t)}{t}}
 $$
 $$
-\widehat{\rho} = \int\limits_{-0.25}^{x}\rho (t)\mathrm{d} t\widehat{=}\mathrm{propability}
+\widehat{\rho} = \int\limits_{-0.25}^{x}\rho (t)\mathrm{d} t\;\widehat{=}\;\mathrm{propability}
 $$
 \end{definition}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_e}
-    \caption{$\rho(t)$ - Probabilitydensity}
+    \caption{$\rho(t)$ - probability density}
     \label{fig:8}
     \centering
     \includegraphics[width=0.5\textwidth]{Bilder/b1_f}
-    \caption{$\widehat{\rho}(t)$ - Probability}
+    \caption{$\widehat{\rho}(t)$ - probability}
     \label{fig:9}
 \end{figure}
-This probability value $\hat{\rho}(t)$ is then randomly generated for a $t\in [-0.25,0.7]$. This allows the $\eta$ function to be defined:
+This probability value $\hat{\rho}(t)$ is then randomly generated for a $t\in [-0.25,0.7]$. This allows the $\eta$-function to be defined as (\ref{fig:8},\ref{fig:9})
 \begin{equation*}
 \eta_{ij}(\xi_{ij}(X),\beta) = \xi_{ij}(X)\cdot(1+\mathrm{sgn}(X)\cdot\beta\cdot\langle\widehat{\rho}\rangle)
 \end{equation*}
@@ -522,20 +514,19 @@ $
 $}
 
 \subsection{Subgame B.2}
-The last game mechanism we need to realise are the Tichu announcement and win functions that are separate from the functions that determine the value of and if they are theoretically good enough to make a Tichu. We factor in player behaviour and different types of risk that we have evaluated through a survey we distributed. After discussing and  implement the results of  this survey we further evaluate a graph from the earlier dataset showing Tichu announcement to tichu win probabilities. 
+The last game mechanism we need to realise are the Tichu announcement and win functions that are separated from the functions that determine the value of and if they are theoretically good enough to make a Tichu. We factor in player behaviour and different types of risk that we have evaluated through a survey we distributed. After discussing and  implement the results of  this survey we further evaluate a graph from the earlier dataset showing Tichu announcement to tichu win probabilities. 
 
-To approximate this problem as best as possible we have decided to look at the probability of announcing and winning a Tichu, rather than depending on and computing individual card sets. This is because we assume the average probabilities of winning a Tichu model the real game more realistically, over the course of many simulations, than assigning imaginary probabilities to each card. Following the assumptions made in earlier remarks in this essay we deny the possibility that 3 people announce a tichu and demand that one tichu must be won if 2 are announced. We can then assume that a team announces a tichu and any single player. We calculate the probabilities for announcing a Tichu through 2 factors:
+To approximate this problem as best as possible we have decided to look at the probability of announcing and winning a Tichu, rather than depending on and computing individual card sets. This is because we assume the average probabilities of winning a Tichu model the real game more realistically, over the course of many simulations, than assigning imaginary probabilities to each card. Following the assumptions made in earlier remarks in this essay we deny the possibility that 3 people announce a tichu and demand that one tichu must be won if 2 are announced. We can then assume that a team announces a Tichu and any single player. We calculate the probabilities for announcing a Tichu through 2 factors:
 \begin{enumerate}
-\item Basic aggressiveness of the players (team$_{\alpha_1}$,team$_{\alpha_2}$)
+\item Basic aggressiveness of the players ($T_{1_{\alpha_1}}$,$T_{2_{\alpha_2}}$)
 \item  Additional risk tolerance depending on the score
 \end{enumerate}
 The basic aggressiveness of the players is converted to a basic aggressiveness of the team. This basic aggressiveness is derived from the player behaviour models. However, both aggressive and defensive players can take additional risk motivated through the current score of both teams. To assess the significance of these risks we conducted a survey, which helped us to adjust $\gamma$, which is described later.
 
 In addition, there are other probabilities that must be known for the simulation. For example, the probability that a team will win the double or not. The average probability for the double victory is calculated from the average of all players: so total number of doubles divided by the total number of rounds. Also the probability that a player will win a Tichu must of course depend on the announcement frequency. This is what is described below.
-So a graph of the tichu rate in relation to tichu announcements / rounds plots.
-The average probability for the double victory is calculated from the average of all players. So total number of doubles / total number of rounds.
+The average probability for the double victory is calculated from the average of all players. So total number of double / total number of rounds.
 
-From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section.
+From this data we have set up a function S, which assigns a probability to a player depending on his aggressiveness, with which he wins Tichus. The simulation of all these functions and the entire model is topic  of the next section ([Simulation]).
 
 \subsection{Adjusting $\beta$}
 \begin{figure}[h!]
@@ -544,14 +535,14 @@ From this data we have set up a function S, which assigns a probability to a pla
     \caption{Adjusting $k$ for $\beta^{(r)}_{P}$}
     \label{fig:14}
 \end{figure}
-Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated beta as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in\{0,1\}$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
+Before moving on to the next section, we introduce ways to vary $\beta$: the level of transparency of information within the game. Until now we have treated $\beta$ as binary, however in the real world players can easily learn about the aggressiveness levels of other players throughout the game by paying attention to their Tichu announcement behaviours and the subsequent cards they play. Consequently, we decided to model the transparency of information a player has to all other players logistically. This follows from the fact that players have little to no information at the beginning of a game but may rapidly gain a lot of it if they pay attention to even a player’s first Tichu announcement and the subsequent card combinations. On the other hand, other players might not be good enough to rapidly learn about their opponents aggressiveness and the transparency of information may develop slower. Additionally, players who have gained a lot of information on other players may find it hard to completely fine tune an impression of another player, represented by the falling slope of the logistics curve further into the game. $\beta$ is therefore a variable that must be adjusted after every round, we notate the transparency of information as $\beta^{(0)}_{P}\in[0,1]$ for each Player $P\in\{1,2,3,4\}$. After r rounds played, we adjust $\beta$:
 
 \begin{align*}
 \beta^{(r+1)}_{P} = \frac{\beta^{(r)}_{P}
 }{\beta^{(r)}_{P} + (1 - \beta^{(r)}_{P})} \cdot e^{-k}
 \end{align*}
 
-where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster. 
+where $k$ is in $\mathbb{R}_{>0}$. If k is low players learn slowly, meanwhile if $k$ is high players learn faster (\ref{fig:14}).
 
 For the following simulations we will fix $k$ to a value of $k = 0.2$. We note that a game of Tichu is usually less than 20 rounds long and we feel like attaining $80\%$ transparency of information is not realistic after 20 rounds. We therefore feel the most realistic value for $k$ in this model is $k = 0.2$. With this $\beta$ function fixed and multiple other functions determined in this section our realised model is now ready to be simulated.
 \subsection{Adjusting $\gamma$}
@@ -567,55 +558,55 @@ Respondents were asked about risk sensitiveness in three areas:
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_200steps}
-    \caption{$f_1(x)=0.00591631\cdot x+3.65194805$}
+    \caption{$f_1(x)=0.00591631x+3.65194805$}
     \label{fig:10}
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_100steps}
-    \caption{$f_2(x)=-0.00354308390\cdot x+6.70748299$}
+    \caption{$f_2(x)=-0.00354308390x+6.70748299$}
     \label{fig:11}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/risk_level_diffrence_nonlinear}
-    \caption{$f_3(x)=-3.87806638\cdot 10^{-11}\cdot x^4+7.31721982\cdot 10^{-8}\cdot x^3+ -4.95400433\cdot 10^{-5} \cdot x^2+ 1.36745860 \cdot 10^{-2} \cdot x+3.57993197$}
+    \caption{$f_3(x)=-3.87806638\cdot 10^{-11}x^4+7.31721982\cdot 10^{-8}x^3+ -4.95400433\cdot 10^{-5}x^2+ 1.36745860 \cdot 10^{-2}x+3.57993197$}
     \label{fig:12}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/calling_winning_graph}
-    \caption{$f4(x)=5.21140286\cdot 10^{-10}\cdot x^5+  7.51385614\cdot 10^{-07}\cdot x^4+  1.69471455\cdot 10^{-06}\cdot x^3+ -1.64932045\cdot 10^{-02}\cdot x^2+2.48230296\cdot 10^{-01}\cdot x + 67.7185027$}
+    \caption{$f_4(x)=5.21140286\cdot 10^{-10}x^5+  7.51385614\cdot 10^{-07}x^4+  1.69471455\cdot 10^{-06}x^3+ -1.64932045\cdot 10^{-02}x^2+2.48230296\cdot 10^{-01}x + 67.7185027$}
     \label{fig:13}
 \end{subfigure}
 \end{figure*}
 The scale here was the willingness to take risks from 1 to 10, whereby in category (1) and (2) 10 meant a lot of risk and 1 normal. For (3), 1 was normal risk and 10 was particularly low risk.
  As the survey revealed, Category (1) > Category (2) > Category (3) is in the ranking. The fluctuations in category (1) are 5 points.
  For category (2) 2.5 points and in (3) 0.5 points. These categories are also considered in the function.
-The survey revealed the data points:
+The survey revealed the data points: \\
 \begin{itemize}
-	\item \textbf{Cat. 1:} See Figure \ref{fig:10}.\\
+	\item \textbf{Cat. 1:} See Figure \ref{fig:10}.\\ \\
 			$X=[0,100,200,300,400,500,600,700,800,900]$\\
-			$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$
-	\item \textbf{Cat. 2:} See Figure \ref{fig:11}.\\
+			$Y=[\frac{602}{147},\frac{581}{147},\frac{672}{147},\frac{798}{147},\frac{854}{147},\frac{994}{147},\frac{1050}{147},\frac{1190}{147},\frac{1260}{147},\frac{1281}{147}]$ \\
+	\item \textbf{Cat. 2:} See Figure \ref{fig:11}.\\ \\
 			$X=[100,200,300,400,500,600,700,800]$\\
-			$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$
-	\item \textbf{Cat. 3:} See Figure \ref{fig:12}.\\
+			$Y=[\frac{980}{147},\frac{931}{147},\frac{777}{147},\frac{735}{147},\frac{700}{147},\frac{623}{147},\frac{616}{147},\frac{651}{147}]$ \\
+	\item \textbf{Cat. 3:} See Figure \ref{fig:12}.\\ \\
 $X=[100,200,300,400,500,600,700,800]$\\
-$Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$
+$Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{147},\frac{728}{147},\frac{644}{147},\frac{658}{147}]$ \\
 \end{itemize}
 
 This increase should now be offset against the basic aggressiveness.
 The following additional conditions are set:
-If in category 1 the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
-While category 1 can make a difference of up to 100$\%$, category 2 should have a maximum of 50$\%$. Again, linear.
-Category 3 should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
+If in Category (1) the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
+While Category (1) can make a difference of up to 100$\%$, Category (2) should have a maximum of 50$\%$. Again, linear.
+Category (3) should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
 
 \begin{lstlisting}
-def a(x):   #risk - difference
-    if x <= 0:
+   def a(x):   #risk - difference
+      if x <= 0:
         return 0
-return (f1(x)-f1(0))/(f1(1000)-f1(0))
+   return (f1(x)-f1(0))/(f1(1000)-f1(0))
             
 def b(x):   #risk - enemies points
     if x <= 200:
@@ -626,7 +617,8 @@ return 0.5*(f2(1000-x)-f2(800))
 def c(x):   #risk - team points
     if x < 100 or x > 800:
         return 0
-return 0.1*(f3(x)-f3(250))/(f3(250)-f3(800))
+return 0.1*(f3(x)-f3(250))
+	/(f3(250)-f3(800))
 
 k = 0.25    
 gamma[T1] = k*a(delta[1]-delta[0])
@@ -645,7 +637,7 @@ In order to simulate a Tichu according to our approximations, we have designed a
 Our script is based on Python 3.7.1. and includes NumPy, SciPy and MatPlotLib as additional packages. 
 
 \paragraph{Simulation}
-This is the core of our program. We simulate a game with given start-values for alpha, beta, gamma and delta. In Addition, we set maxRounds and maxScore (40, 1000 by default). 
+This is the core of our program. We simulate a game with given start-values for $\alpha, \beta, \gamma$ and $\delta$. In Addition, we set maxRounds and maxScore (40, 1000 by default). 
 Due to the different approaches we made, we give different modes for each part of the simulation in a NumpyArray. The different parts of the Simulation are:
 \begin{enumerate}
 \item B.0 – How do we generate the card values e.g. normally, linearly or equally distributed
@@ -655,7 +647,7 @@ Due to the different approaches we made, we give different modes for each part o
 \item adj. $\beta$ – Will $\beta$ be adjusted after each round e.g. increase
 \item adj. $\gamma$ – How will the risk be adjusted e.g. according to surveys
 \end{enumerate}
-The used simulation modes are explained in our script on github-Link or trivial. 
+The used simulation modes are explained in our script on github-Link (\ref{github}).
 
 \paragraph{Data Structure}
 In order to save most of the data from a simulation, we created a class Solution which stores the data and a second class SimulationSet which can combine the data from many simulations. We also enabled saving and loading datasets and single simulations from files. Attention: We enabled pickle to load SolutionSet objects!  
@@ -664,7 +656,7 @@ In order to save most of the data from a simulation, we created a class Solution
 We created methods in the Solution-class to plot games and developments. To run and plot bigger simulations we used an external file which is also attached. 
 
 \paragraph{Balancing and Switching}
-Due to rounding errors in python, we observed that Team 2 wins more game than Team 1. 
+Due to rounding errors in python, we observed that Team 2 wins more games than Team 1. 
 To balance the game, we created a switching method, which switches the teams position every round. This leads to additional runtime but balances the game. 
 We also created a method in the Solution class to switch the teams in the simulation. This is necessary to reduce the runtime. 
 
@@ -679,7 +671,7 @@ First of all, we will have a look on the outcome of the Exchange Stage under dif
 \\
 We try to find the nash equilibrium in all three cases and set $\beta = 0$. The players will not know which strategies the other players follow. We will only look at case $\beta = 0$ for case 1, because the information on his partners strategy will only create a bigger difference but will result in the same tactics. 
 
-To determine the nash equilibrium, we will use the average values, including $\lambda_ji = 0$ for opponents. So we only look at the partner exchange with X = 0.5, $\mu = \frac{1}{14}$, $\sigma = \frac{1}{28}$.
+To determine the nash equilibrium, we will use the average values, including $\lambda_{ji} = 0$ for opponents. So we only look at the partner exchange with X = 0.5, $\mu = \frac{1}{14}$, $\sigma = \frac{1}{28}$.
 
 We will show the average card values with $\beta =0$. The actual payoffs can differ:
 \begin{table}[h]
@@ -735,7 +727,7 @@ Assuming, Player 1 is playing strategy A with a probability of p, we will find t
     \label{fig:15}
 \end{figure}
 
-Anologously we can find the nash equilibrium for the third case.
+Anologously we can find the nash equilibrium for the third case:
 
 3. Square Diffrence: \\
 \resizebox{0.5\textwidth}{!}{%
@@ -761,33 +753,28 @@ We have previously shown which strategy the other player should theoretically pl
 We now try to generalize it and use the functions we developed in the theoretical part of the work. The goal of the game simulation is to simulate the course of a game depending on parameters given by us and thus to determine the best possible combination of $\alpha$ for the team.
 
 \subsubsection{Subgame B.0/B.1}
-The basis for each round is the card value X for each individual player. This is simulated by a normal distribution and is changed by the functions $\xi$ and $\eta$ during the exchange phase. The new card value X' is then saved and transferred for the game B.2, since the risk susceptibility is calculated from it.
+The basis for each round is the card value X for each individual player. This is simulated by a normal distribution and is changed by the functions $\xi$ and $\eta$ during the Exchange Stage. The new card value X' is then saved and transferred for the game B.2, since the risk susceptibility is calculated from it.
 
-We start with an example of the exchange phase, in which we show how the simulation works. We have set the $\alpha$ values so that they add up to 1, i.e. $\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$. We have also set the initial $\beta$ value for all 4 players to 10$\%$, so $\beta_i=0.1$ and knowledge will logistically increase with the number of rounds. We have run a game with an average of 20 rounds. The following diagram shows the randomly generated value $X$ and how the functions $\xi$ and $\eta$ affect the card value:
+We start with an example of the exchange phase, in which we show how the simulation works. We have set the $\alpha$ values so that they add up to 1, i.e. $\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$. We have also set the initial $\beta$ value for all 4 players to 10$\%$, so $\beta_i=0.1$ and transparency will logistically increase with the number of rounds. We have run a game with an average of 20 rounds. The diagram shows the randomly generated value $X$ and how the functions $\xi$ and $\eta$ affect the card value  (\ref{fig:17}).
 
 \begin{figure*}[ht]
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/example_1}
-    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 1 game}
+    \caption{1 game}
     \label{fig:17}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=1\linewidth]{Bilder/example_2}
-    \caption{$\alpha_1=0.2,\alpha_2=0.8,\alpha_3=0.4,\alpha_4=0.6$, $\beta_i=0.1$ logistic - 6 games}
+    \caption{6 games}
     \label{fig:18}
 \end{subfigure}
 \end{figure*}
 
-If 6 games can be played with these values, the differences in the effects of $\alpha_i$ can be seen better with the individual players. One can see, that if you play more defensive, the $\xi$ function has a much stronger effect on your card value and your card value would be smaler, the opposite is happening if your strategy is aggressive.
+If 6 games can be played with these values, the differences in the effects of $\alpha_i$ can be seen better with the individual players. One can see, that if you play more defensive, the $\xi$ function has a much stronger effect on your card value and your card value would be smaler, the opposite is happening if your strategy is aggressive (\ref{fig:18}).
 
-In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game. In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
-93$\%$is the value, which should result from the added aggressions, in order to achieve maximum points with the Tichu. The number 93 is the cumulative probability of the two team partners. It is the digit of the maximum of the function $x\cdot f(x)$, where f(x) is the probability of winning a tichu. Thus it gives the place of the maximum of the score.
-At the edges the error of the theoretical model is of course bigger, because it is unrealistic that a player from the card distribution can get the tichu every round. 
-Basically, the probability of the Tichu victory is maximized if both players announce with a probability of 46.5$\%$ and thus hit the maximum of the win, but at the same time the good cards of both players are used in the best possible way.
-
-(Schaubilder)
+In the 6 histograms below we show how phase B.0/B.1 works. As an example, 3 extreme cases are shown: 1. 1 game with 1000 points was played, where player 1 and 3 have $\alpha = 1$ and player 2 and 4 have $\alpha=0$. The $\beta$ was set to 1, since ideally one assumes omniscience. In the 2nd case the same was simulated for 10 games only. Finally in the 3rd case we left all parameters the same as in the 2nd case, only now we let the $\beta$ increase logistically during the game.
 
 The 3 cases show the influence of $\alpha$ on the card value and also on the exchange behaviour. It is noticeable in the range 0.8-1.0 that the aggressive players 1.3 improve the card value after the exchange phase and players 2.4 tend to worsen the card value.
 
@@ -796,13 +783,13 @@ We have now exemplarily seen how the parameters influence the card value, but th
 \subsubsection{Subgame B.2}
 Of course the ideal situation would be to simulate every possible combination of our parameters a significant number of times to then get the best results. Due to our limited computation power we had to restrict our simulations. It was decided to simulate 100 games for each set of parameters. For the parameters we chose to fix $\alpha_3$ and $\alpha_4$ to $0.5$. And vary $\alpha_1$ and $\alpha_2$ from 0 to 1 in 0.01 increments. This means that team two plays with average aggressivity and team one’s aggressivity varies from totally passive to extremely aggressive. As in our simulation each player in a team is equal this allows us to use some symmetry, e.g. ($\alpha_1$,$\alpha_2$) = (1,0) yields the same result as (0,1). Therefore we could reduce the amount to simulate here. This left us with approximately 500.000 simulated games. Naturally this already is a tremendous task, especially considering our usage of python which is not the fastest.
 
-For the Betas we therefore had to reduce the different cases as else this would have exploded into the uncomputable. Therefore we decided to select 3 cases:
+For the $\beta$'s we therefore had to reduce the different cases as else this would have exploded into the uncomputable. Therefore we decided to select 3 cases:
 \begin{enumerate}
 \item $\beta$ equals zero for all players throughout every game. This is equal to no player knowing the strategies of the others
-\item $\beta$ starts at zero but increases logistically throughout one game. Here the players deduce the strategies of the others as the game goes on
+\item $\beta$ starts at 0.01 but increases logistically throughout one game. Here the players deduce the strategies of the others as the game goes on
 \item $\beta$ equals one throughout every game. Meaning all players not the other players strategies.
 \end{enumerate}
-Each of these simulations already took more than 16 hours. So doing varying beta more lies beyond our abilities. 
+Each of these simulations already took more than 16 hours. So doing varying $\beta$ more lies beyond our abilities. 
 
 \begin{figure*}[!hb]
 	\centering
@@ -815,7 +802,7 @@ Each of these simulations already took more than 16 hours. So doing varying beta
 	\begin{subfigure}{0.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_2}
-	    \caption{$\beta_0=0.1$ - logistic}
+	    \caption{$\beta_0=0.01$ - logistic}
 	    \label{fig:20}
     \end{subfigure}%
 	\begin{subfigure}{0.3\textwidth}
@@ -833,7 +820,7 @@ Each of these simulations already took more than 16 hours. So doing varying beta
 		\begin{subfigure}{.3\textwidth}
 	    \centering
 	    \includegraphics[width=1\linewidth]{Bilder/simulation_3_3}
-	    \caption{$\beta_0=0.1$ - logistic}
+	    \caption{$\beta_0=0.01$ - logistic}
 	    \label{fig:23}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}
@@ -860,54 +847,48 @@ Each of these simulations already took more than 16 hours. So doing varying beta
 	\end{subfigure}
 \end{figure*}
 
-The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is Beta equal 0 for all players, the middle one for the logistical Beta and the right one for beta of 1.
+The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is $\beta$ equal 0 for all players, the middle one for the logistical $\beta$ and the right one for beta of 1.
 
 As one can see an higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
-Consequently to get a better overview we only plotted the points where Team 1 won in more than 60$\%$ (first graphs) or lost in more than 60$\%$ (second graphs). Once again with the varying betas in the same order as above.
+Consequently to get a better overview we only plotted the points where Team 1 won in more than 66$\%$ (first graphs) or lost in more than 66$\%$ (second graphs). Once again with the varying $\beta$'s in the same order as above.
 
-Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph). Also one can see the trend of points converging to the two diagonals of the grid with higher betas.
+Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph).  In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
+93$\%$ is the value, which should result from the added aggressions, in order to achieve maximum points with the Tichu. The number 93 is the cumulative probability of the two team partners. It is the digit of the maximum of the function $x\cdot f(x)$, where f(x) is the probability of winning a tichu. Thus it gives the place of the maximum of the score.
+At the edges the error of the theoretical model is of course bigger, because it is unrealistic that a player from the card distribution can get the tichu every round. 
+Basically, the probability of the Tichu victory is maximized if both players announce with a probability of 46.5$\%$ and thus hit the maximum of the win, but at the same time the good cards of both players are used in the best possible way. Also one can see the trend of points converging to the two diagonals of the grid with higher $\beta$'s.
 \newpage
-For the better overview we have plotted all values in one graph, where you win  more than 60$\%$ of the games:
+For the better overview we have plotted all values in one graph, where you win  more than 66$\%$ of the games (\ref{fig:28}).
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.35\textwidth]{Bilder/simulation_16}
-    \caption{Overview plot - $\beta=0,1,logistic$}
+    \caption{Overview plot - $\beta=0,\beta=1,logistic$}
     \label{fig:28}
 \end{figure}
 
-By comparing the different simulations, the following relationships can be established. With the tile model, there is almost no difference between the case $\beta=0$ and $\beta=1$, so that one can conclude that the strategy one should play is not influenced by the extremes. However, if you look at the tile model of logistic development, you can see a clear color difference, especially you can see that it becomes very blue when you are near (0,0). To examine this connection more clearly, we will only look at the profits with a probability of over 60$\%$ and profits with a probability of less than 40$\%$, i.e. rather the losses. Here you can see that although in the extreme cases $\beta=0.1$ the winnings are distributed over the whole quadrant, the losses at $\beta=1$ increase with a more aggressive playing style, so that a defensive playing strategy is more advantageous. This can also be seen in the diagram where $\beta$ is logistically distributed. The winnings are very much concentrated in the lower half of the square. If you add in the optimal aggressiveness, you can see that the winnings are near the bottom of the graph.
+By comparing the different simulations, the following relationships can be established. With the tile model, there is almost no difference between the case $\beta=0$ and $\beta=1$, so that one can conclude that the strategy one should play is not influenced by the extremes. However, if you look at the tile model of logistic development, you can see a clear color difference, especially you can see that it becomes very blue when you are near (0,0). To examine this connection more clearly, we will only look at the profits with a probability of over 66$\%$ and profits with a probability of less than 40$\%$, i.e. rather the losses. Here you can see that although in the extreme cases $\beta\in\{0,1\}$ the winnings are distributed over the whole quadrant, the losses at $\beta=1$ increase with a more aggressive playing style, so that a defensive playing strategy is more advantageous. This can also be seen in the diagram where $\beta$ is logistically distributed. The winnings are very much concentrated in the lower half of the square. If you add in the optimal aggressiveness, you can see that the winnings are near the bottom of the graph.
 
 We conclude that with increasing transparency a defensive play is always an advantage.
 
 
 \section{Conclusion}
-At this point we would like to discuss our errors and approximations in the model and explore further possibilities for improvement.
+To conclude this essay we would like to summarise our findings and evaluate some of the errors and approximations we made in constructing our models as well as suggest further possibilities for improvement.
 
-\subsubsection{Subgame B.0}
-Here is probably the most essential approximation that the Great Tichu was neglected. This is of course essential for the scuffing, because it makes the scuffing much clearer. Each team partner (with Common Knowledge) would then give his team mate a very good card, because he himself can and needs no more Tichu. At the same time, the opponents will try to get the worst possible cards, like the dog that doesn't fit into any combination. Also the card 1 is usually nudged by the opponents in such a way that the player who has announced the Great Tichu comes second and thus must react to the request.
-Problems could also result from normal distributions etc. Even if these were chosen sensibly, they do not always reflect reality very well. Calculating the values of cards based on their combination is extremely difficult, since the time course of the game also influences the value of a combination.
+In the previous section we concluded that it is indeed advantageous to play defensive with the rise of $\beta$, the rise of the transparency of information. However, the probability of winning a Tichu is maximised if both players together announce with a probability of 46.5$\%$, as it allows the team to score maximum points through Tichus without taking too much risk, determined theoretically and practically throughout the previous section. The application of the Nash equilibrium was essential into giving insights into what norms helped us establish the right responses to which strategies from partners and opponents. This gave us concrete ideas on how to simulate the issue of optimised responses with computer programmes, which again extended our understanding of concrete responses to different scenarios in the game.
 
-\subsubsection{Subgame B.1}
+Throughout the game we made many assumptions and approximations to realistically model this complicated game and its multiple game theoretical mechanisms. Below, we want to evaluate the most important of these approximations per game mechanism and attempt to portray how these assumptions shaped our understanding and how they may have affected our results.
 
-Basically this part has a very theoretical basis. There are of course more possibilities to change parameters and to cover different cases to get a better evaluation.
-But even here, a certain arbitrariness is sometimes found in the eta and xi function, for example, but the result is meaningful, as can be seen at the Nash equilibrium. This could of course be further improved with certain calculations and statistical surveys.
+Problems that could arise in section B.0 come from our assumptions of card distributions and the fact that these do not necessarily reflect reality. However, we do believe our method of dealing with card values was a strong part of this essay. We believe that it was actually advantageous for us to approach a player’s card set without assigning concrete values to cards. This is because card values (and the combinations they can be played in) fluctuate immensely throughout just the first few decisions of a round. This theoretical approach allowed us to delve into other more interesting areas such as the models and simulations associated with the Tichu announcement and win rates; these were easier to tackle with theoretical card values and yielded more informative results under these approximations.
 
-\subsubsection{Subgame B.2}
+The largest approximation of section B.1 was the absence of great tichus. Although we argue that they occur in only about 2$\%$ of all rounds, they still exist and have a huge impact on the game when played because of the high amount of points they risk and award. Neglecting this factor meant we ignored an extreme end of our exchange stage function, namely where one’s partner gives the announcer their absolute best card no matter their behaviour and where opponents are ready to exchange special cards like the Mah Jong and the Dog in order to prioritise sabotaging the grand tichu announcer specifically, instead of prioritising a win. Another characterising factor of this section was its theoretical approach. Although it enabled us to even approach this game mechanism in the first place and introduced us to the methods we would simulate in our programmes, it was still very theoretical. The large amount of logical foundations we argued for may not accurately reflect the real game, in part because players in real life are not completely rational and do not always know all the rules and strategies of the game: attributed to differences in experience. We feel that even though there was a certain arbitrariness in constructing the eta and xi (pass and receive) functions, the results are still meaningful. Additionally, the parallels we draw to real life situations and expectations in strategy reassure us that our results are realistic. 
 
-The model has of course been simplified at one point or another.
-First we start with the player model. It is of course very difficult to map a player type exactly. The division into 3 types is of course not small enough to reflect reality. Above all, the increase in risk will also depend on the type of player. Although the basic aggressiveness was taken as the underlying, the increase was calculated independently. But it is precisely the different situations that will provoke different human reactions. Even if the average of the survey showed this, it may be different for individuals.
-Also the assumption of common knowledge will not apply to every player in every situation. For once we have also used this assumption to eradicate certain situations and not have to take them into account.
-For example, we said that if a Tichu from Team 1 and Team 2 is announced, one of the two teams will win in any case. But it is also possible that a third player wins this Tichu and this without violating the assumption of common knowledge.
-The irrational behaviour could occur for various reasons.
-An example would be a player's lack of experience. After all, you cannot conclude with 100$\%$ certainty from your own cards that you are superior to your opponents.
-The experience gained also goes hand in hand with certain strategies. For example, the convention that one shuffles an even card to the right and an odd card to the left. This is very useful, provided that both team members adhere to it. But it cannot be interpreted as Common Knowledge, because right even and left odd was chosen arbitrarily and would make sense as well, if it was swapped.
-Another component that we have neglected is the timing of the game. By waiting for certain tricks, one can exclude that certain cards are still in the game and thus increase the probability for an own Tichu if necessary. However, this was not taken into account in this case.
-One possible technical error is, for example, the interpolation of data from the onlinetichu.com website. Various errors can occur, especially during interpolation.
+In section b.2 we made our by far largest approximation: we tried to capture human behaviour as a level of aggressiveness. A sense of aggressiveness, however, may not be the only contributing factor, and although we tried to simulate a logical human process through transparency of information as well, there may be other variable factors that play different roles in different scenarios. However, we do believe that the level of aggressiveness together with the logical mechanism for transparency of information and the additional calculated risk based on score –  investigated through a survey – helped us build a three-pronged approach to at least somewhat successfully capturing human behaviour. Another type of approximation was the reduction of special cases and timing at multiple points throughout the construction of our model. Through delayed timing of Tichus specific cards can be lost to the game that allow for a much higher probability of winning a Tichu, having taken the increased risk of starting later. This timing aspect of the game was denied for complexity purposes, but nevertheless also resembles an extreme case of announcing Tichus. We feel like smaller approximations, such as denying the possibility of three players announcing a Tichu or two Tichu announcers both losing were justified because, although they are technically possible, they are incredibly rare and were not worth considering in the normal game flow. Finally, technical errors in collecting and interpreting our data from onlinetichu.com and coding errors in our programmes may have inadvertently skewed or affected parts or whole scenario simulations, however multiple hours of double checking and hand calculating rounds hopefully minimised this possibility. An attempt to improve our methods could include optimizing our code to run faster and require less storage and run larger and more varied simulations on stronger equipment that could give insight into more exotic scenarios or generate stronger and more generalised rules for groups of responses to different scenarios.
 
-
-Especially since little or no data is provided for higher announcement rates, for example.
-In the future, it would be possible to work on all these points in order to improve the model further.
-
+When considering the entire game, a constant approximation we relied on was the assumption of common knowledge. We implemented common knowledge assumptions very liberally because, from an epistemological view, we can only derive meaning from simulations that are built on meaningful decisions. Common knowledge assumptions allowed us to simplify multiple complicated systems and we hope that these denied only extreme cases from being reflected in our simulations and our results. With that said, even though this assumption of common knowledge is fundamental to the simulation of any card game, it casts a shadow of doubt over our findings as every game contains intrinsic aspects of randomness and luck that are impossible to simulate and arguably even irrational. Human actions are sometimes irrational, and there is no way to quantify this or deduce meaning from it. However, through multi-pronged approaches to human behaviour and the consideration of many other game-theoretical aspects of this game, we believe that we did in fact arrive at meaningful conclusions. Though justified theoretical and logical constructions of models and practically implemented and tested solutions we believe this essay was successful in gaining insight into the Tichu strategy optimisation question.
+\subsubsection{References}
+\begin{itemize}
+\item https://github.com/jlportner/TichuPaper \label{github}
+\item https://onlinetichu.com
+\end{itemize}
 \end{document}
 

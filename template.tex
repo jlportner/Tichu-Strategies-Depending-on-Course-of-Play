@@ -592,7 +592,7 @@ $Y=[\frac{658}{147},\frac{728}{147},\frac{735}{147},\frac{644}{147},\frac{735}{1
 
 This increase should now be offset against the basic aggressiveness.
 The following additional conditions are set:
-If in Category (1) the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows.
+If in Category (1) the willingness to take risks is 8.5, the team should announce a 100$\%$ Tichu. With 4 it should have no effect.  In between it runs linear, as the function shows [\ref{fig:10}].
 While Category (1) can make a difference of up to 100$\%$, Category (2) should have a maximum of 50$\%$. Again, linear.
 Category (3) should bring in a maximum of 10$\%$. This function has order 4. The formula for the risk is given by the following code:
 
@@ -651,17 +651,17 @@ In order to save most of the data from a simulation, we created a class Solution
 We created methods in the Solution-class to plot games and developments. To run and plot bigger simulations we used an external file which is also attached. 
 
 \paragraph{Balancing and Switching}
-Due to rounding errors in python, we observed that Team 2 wins more games than Team 1. 
+Due to rounding errors in python, we observed that Team 2 won more games than Team 1. 
 To balance the game, we created a switching method, which switches the teams position every round. This leads to additional runtime but balances the game. 
-We also created a method in the Solution class to switch the teams in the simulation. This is necessary to reduce the runtime. 
+We also created a method in the Solution class to switch the teams in the simulation. This was necessary to reduce runtime. 
 
-\subsection{Optimal strategy in "Exchange"-Stage}
+\subsection{Optimal strategy in Exchange Stage}
 
-First of all, we will have a look on the outcome of the Exchange Stage under different circumstances. But which outcome is the best for a team? We try to get a maximal value in three different ways:
+First of all, we will look at the outcome of the Exchange Stage under different circumstances. But which outcome is the best for a team? We try to achieve a maximal point value in three different ways by considering both of traded cards:
 
-\paragraph{Maximum}  We are only looking at the card value of the higher cards, because this can lead to a win of Tichu
-\paragraph{Square Addition}  We sum the squares of both card values, because it doesn’t look only at the higher card value and consider both card values of the team.
-\paragraph{Square Diffrence} We take the diffrence of the squares of both card values and try to minimize it, because it can be good to have balanced players. 
+\paragraph{Maximum}   We consider only the value of the highest of both traded cards, as this card could contribute towards winning a Tichu.
+\paragraph{Square Addition} The sum of both squares of both cards is taken - this method considers both card values.
+\paragraph{Square Diffrence} We take the difference of both squared card values and attempt to minimize this as it may be good to have balanced players.
 \\
 \\
 We try to find the nash equilibrium in all three cases and set $\beta = 0$. The players will not know which strategies the other players follow. We will only look at case $\beta = 0$ for case 1, because the information on his partners strategy will only create a bigger difference but will result in the same tactics. 

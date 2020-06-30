@@ -1,5 +1,5 @@
-\BOOKMARK [1][-]{section.1}{Introduction on Tichu}{}% 1
-\BOOKMARK [1][-]{section.2}{Our Model and approximations}{}% 2
+\BOOKMARK [1][-]{section.1}{Introduction to Tichu}{}% 1
+\BOOKMARK [1][-]{section.2}{Our Models and approximations}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Basic assumptions}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Introducing the game model}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Subgame A}{section.2}% 5
@@ -18,6 +18,6 @@
 \BOOKMARK [2][-]{subsection.4.1}{Optimal strategy in "Exchange"-Stage}{section.4}% 18
 \BOOKMARK [2][-]{subsection.4.2}{Simulation of the game}{section.4}% 19
 \BOOKMARK [3][-]{subsubsection*.45}{Subgame B.0/B.1}{subsection.4.2}% 20
-\BOOKMARK [3][-]{subsubsection*.48}{Subgame B.2}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection*.47}{Subgame B.2}{subsection.4.2}% 21
 \BOOKMARK [1][-]{section.5}{Conclusion}{}% 22
-\BOOKMARK [2][-]{subsubsection*.51}{References}{section.5}% 23
+\BOOKMARK [2][-]{subsubsection*.50}{References}{section.5}% 23

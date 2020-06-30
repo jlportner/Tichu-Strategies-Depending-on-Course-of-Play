@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  30 JUN 2020 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.12)  30 JUN 2020 11:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1673,6 +1673,11 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 27.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 37.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
 Underfull \hbox (badness 10000) in paragraph at lines 43--45
 
  []
@@ -1710,11 +1715,7 @@ Overfull \hbox (5.00238pt too wide) in paragraph at lines 82--91
 [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Font Info:    Try loading font information for T1+cmss on input line 111.
-
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1776,7 +1777,7 @@ Underfull \hbox (badness 1424) in paragraph at lines 139--140
 cmm/m/it/10 ^^M$ \T1/cmr/m/n/10 is dy-nam-i-cally chang-ing
  []
 
-<Bilder/graph.png, id=126, 3506.60063pt x 1492.07437pt>
+<Bilder/graph.png, id=128, 3506.60063pt x 1492.07437pt>
 File: Bilder/graph.png Graphic file (type png)
 <use Bilder/graph.png>
 Package pdftex.def Info: Bilder/graph.png  used on input line 149.
@@ -1941,7 +1942,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7]
-<Bilder/cards_distribution.png, id=204, 433.62pt x 289.08pt>
+<Bilder/cards_distribution.png, id=206, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution.png Graphic file (type png)
 <use Bilder/cards_distribution.png>
 Package pdftex.def Info: Bilder/cards_distribution.png  used on input line 404.
@@ -1952,7 +1953,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 404--405
  [][] 
  []
 
-<Bilder/cards_distribution_cumultative.png, id=206, 433.62pt x 289.08pt>
+<Bilder/cards_distribution_cumultative.png, id=208, 433.62pt x 289.08pt>
 File: Bilder/cards_distribution_cumultative.png Graphic file (type png)
 <use Bilder/cards_distribution_cumultative.png>
 Package pdftex.def Info: Bilder/cards_distribution_cumultative.png  used on inp
@@ -1975,7 +1976,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [8 <./Bilder/cards_distribution.png> <./Bilder/cards_distribution_cumultative.p
 ng>]
-<Bilder/b1_a.png, id=219, 433.62pt x 289.08pt>
+<Bilder/b1_a.png, id=221, 433.62pt x 289.08pt>
 File: Bilder/b1_a.png Graphic file (type png)
 <use Bilder/b1_a.png>
 Package pdftex.def Info: Bilder/b1_a.png  used on input line 419.
@@ -1985,7 +1986,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 419--420
  [][] 
  []
 
-<Bilder/b1_b.png, id=220, 433.62pt x 289.08pt>
+<Bilder/b1_b.png, id=222, 433.62pt x 289.08pt>
 File: Bilder/b1_b.png Graphic file (type png)
 <use Bilder/b1_b.png>
 Package pdftex.def Info: Bilder/b1_b.png  used on input line 423.
@@ -2001,7 +2002,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Bilder/b1_c.png, id=223, 433.62pt x 289.08pt>
+<Bilder/b1_c.png, id=225, 433.62pt x 289.08pt>
 File: Bilder/b1_c.png Graphic file (type png)
 <use Bilder/b1_c.png>
 Package pdftex.def Info: Bilder/b1_c.png  used on input line 457.
@@ -2011,7 +2012,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 457--458
  [][] 
  []
 
-<Bilder/b1_d.png, id=224, 433.62pt x 289.08pt>
+<Bilder/b1_d.png, id=226, 433.62pt x 289.08pt>
 File: Bilder/b1_d.png Graphic file (type png)
 <use Bilder/b1_d.png>
 Package pdftex.def Info: Bilder/b1_d.png  used on input line 461.
@@ -2037,7 +2038,7 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 488.
-<Bilder/b1_e.png, id=235, 433.62pt x 289.08pt>
+<Bilder/b1_e.png, id=237, 433.62pt x 289.08pt>
 File: Bilder/b1_e.png Graphic file (type png)
 <use Bilder/b1_e.png>
 Package pdftex.def Info: Bilder/b1_e.png  used on input line 491.
@@ -2047,7 +2048,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 491--492
  [][] 
  []
 
-<Bilder/b1_f.png, id=236, 433.62pt x 289.08pt>
+<Bilder/b1_f.png, id=238, 433.62pt x 289.08pt>
 File: Bilder/b1_f.png Graphic file (type png)
 <use Bilder/b1_f.png>
 Package pdftex.def Info: Bilder/b1_f.png  used on input line 495.
@@ -2085,7 +2086,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 531.
 
-<Bilder/5_log.png, id=249, 433.62pt x 289.08pt>
+<Bilder/5_log.png, id=251, 433.62pt x 289.08pt>
 File: Bilder/5_log.png Graphic file (type png)
 <use Bilder/5_log.png>
 Package pdftex.def Info: Bilder/5_log.png  used on input line 534.
@@ -2117,25 +2118,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11 <./Bilder/5_log.png>]
-<Bilder/risk_level_diffrence_200steps.png, id=260, 438.63875pt x 279.0425pt>
+<Bilder/risk_level_diffrence_200steps.png, id=262, 438.63875pt x 279.0425pt>
 File: Bilder/risk_level_diffrence_200steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_200steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_200steps.png  used on inpu
 t line 560.
 (pdftex.def)             Requested size: 241.84843pt x 153.85704pt.
-<Bilder/risk_level_diffrence_100steps.png, id=261, 451.6875pt x 280.04625pt>
+<Bilder/risk_level_diffrence_100steps.png, id=263, 451.6875pt x 280.04625pt>
 File: Bilder/risk_level_diffrence_100steps.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_100steps.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_100steps.png  used on inpu
 t line 566.
 (pdftex.def)             Requested size: 241.84843pt x 149.94931pt.
-<Bilder/risk_level_diffrence_nonlinear.png, id=262, 463.7325pt x 275.0275pt>
+<Bilder/risk_level_diffrence_nonlinear.png, id=264, 463.7325pt x 275.0275pt>
 File: Bilder/risk_level_diffrence_nonlinear.png Graphic file (type png)
 <use Bilder/risk_level_diffrence_nonlinear.png>
 Package pdftex.def Info: Bilder/risk_level_diffrence_nonlinear.png  used on inp
 ut line 572.
 (pdftex.def)             Requested size: 241.84843pt x 143.43477pt.
-<Bilder/calling_winning_graph.png, id=263, 453.695pt x 282.05376pt>
+<Bilder/calling_winning_graph.png, id=265, 453.695pt x 282.05376pt>
 File: Bilder/calling_winning_graph.png Graphic file (type png)
 <use Bilder/calling_winning_graph.png>
 Package pdftex.def Info: Bilder/calling_winning_graph.png  used on input line 5
@@ -2245,7 +2246,7 @@ Overfull \hbox (5.00137pt too wide) in paragraph at lines 708--719
 [][] 
  []
 
-<Bilder/5_max.png, id=330, 433.62pt x 289.08pt>
+<Bilder/5_max.png, id=332, 433.62pt x 289.08pt>
 File: Bilder/5_max.png Graphic file (type png)
 <use Bilder/5_max.png>
 Package pdftex.def Info: Bilder/5_max.png  used on input line 725.
@@ -2255,7 +2256,7 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 725--726
  [][] 
  []
 
-<Bilder/5_diff.png, id=331, 433.62pt x 289.08pt>
+<Bilder/5_diff.png, id=333, 433.62pt x 289.08pt>
 File: Bilder/5_diff.png Graphic file (type png)
 <use Bilder/5_diff.png>
 Package pdftex.def Info: Bilder/5_diff.png  used on input line 746.
@@ -2270,12 +2271,12 @@ Overfull \hbox (5.00137pt too wide) in paragraph at lines 732--750
 []
  []
 
-<Bilder/example_1.png, id=333, 461.725pt x 461.725pt>
+<Bilder/example_1.png, id=335, 461.725pt x 461.725pt>
 File: Bilder/example_1.png Graphic file (type png)
 <use Bilder/example_1.png>
 Package pdftex.def Info: Bilder/example_1.png  used on input line 763.
 (pdftex.def)             Requested size: 241.84843pt x 241.84563pt.
-<Bilder/example_2.png, id=334, 461.725pt x 461.725pt>
+<Bilder/example_2.png, id=336, 461.725pt x 461.725pt>
 File: Bilder/example_2.png Graphic file (type png)
 <use Bilder/example_2.png>
 Package pdftex.def Info: Bilder/example_2.png  used on input line 769.
@@ -2285,32 +2286,32 @@ Overfull \hbox (2.22168pt too wide) in paragraph at lines 761--773
 []$[]$ $[]$ 
  []
 
-<Bilder/exp1.png, id=336, 461.725pt x 461.725pt>
+<Bilder/exp1.png, id=338, 461.725pt x 461.725pt>
 File: Bilder/exp1.png Graphic file (type png)
 <use Bilder/exp1.png>
 Package pdftex.def Info: Bilder/exp1.png  used on input line 785.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/exp2.png, id=337, 461.725pt x 461.725pt>
+<Bilder/exp2.png, id=339, 461.725pt x 461.725pt>
 File: Bilder/exp2.png Graphic file (type png)
 <use Bilder/exp2.png>
 Package pdftex.def Info: Bilder/exp2.png  used on input line 791.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/exp3.png, id=338, 461.725pt x 461.725pt>
+<Bilder/exp3.png, id=340, 461.725pt x 461.725pt>
 File: Bilder/exp3.png Graphic file (type png)
 <use Bilder/exp3.png>
 Package pdftex.def Info: Bilder/exp3.png  used on input line 797.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/exp1_2.png, id=339, 461.725pt x 461.725pt>
+<Bilder/exp1_2.png, id=341, 461.725pt x 461.725pt>
 File: Bilder/exp1_2.png Graphic file (type png)
 <use Bilder/exp1_2.png>
 Package pdftex.def Info: Bilder/exp1_2.png  used on input line 803.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/exp2_2.png, id=340, 461.725pt x 461.725pt>
+<Bilder/exp2_2.png, id=342, 461.725pt x 461.725pt>
 File: Bilder/exp2_2.png Graphic file (type png)
 <use Bilder/exp2_2.png>
 Package pdftex.def Info: Bilder/exp2_2.png  used on input line 808.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/exp3_2.png, id=341, 461.725pt x 461.725pt>
+<Bilder/exp3_2.png, id=343, 461.725pt x 461.725pt>
 File: Bilder/exp3_2.png Graphic file (type png)
 <use Bilder/exp3_2.png>
 Package pdftex.def Info: Bilder/exp3_2.png  used on input line 813.
@@ -2337,47 +2338,47 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [15 <./Bilder/example_1.png> <./Bilder/example_2.png> <./Bilder/exp1.png> <./Bi
 lder/exp2.png> <./Bilder/exp3.png> <./Bilder/exp1_2.png> <./Bilder/exp2_2.png> 
 <./Bilder/exp3_2.png>]
-<Bilder/simulation_2_2.png, id=367, 433.62pt x 289.08pt>
+<Bilder/simulation_2_2.png, id=369, 433.62pt x 289.08pt>
 File: Bilder/simulation_2_2.png Graphic file (type png)
 <use Bilder/simulation_2_2.png>
 Package pdftex.def Info: Bilder/simulation_2_2.png  used on input line 836.
 (pdftex.def)             Requested size: 145.11053pt x 96.74203pt.
-<Bilder/simulation_3_2.png, id=368, 433.62pt x 289.08pt>
+<Bilder/simulation_3_2.png, id=370, 433.62pt x 289.08pt>
 File: Bilder/simulation_3_2.png Graphic file (type png)
 <use Bilder/simulation_3_2.png>
 Package pdftex.def Info: Bilder/simulation_3_2.png  used on input line 842.
 (pdftex.def)             Requested size: 145.11053pt x 96.74203pt.
-<Bilder/simulation_4_2.png, id=369, 433.62pt x 289.08pt>
+<Bilder/simulation_4_2.png, id=371, 433.62pt x 289.08pt>
 File: Bilder/simulation_4_2.png Graphic file (type png)
 <use Bilder/simulation_4_2.png>
 Package pdftex.def Info: Bilder/simulation_4_2.png  used on input line 848.
 (pdftex.def)             Requested size: 145.11053pt x 96.74203pt.
-<Bilder/simulation_2_3.png, id=370, 461.725pt x 461.725pt>
+<Bilder/simulation_2_3.png, id=372, 461.725pt x 461.725pt>
 File: Bilder/simulation_2_3.png Graphic file (type png)
 <use Bilder/simulation_2_3.png>
 Package pdftex.def Info: Bilder/simulation_2_3.png  used on input line 854.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/simulation_3_3.png, id=371, 461.725pt x 461.725pt>
+<Bilder/simulation_3_3.png, id=373, 461.725pt x 461.725pt>
 File: Bilder/simulation_3_3.png Graphic file (type png)
 <use Bilder/simulation_3_3.png>
 Package pdftex.def Info: Bilder/simulation_3_3.png  used on input line 860.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/simulation_4_3.png, id=372, 461.725pt x 461.725pt>
+<Bilder/simulation_4_3.png, id=374, 461.725pt x 461.725pt>
 File: Bilder/simulation_4_3.png Graphic file (type png)
 <use Bilder/simulation_4_3.png>
 Package pdftex.def Info: Bilder/simulation_4_3.png  used on input line 866.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/simulation_2_5.png, id=373, 461.725pt x 461.725pt>
+<Bilder/simulation_2_5.png, id=375, 461.725pt x 461.725pt>
 File: Bilder/simulation_2_5.png Graphic file (type png)
 <use Bilder/simulation_2_5.png>
 Package pdftex.def Info: Bilder/simulation_2_5.png  used on input line 872.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/simulation_3_5.png, id=374, 461.725pt x 461.725pt>
+<Bilder/simulation_3_5.png, id=376, 461.725pt x 461.725pt>
 File: Bilder/simulation_3_5.png Graphic file (type png)
 <use Bilder/simulation_3_5.png>
 Package pdftex.def Info: Bilder/simulation_3_5.png  used on input line 877.
 (pdftex.def)             Requested size: 145.11053pt x 145.10596pt.
-<Bilder/simulation_4_5.png, id=375, 461.725pt x 461.725pt>
+<Bilder/simulation_4_5.png, id=377, 461.725pt x 461.725pt>
 File: Bilder/simulation_4_5.png Graphic file (type png)
 <use Bilder/simulation_4_5.png>
 Package pdftex.def Info: Bilder/simulation_4_5.png  used on input line 883.
@@ -2390,7 +2391,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [16]
-<Bilder/simulation_16.png, id=384, 461.725pt x 461.725pt>
+<Bilder/simulation_16.png, id=386, 461.725pt x 461.725pt>
 File: Bilder/simulation_16.png Graphic file (type png)
 <use Bilder/simulation_16.png>
 Package pdftex.def Info: Bilder/simulation_16.png  used on input line 902.
@@ -2450,11 +2451,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 33293 strings out of 492982
- 624713 string characters out of 6134896
+ 33312 strings out of 492982
+ 625314 string characters out of 6134896
  711035 words of memory out of 5000000
- 36165 multiletter control sequences out of 15000+600000
- 551762 words of font info for 76 fonts, out of 8000000 for 9000
+ 36180 multiletter control sequences out of 15000+600000
+ 552075 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,14n,78p,10420b,1770s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
@@ -2482,11 +2483,12 @@ xmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/publ
 ic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/publi
-c/cm-super/sfxc1728.pfb>
-Output written on template.pdf (19 pages, 1152082 bytes).
+c/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc1728.
+pfb>
+Output written on template.pdf (19 pages, 1174172 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
- 416 compressed objects within 5 object streams
+ 543 PDF objects out of 1000 (max. 8388607)
+ 420 compressed objects within 5 object streams
  161 named destinations out of 1000 (max. 500000)
  367 words of extra memory for PDF output out of 10000 (max. 10000000)
 

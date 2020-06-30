@@ -9,7 +9,7 @@
 \usepackage{commath}
 \usepackage{subcaption}
 \usepackage{stfloats}
-
+\usepackage{hyperref}
 \makeatletter
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {3pt  \@plus 1pt \@minus 1pt}%
@@ -34,7 +34,7 @@ A prevalent characteristic of both mathematics and physics is their elaborate st
     Fascinated by this type of game and equipped with tools from our game theory course, we pose the general question: “which strategy should we pursue as players?”. We shall further differentiate this admittedly vague question into: “what strategy should we pursue given”: a) “we know what player-type all other players are” and b) “we do not know anything about other players”. 
     
 \section*{Abstract}
-We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 13,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 100,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game.
+We shall start with an introduction to the game along with an optional explanation section for readers not experienced with the game of Tichu. This is followed by basic assumptions and approximations we reach in order to dissect the game-theoretical mechanisms into distinct entities that we model throughout this essay. After a thorough analysis of our theoretical models, including discussions concerning their logical semantics, we implement real world data into our models. These implemented variables derive from a dataset of more than 13,000 datapoints collected from onlinetichu.com using a webscrapper and a short survey we distributed. We then draw some conclusions by inspecting the nash equilibrium for one specifc game mechansim. Finally, we simulate 100,000s of games through our own programms and manipulate multiple variables to draw conclusions regarding stragety and responses to specific circumstances, requiring over 50 hours of computing with the help of ETH‘s Euler computer. Lastly, we evaluate aspects of our results and suggest improvments and identify weaknesses in our approximations to hopefully cumulate into concrete advice for this game. The code for this prjoect can be found on \url{https://github.com/jlportner/TichuPaper}.
 
 \section{Introduction on Tichu}
 

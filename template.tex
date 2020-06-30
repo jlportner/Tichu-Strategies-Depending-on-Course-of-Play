@@ -819,15 +819,6 @@ The 3 cases show the influence of $\alpha$ on the card value and also on the exc
 We have now seen how the parameters influence the card value, but the question arises, what is the optimal combination of player types, if you want to win the Tichu?
 
 \subsubsection{Subgame B.2}
-Of course the ideal situation would be to simulate every possible combination of our parameters a significant number of times to then get the best results. Due to our limited computation power we had to restrict our simulations. It was decided to simulate 100 games for each set of parameters. For the parameters we chose to fix $\alpha_3$ and $\alpha_4$ to $0.5$. And vary $\alpha_1$ and $\alpha_2$ from 0 to 1 in 0.01 increments. This means that team two plays with average aggressivity and team one’s aggressivity varies from totally passive to extremely aggressive. As in our simulation each player in a team is equal this allows us to use some symmetry, e.g. ($\alpha_1$,$\alpha_2$) = (1,0) yields the same result as (0,1). Therefore we could reduce the amount to simulate here. This left us with approximately 500.000 simulated games. Naturally this already is a tremendous task, especially considering our usage of python which is not the fastest.
-
-For the $\beta$'s we therefore had to reduce the different cases as else this would have exploded into the uncomputable. Therefore we decided to select 3 cases:
-\begin{enumerate}
-\item $\beta$ equals zero for all players throughout every game. This is equal to no player knowing the strategies of the others
-\item $\beta$ starts at 0.01 but increases logistically throughout one game. Here the players deduce the strategies of the others as the game goes on
-\item $\beta$ equals one throughout every game. Meaning all players not the other players strategies.
-\end{enumerate}
-Each of these simulations already took more than 16 hours. So doing varying $\beta$ more lies beyond our abilities. 
 
 \begin{figure*}[!hb]
 	\centering
@@ -870,44 +861,55 @@ Each of these simulations already took more than 16 hours. So doing varying $\be
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_2_5}
+    	\caption{$\beta=0$}
     	\label{fig:25}
 	\end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_3_5}
-    	\caption*{Best aggresitivity plot added and losses are marked gray}
+	    \caption{$\beta_0=0.01$ - logistic}
     	\label{fig:26}
     \end{subfigure}%
 	\begin{subfigure}{.3\textwidth}%[!ht]
     	\centering
     	\includegraphics[width=1\linewidth]{Bilder/simulation_4_5}
+    	\caption{$\beta=1$}
     	\label{fig:27}
 	\end{subfigure}
+	\caption{First row: win percentages for varying alphas. Second row: More than $66\%$ or less than $40\%$ of games won. Third row: Added best aggresivity line. Losses colored. Wins marked grey.}
 \end{figure*}
 
-The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents 100 games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team 1 for this configuration. Ranging from 40$\%$ or less (dark red) to 60$\%$ or more (dark blue). The left graph is $\beta$ equal 0 for all players, the middle one for the logistical $\beta$ and the right one for beta of 1.
+Of course the ideal situation would be to simulate every possible combination of our parameters a significant number of times to then get the best results. Due to our limited computation power we had to restrict our simulations. It was decided to simulate $100$ games for each set of parameters. For the parameters we chose to fix $\alpha_3$ and $\alpha_4$ to $0.5$. And vary $\alpha_1$ and $\alpha_2$ from $0$ to $1$ in $0.01$ increments. This means that team two plays with average aggressivity and team one’s aggressivity varies from totally passive to extremely aggressive. As in our simulation each player in a team is equal this allows us to use some symmetry, e.g. $(\alpha_1,\alpha_2) = (1,0)$ yields the same result as $(0,1)$. Therefore we could reduce the amount to simulate here. This left us with approximately $500.000$ simulated games. Naturally this already is a tremendous task, especially considering our usage of python which is not the fastest.
 
-As one can see an higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
-Consequently to get a better overview we only plotted the points where Team 1 won in more than 66$\%$ (first graphs) or lost in more than 66$\%$ (second graphs). Once again with the varying $\beta$'s in the same order as above.
+For the $\beta$'s we therefore had to reduce the different cases as else this would have exploded into the uncomputable. Therefore we decided to select 3 cases:
+\begin{enumerate}
+\item $\beta$ equals zero for all players throughout every game. This is equal to no player knowing the strategies of the others
+\item $\beta$ starts at $0.01$ but increases logistically throughout one game. Here the players deduce the strategies of the others as the game goes on
+\item $\beta$ equals one throughout every game. Meaning all players not the other players strategies.
+\end{enumerate}
+
+Each of these simulations already took more than $16$ hours. So doing varying $\beta$ more lies beyond our abilities. 
+The graphs below show these results. The x-Axis represents the value of $\alpha_1$, the y-Axis the value for $\alpha_2$. Each dot represents $100$ games played for these values of $\alpha_1$ and $\alpha_2$. The color represents the percentage of games won by team $1$ for this configuration. Ranging from $40\%$ or less (dark red) to $60\%$ or more (dark blue). The left graph is $\beta$ equal $0$ for all players, the middle one for the logistical $\beta$ and the right one for beta of $1$.
+
+Looking at Figures \ref{fig:19},b,c one can see a higher Beta makes the graph more blue, meaning that the more a team knows about the others the more likely it is to win with higher aggressivity. This is also what one would expect in a real game.
+Consequently to get a better overview we only plotted the points where Team 1 won in more than $66\%$ or lost in more than $60\%$ (Fig. \ref{fig:22},e,f).
+Lastly we plotted the best aggresivity lines and highlighted the losses (Fig. \ref{fig:25},h,i). Once again with the varying $\beta$'s in the same order as above.
 
 Here we can once again see that the more knowledge the players have the less extreme the difference between the teams gets. Moreover in the different colors we colored points that go roughly on a hyperbola branch (particularly visible in the left graph).  In addition we plot there following graph (f(x)=93-x), which shows, if the teammate's aggressiveness is x, how high the own aggressiveness should reasonably be.
 93$\%$ is the value, which should result from the added aggressions, in order to achieve maximum points with the Tichu. The number 93 is the cumulative probability of the two team partners. It is the digit of the maximum of the function $x\cdot f(x)$, where f(x) is the probability of winning a tichu. Thus it gives the place of the maximum of the score.
 At the edges the error of the theoretical model is of course bigger, because it is unrealistic that a player from the card distribution can get the tichu every round. 
 Basically, the probability of the Tichu victory is maximized if both players announce with a probability of 46.5$\%$ and thus hit the maximum of the win, but at the same time the good cards of both players are used in the best possible way. Also one can see the trend of points converging to the two diagonals of the grid with higher $\beta$'s.
-\newpage
-For the better overview we have plotted all values in one graph, where you win  more than 66$\%$ of the games (\ref{fig:28}).
-
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.35\textwidth]{Bilder/simulation_16}
     \caption{Overview plot - $\beta=0,\beta=1,logistic$}
     \label{fig:28}
 \end{figure}
+For the better overview we have plotted all values in one graph, where you win  more than 66$\%$ of the games (Fig. \ref{fig:28}).
 
 By comparing the different simulations, the following relationships can be established. With the tile model, there is almost no difference between the case $\beta=0$ and $\beta=1$, so that one can conclude that the strategy one should play is not influenced by the extremes. However, if you look at the tile model of logistic development, you can see a clear color difference, especially you can see that it becomes very blue when you are near (0,0). To examine this connection more clearly, we will only look at the profits with a probability of over 66$\%$ and profits with a probability of less than 40$\%$, i.e. rather the losses. Here you can see that although in the extreme cases $\beta\in\{0,1\}$ the winnings are distributed over the whole quadrant, the losses at $\beta=1$ increase with a more aggressive playing style, so that a defensive playing strategy is more advantageous. This can also be seen in the diagram where $\beta$ is logistically distributed. The winnings are very much concentrated in the lower half of the square. If you add in the optimal aggressiveness, you can see that the winnings are near the bottom of the graph.
 
 We conclude that with increasing transparency a defensive play is always an advantage.
-
 
 \section{Conclusion}
 To conclude this essay we would like to summarise our findings and evaluate some of the errors and approximations we made in constructing our models as well as suggest further possibilities for improvement.
